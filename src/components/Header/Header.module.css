@@ -1,0 +1,56 @@
+@import url("./../../variables.css");
+
+.header{
+    display: flex;
+    height: 100px ;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    background-color: var(--header-color);
+    border-bottom: var(--border);
+    position: relative;
+    z-index: -99;
+}
+
+.header__logo{
+    font-size: var(--primary-font-size);
+}
+
+.header__nav{
+    min-width: 400px;
+}
+
+.header__links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+.header__links--active{
+    list-style-type: none;
+    padding: 0;
+    font-size: var(--secondary-font-size);
+    position: relative;
+    color: var(--highlighted-font-color);
+    cursor:pointer;
+}
+
+
+.header__links--active::after{
+    position: absolute;
+    top: -105%;
+    right: -27%;
+    height: 100px;
+    width:115px;
+    content: '';
+    background-color: var(--accent-color);
+    z-index: -1;
+}
+
+.header__links--item{
+    list-style-type: none;
+    padding: 0;
+    font-size: var(--secondary-font-size);
+    cursor: pointer;
+}
