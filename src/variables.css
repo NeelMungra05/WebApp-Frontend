@@ -2,9 +2,11 @@
     --background-color: #fff;
     --header-color: #efefef;
     --accent-color:#86BC25;
-    --font:'Roboto';
     --main-font-color:#000;
     --highlighted-font-color: #fff;
     --border: 6px solid var(--accent-color);
+    --primary-font-size:3rem;
+    --secondary-font-size:1.75rem;
+    --normal-font-size:1.125rem;
 }
 
