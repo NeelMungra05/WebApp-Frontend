@@ -2,4 +2,9 @@
     --background-color: #fff;
     --header-color: #efefef;
     --accent-color:#86BC25;
+    --font:'Roboto';
+    --main-font-color:#000;
+    --highlighted-font-color: #fff;
+    --border: 6px solid var(--accent-color);
 }
+
