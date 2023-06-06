@@ -4,14 +4,25 @@ import styles from "./Header.module.css";
 const Header = (props) => {
   return (
     <header className={styles.header}>
-      <h1 className={styles.header__logo}>Logo</h1>
-      <nav className={styles.header__nav}>
-        <ul className={styles.header__links}>
-          <li className={styles["header__links--active"]}>Home</li>
-          <li className={styles["header__links--item"]}>Login</li>
-          <li className={styles["header__links--item"]}>Register</li>
-        </ul>
-      </nav>
+      <div className={styles["nav-container"]}>
+        <div className={styles.header__logo}>
+          <span className={styles.header__name}>Logo</span>
+        </div>
+        <nav className={styles["nav"]}>
+          <a
+            href="#"
+            className={`${styles.nav__link} ${styles["nav__link--active"]}`}
+          >
+            <span className={styles.nav__item}>Home</span>
+          </a>
+          <a href="#" className={styles.nav__link}>
+            <span className={styles.nav__item}>Login</span>
+          </a>
+          <a href="#" className={styles.nav__link}>
+            <span className={styles.nav__item}>Register</span>
+          </a>
+        </nav>
+      </div>
     </header>
   );
 };
