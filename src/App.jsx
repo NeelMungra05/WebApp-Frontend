@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LoginForm from "./components/Form/LoginForm";
 import SignupForm from "./components/Form/SignupForm";
 import Header from "./components/Header/Header";
 
@@ -46,6 +47,16 @@ function App() {
     console.log(userData);
   };
 
+  let content = <p>Welcome home</p>;
+
+  if (isLogin) {
+    content = <LoginForm />;
+  }
+
+  if (isRegister) {
+    content = <SignupForm />;
+  }
+
   return (
     <>
       <Header
@@ -54,20 +65,7 @@ function App() {
         register={isRegister}
         navbarStateChanger={navbarStateChanger}
       />
-      {isLogin && !isLoggedIn && (
-        <SignupForm
-          formType="login"
-          handleLogin={handleLogin}
-          navbarStateChanger={navbarStateChanger}
-        />
-      )}
-      {isRegister && (
-        <SignupForm
-          formType="register"
-          handleRegister={handleRegister}
-          navbarStateChanger={navbarStateChanger}
-        />
-      )}
+      {content}
     </>
   );
 }
