@@ -1,11 +1,12 @@
 import { useState } from "react";
-import Forms from "./components/Form/Forms";
+import SignupForm from "./components/Form/SignupForm";
 import Header from "./components/Header/Header";
 
 function App() {
   const [isHome, setIsHome] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navbarStateChanger = (navState) => {
     switch (navState) {
@@ -28,6 +29,23 @@ function App() {
     }
   };
 
+  // Login handler function
+  const handleLogin = (credentials) => {
+    //Add login auhtnetication here
+    if (
+      credentials.email === "admin@123" &&
+      credentials.password === "admin123"
+    ) {
+      setIsLoggedIn(true);
+    }
+  };
+
+  // Register handler function
+  const handleRegister = (userData) => {
+    // Perform registration logic here
+    console.log(userData);
+  };
+
   return (
     <>
       <Header
@@ -36,7 +54,20 @@ function App() {
         register={isRegister}
         navbarStateChanger={navbarStateChanger}
       />
-      <Forms />
+      {isLogin && !isLoggedIn && (
+        <SignupForm
+          formType="login"
+          handleLogin={handleLogin}
+          navbarStateChanger={navbarStateChanger}
+        />
+      )}
+      {isRegister && (
+        <SignupForm
+          formType="register"
+          handleRegister={handleRegister}
+          navbarStateChanger={navbarStateChanger}
+        />
+      )}
     </>
   );
 }
