@@ -31,18 +31,19 @@ function App() {
   };
 
   // Login handler function
-  const handleLogin = (credentials) => {
+  const loginHandler = (credentials) => {
     //Add login auhtnetication here
     if (
-      credentials.email === "admin@123" &&
+      credentials.username === "admin@123" &&
       credentials.password === "admin123"
     ) {
       setIsLoggedIn(true);
+      console.log(isLoggedIn);
     }
   };
 
   // Register handler function
-  const handleRegister = (userData) => {
+  const registerHandler = (userData) => {
     // Perform registration logic here
     console.log(userData);
   };
@@ -50,7 +51,7 @@ function App() {
   let content = <p>Welcome home</p>;
 
   if (isLogin) {
-    content = <LoginForm />;
+    content = <LoginForm loginHandler={loginHandler} />;
   }
 
   if (isRegister) {
