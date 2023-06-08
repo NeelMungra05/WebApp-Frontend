@@ -25,7 +25,14 @@ function App() {
         setIsLogin(true);
         setIsHome(false);
         setIsRegister(false);
+        break;
+      case "logout":
+        setIsHome(true);
+        setIsLoggedIn(false);
       default:
+        setIsHome(false);
+        setIsLogin(false);
+        setIsRegister(false);
         break;
     }
   };
@@ -38,10 +45,10 @@ function App() {
       credentials.password === "admin123"
     ) {
       setIsLoggedIn((prevState) => {
-        // console.log(`This is prev state ${prevState}`);
         return true;
       });
-      console.log(isLoggedIn);
+
+      navbarStateChanger();
     }
   };
 
@@ -52,6 +59,10 @@ function App() {
   };
 
   let content = <p>Welcome home</p>;
+
+  if (isLoggedIn) {
+    content = <p>Select option</p>;
+  }
 
   if (isLogin) {
     content = <LoginForm loginHandler={loginHandler} />;
