@@ -47,7 +47,7 @@ function App() {
       setIsLoggedIn((prevState) => {
         return true;
       });
-
+      alert("Login");
       navbarStateChanger();
     }
   };
@@ -56,6 +56,8 @@ function App() {
   const registerHandler = (userData) => {
     // Perform registration logic here
     console.log(userData);
+    alert("Registration successfull");
+    navbarStateChanger("home");
   };
 
   let content = <p>Welcome home</p>;
@@ -69,7 +71,7 @@ function App() {
   }
 
   if (isRegister) {
-    content = <SignupForm />;
+    content = <SignupForm registerHandler={registerHandler} />;
   }
 
   return (
