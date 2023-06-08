@@ -6,7 +6,6 @@ const Header = (props) => {
 
   const navClickHandler = (e) => {
     e.preventDefault();
-    console.log(e.target.innerText.toLowerCase());
     props.navbarStateChanger(e.target.innerText.toLowerCase());
   };
 
@@ -45,7 +44,7 @@ const Header = (props) => {
     console.log(props.isLoggedin);
     navbar = (
       <nav className={styles.nav}>
-        <a href="/logout" className={navStyle}>
+        <a onClick={navClickHandler} href="/logout" className={navStyle}>
           <span className={styles.nav__item}>Logout</span>
         </a>
       </nav>
