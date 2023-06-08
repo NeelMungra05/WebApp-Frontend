@@ -37,7 +37,10 @@ function App() {
       credentials.username === "admin@123" &&
       credentials.password === "admin123"
     ) {
-      setIsLoggedIn(true);
+      setIsLoggedIn((prevState) => {
+        // console.log(`This is prev state ${prevState}`);
+        return true;
+      });
       console.log(isLoggedIn);
     }
   };
@@ -64,6 +67,7 @@ function App() {
         home={isHome}
         login={isLogin}
         register={isRegister}
+        isLoggedIn={isLoggedIn}
         navbarStateChanger={navbarStateChanger}
       />
       {content}
