@@ -2,6 +2,7 @@ import { useState } from "react";
 import LoginForm from "./components/Form/LoginForm";
 import SignupForm from "./components/Form/SignupForm";
 import Header from "./components/Header/Header";
+import Services from "./components/Services/Services";
 
 function App() {
   const [isHome, setIsHome] = useState(true);
@@ -64,7 +65,7 @@ function App() {
   let content = <p>Welcome home</p>;
 
   if (isLoggedIn) {
-    content = <p>Select option</p>;
+    content = <Services />;
   }
 
   if (isLogin) {
