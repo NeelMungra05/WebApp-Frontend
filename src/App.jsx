@@ -29,6 +29,7 @@ function App() {
       case "logout":
         setIsHome(true);
         setIsLoggedIn(false);
+        break;
       default:
         setIsHome(false);
         setIsLogin(false);
