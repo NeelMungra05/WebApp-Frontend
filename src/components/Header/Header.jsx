@@ -12,6 +12,8 @@ const Header = (props) => {
   const navActiveStyle = `${styles.nav__link} ${styles["nav__link--active"]}`;
   const navStyle = styles.nav__link;
 
+  console.log(props.home);
+
   let navbar = (
     <nav className={styles["nav"]}>
       <a
@@ -41,7 +43,7 @@ const Header = (props) => {
   );
 
   if (props.isLoggedIn) {
-    console.log(props.isLoggedin);
+    console.log(props.isLoggedIn);
     navbar = (
       <nav className={styles.nav}>
         <a onClick={navClickHandler} href="/logout" className={navStyle}>
