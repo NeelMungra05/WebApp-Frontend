@@ -1,6 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import Input from "../UI/Input";
+import styles from "./Forms.module.css";
 
 const SignupForm = (props) => {
   const usernameInputRef = useRef();
@@ -26,10 +27,10 @@ const SignupForm = (props) => {
 
   return (
     <>
-      <form action="">
+      <form className={styles.form} action="">
         <Input
           ref={emailInputRef}
-          label="Email"
+          label="Email :"
           input={{
             id: "email",
             type: "email",
@@ -37,7 +38,7 @@ const SignupForm = (props) => {
         />
         <Input
           ref={usernameInputRef}
-          label="Username"
+          label="Username :"
           input={{
             id: "username",
             type: "text",
@@ -45,7 +46,7 @@ const SignupForm = (props) => {
         />
         <Input
           ref={passwordInputRef}
-          label="Password"
+          label="Password :"
           input={{
             id: "password",
             type: "password",
@@ -53,14 +54,14 @@ const SignupForm = (props) => {
         />
         <Input
           ref={confirmPasswordInputRef}
-          label="Confirm Password"
+          label="Confirm Password :"
           input={{
             id: "confirmPassword",
             type: "password",
           }}
         />
 
-        <button onClick={formSubmitHandler} type="submit">
+        <button className={styles.button} onClick={formSubmitHandler} type="submit">
           Register
         </button>
       </form>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useRef } from "react";
+import styles from "./Forms.module.css";
 import Input from "../UI/Input";
 
 const LoginForm = (props) => {
@@ -19,10 +20,10 @@ const LoginForm = (props) => {
   };
 
   return (
-    <>
-      <form action="">
+    <div className={styles.container}>
+      <form className={styles.form} action="">
         <Input
-          label="Username"
+          label="Username :"
           ref={usernameInputRef}
           input={{
             id: "username",
@@ -30,21 +31,27 @@ const LoginForm = (props) => {
           }}
         />
         <Input
-          label="Password"
+          label="Password :"
           ref={passwordInputRef}
           input={{
             id: "password",
             type: "password",
           }}
         />
-        <button onClick={loginButtonHandler} type="submit">
+        <button
+          className={styles.button}
+          onClick={loginButtonHandler}
+          type="submit"
+        >
           Login
         </button>
       </form>
-      <p>
-        Not Registered ! <a href="">Register here</a>
-      </p>
-    </>
+      <div>
+        <p>
+          Not Registered ! <a href="">Register here</a>
+        </p>
+      </div>
+    </div>
   );
 };
 

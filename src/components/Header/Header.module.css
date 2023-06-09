@@ -1,7 +1,7 @@
 @import url("../../variables.css");
 
 .header{
-    padding: 0 10%;
+    padding: 0 5%;
     border-bottom: var(--border);
     background-color: var(--header-color);
 }
@@ -9,7 +9,7 @@
 .nav-container{
     display: flex;
   justify-content: space-between;
-  max-width: 75rem;
+  max-width: 80rem;
   margin: 0 auto; 
 }
 
