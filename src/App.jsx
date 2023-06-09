@@ -85,7 +85,7 @@ function App() {
         isLoggedIn={isLoggedIn}
         navbarStateChanger={navbarStateChanger}
       />
-      {content}
+      <main>{content}</main>
     </>
   );
 }

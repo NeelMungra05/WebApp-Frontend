@@ -1,1 +1,72 @@
 @import url("../../variables.css");
+
+.section{
+    display: flex;
+    width: 100%;
+    gap: 6rem;
+    align-items: flex-start;
+}
+
+.section__items{
+    background-color: var(--header-color);
+    border-radius: .4rem;
+    box-shadow: 0 3rem 6rem rgba(0,0,0,0.1);
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.2s ;
+}
+
+.section__items:hover{
+    transform: translateY(-0.5%);
+    box-shadow: 0 4rem 8rem rgba(0, 0, 0, 0.2);
+}
+
+.card__img{
+    display: block;
+    width: 100%;
+    height: 18rem;
+    object-fit: cover;
+}
+
+.card__content{
+    padding: 3rem;
+}
+
+.card__header{
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.card__text{
+    font-size: 1.5rem;
+    letter-spacing: .1rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+}
+
+.card__btn{
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--text-light);
+    border: none;
+    background-color: var(--accent-color);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.card__btn span{
+    margin-left: 1rem;
+    transition: 0.2s;
+}
+
+.card__btn:hover, .card__btn:active{
+    background-color: #77a721;
+}
+
+.card__btn:hover span, .card__btn:active span{
+    margin-left: 1.5rem;
+}
