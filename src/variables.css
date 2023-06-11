@@ -2,9 +2,11 @@
     --background-color: #fff;
     --header-color: #efefef;
     --accent-color:#86BC25;
+    --accent-dark-color: #43B02A;
     --main-font-color:#000;
     --highlighted-font-color: #fff;
     --border: 6px solid var(--accent-color);
+    --border-thin : 3px solid var(--accent-color);
     --text-dark: #000;
     --text-light: #fbf2f2;
     --text-muted: #595959;
