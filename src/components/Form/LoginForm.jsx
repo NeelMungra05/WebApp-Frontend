@@ -42,7 +42,7 @@ const LoginForm = (props) => {
         </button>
       </form>
       <p>
-        Not Registered ! <a href="">Register here</a>
+        Not yet Registered ! <a href="">Register here</a>
       </p>
     </>
   );
