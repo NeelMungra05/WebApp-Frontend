@@ -72,7 +72,7 @@ const SignupForm = (props) => {
                 Register
               </button>
               <div className="linkButton">
-              <p>Already have an account <a href="">Login here</a></p>
+              <p>Already have an account? <a href="">Login</a></p>
               </div>
             </form>
           </div>

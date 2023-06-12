@@ -48,7 +48,7 @@ const LoginForm = (props) => {
               Login
             </button>
             <div className="linkButton">
-              <p>Don't have a account <a href="">Register here</a></p>
+              <p>Don't have a account? <a href="">Register</a></p>
             </div>
           </form>
         </div>
