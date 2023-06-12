@@ -80,7 +80,7 @@ const Services = () => {
   ));
 
   if (serviceSelected.reconciliation) {
-    service = <p>Reconciliation clicker....</p>;
+    service = <p>Reconciliation clickers....</p>;
   }
 
   return <section className={styles.section}>{service}</section>;
