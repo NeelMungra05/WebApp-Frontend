@@ -1,6 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import Input from "../UI/Input";
+import "./Form.css"
 
 const SignupForm = (props) => {
   const usernameInputRef = useRef();
@@ -26,47 +27,57 @@ const SignupForm = (props) => {
 
   return (
     <>
-      <form action="">
-        <Input
-          ref={emailInputRef}
-          label="Email"
-          input={{
-            id: "email",
-            type: "email",
-          }}
-        />
-        <Input
-          ref={usernameInputRef}
-          label="Username"
-          input={{
-            id: "username",
-            type: "text",
-          }}
-        />
-        <Input
-          ref={passwordInputRef}
-          label="Password"
-          input={{
-            id: "password",
-            type: "password",
-          }}
-        />
-        <Input
-          ref={confirmPasswordInputRef}
-          label="Confirm Password"
-          input={{
-            id: "confirmPassword",
-            type: "password",
-          }}
-        />
-
-        <button onClick={formSubmitHandler} type="submit">
-          Register
-        </button>
-      </form>
-      <p>
-        Already registered? Then <a href="">Login Here</a>
-      </p>
+      <section>
+        <div className="form-box-register">
+          <div className="form-value">
+            <form action="">
+              <h2>Register</h2>
+              <div className="inputbox">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+                <input
+                  placeholder=" "
+                  type="email"
+                  ref={emailInputRef}
+                />
+                  <label for="">Email</label>
+              </div>
+              <div className="inputbox">
+              <i class="fa fa-user" aria-hidden="true"></i>
+                <input
+                  placeholder=" "
+                  type="text"
+                  ref={usernameInputRef}
+                />
+                  <label for="">Username</label>
+              </div>
+              <div className="inputbox">
+              <i class="fa fa-key" aria-hidden="true"></i>
+                <input
+                  placeholder=" "
+                  type="password"
+                  ref={passwordInputRef}
+                />
+                  <label for="">Password</label>
+              </div>
+              <div className="inputbox">
+              <i class="fa fa-check" aria-hidden="true"></i>
+                <input
+                  placeholder=" "
+                  type="password"
+                  ref={confirmPasswordInputRef}
+                />
+                  <label for="">Confirm Password</label>
+              </div>
+              <button onClick={formSubmitHandler} type="submit">
+                Register
+              </button>
+              <div className="linkButton">
+              <p>Already have an account <a href="">Login here</a></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
