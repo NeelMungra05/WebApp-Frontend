@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LoginForm from "./components/Form/LoginForm";
 import SignupForm from "./components/Form/SignupForm";
 import Header from "./components/Header/Header";
@@ -28,6 +28,7 @@ function App() {
         setIsRegister(false);
         break;
       case "logout":
+        localStorage.removeItem("isLoggedIn");
         setIsHome(true);
         setIsLoggedIn(false);
         break;
@@ -39,6 +40,17 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const loggedInChecker = localStorage.getItem("isLoggedIn");
+
+    if (loggedInChecker) {
+      setIsLoggedIn(true);
+      navbarStateChanger();
+    }
+
+    return () => {};
+  }, [setIsLoggedIn]);
+
   // Login handler function
   const loginHandler = (credentials) => {
     //Add login auhtnetication here
@@ -49,6 +61,7 @@ function App() {
       setIsLoggedIn((prevState) => {
         return true;
       });
+      localStorage.setItem("isLoggedIn", true);
       alert("Login");
       navbarStateChanger();
     }
