@@ -4,6 +4,7 @@ import img from "../../assets/recon.jpg";
 import ServiceList from "./ServiceList";
 import { useState } from "react";
 import { useMemo } from "react";
+import Reconciliation from "./Reconciliation/Reconciliation";
 
 const Services = () => {
   const [serviceSelected, setServiceSelected] = useState({
@@ -80,7 +81,7 @@ const Services = () => {
   ));
 
   if (serviceSelected.reconciliation) {
-    service = <p>Reconciliation clickers....</p>;
+    service = <Reconciliation />;
   }
 
   return <section className={styles.section}>{service}</section>;
