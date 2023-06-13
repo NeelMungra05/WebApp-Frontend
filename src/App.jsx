@@ -1,55 +1,104 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import LoginForm from "./components/Form/LoginForm";
+import SignupForm from "./components/Form/SignupForm";
+import Header from "./components/Header/Header";
+import Services from "./components/Services/Services";
+
 function App() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [isHome, setIsHome] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
+  const [isRegister, setIsRegister] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const Header = (props) => {
-    return (
-      <header>
-        <nav>
-          <ul>
-            <li>Login</li>
-            <li>Register</li>
-          </ul>
-        </nav>
-      </header>
-    );
+
+  const navbarStateChanger = (navState) => {
+    switch (navState) {
+      case "home":
+        setIsHome(true);
+        setIsLogin(false);
+        setIsRegister(false);
+        break;
+      case "register":
+        setIsRegister(true);
+        setIsHome(false);
+        setIsLogin(false);
+        break;
+      case "login":
+        setIsLogin(true);
+        setIsHome(false);
+        setIsRegister(false);
+        break;
+      case "logout":
+        localStorage.removeItem("isLoggedIn");
+        setIsHome(true);
+        setIsLoggedIn(false);
+        break;
+      default:
+        setIsHome(false);
+        setIsLogin(false);
+        setIsRegister(false);
+        break;
+    }
   };
-  const Main = (props) => {
-    return (
-      <>
-        <form action="">
-          <div>
-            <label htmlFor="">Username </label>
-            <input type="text" />
-          </div>
-          <div>
-            <label htmlFor="">Email</label>
-            <input type="text" />
-          </div>
-          <div>
-            <label htmlFor="">Password</label>
-            <input type="password" />
-          </div>
-          <div>
-            <label htmlFor="">Confirm Password</label>
-            <input type="password" />
-          </div>
-          <div>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-        <p>
-          Already registered? Then <a href="">Login Here</a>
-        </p>
-      </>
-    );
+
+  useEffect(() => {
+    const loggedInChecker = localStorage.getItem("isLoggedIn");
+
+    if (loggedInChecker) {
+      setIsLoggedIn(true);
+      navbarStateChanger();
+    }
+
+    return () => {};
+  }, [setIsLoggedIn]);
+
+  // Login handler function
+  const loginHandler = (credentials) => {
+    //Add login auhtnetication here
+    if (
+      credentials.username === "admin@123" &&
+      credentials.password === "admin123"
+    ) {
+      setIsLoggedIn((prevState) => {
+        return true;
+      });
+      localStorage.setItem("isLoggedIn", true);
+      alert("Login");
+      navbarStateChanger();
+    }
   };
+
+  // Register handler function
+  const registerHandler = (userData) => {
+    // Perform registration logic here
+    console.log(userData);
+    alert("Registration successfull");
+    navbarStateChanger("home");
+  };
+
+  let content = <p>Welcome home</p>;
+
+  if (isLoggedIn) {
+    content = <Services />;
+  }
+
+  if (isLogin) {
+    content = <LoginForm loginHandler={loginHandler} />;
+  }
+
+  if (isRegister) {
+    content = <SignupForm registerHandler={registerHandler} />;
+  }
+
   return (
     <>
-      <Header />
-      <Main />
+      <Header
+        home={isHome}
+        login={isLogin}
+        register={isRegister}
+        isLoggedIn={isLoggedIn}
+        navbarStateChanger={navbarStateChanger}
+      />
+      <main>{content}</main>
     </>
   );
 }
