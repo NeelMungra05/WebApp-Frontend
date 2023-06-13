@@ -1,7 +1,9 @@
 import React from "react";
 import { useRef } from "react";
 import Input from "../UI/Input";
-import "./Form.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope,faUser,faKey,faCheck } from '@fortawesome/free-solid-svg-icons'
+// import "./Form.css"
 
 const SignupForm = (props) => {
   const usernameInputRef = useRef();
@@ -33,7 +35,7 @@ const SignupForm = (props) => {
             <form action="">
               <h2>Register</h2>
               <div className="inputbox">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <FontAwesomeIcon className="font-awesome" icon={faEnvelope} />
                 <input
                   placeholder=" "
                   type="email"
@@ -42,7 +44,7 @@ const SignupForm = (props) => {
                   <label for="">Email</label>
               </div>
               <div className="inputbox">
-              <i class="fa fa-user" aria-hidden="true"></i>
+              <FontAwesomeIcon className="font-awesome" icon={faUser} />
                 <input
                   placeholder=" "
                   type="text"
@@ -51,7 +53,7 @@ const SignupForm = (props) => {
                   <label for="">Username</label>
               </div>
               <div className="inputbox">
-              <i class="fa fa-key" aria-hidden="true"></i>
+              <FontAwesomeIcon className="font-awesome" icon={faKey} />
                 <input
                   placeholder=" "
                   type="password"
@@ -60,7 +62,7 @@ const SignupForm = (props) => {
                   <label for="">Password</label>
               </div>
               <div className="inputbox">
-              <i class="fa fa-check" aria-hidden="true"></i>
+              <FontAwesomeIcon className="font-awesome" icon={faCheck} />
                 <input
                   placeholder=" "
                   type="password"

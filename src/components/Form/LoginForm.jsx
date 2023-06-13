@@ -1,6 +1,8 @@
 import React from "react";
 import { useRef } from "react";
 import Input from "../UI/Input";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser,faKey } from '@fortawesome/free-solid-svg-icons'
 import './Form.css'
 
 const LoginForm = (props) => {
@@ -27,22 +29,28 @@ const LoginForm = (props) => {
           <form action="">
             <h2>Login</h2>
             <div className="inputbox">
-            <i class="fa fa-user" aria-hidden="true"></i>
-              <input
-                placeholder=" "
-                type="text"
-                ref={usernameInputRef}
-              />
-              <label for="">Username</label>
+            <FontAwesomeIcon className="font-awesome" icon={faUser} />
+            <Input
+              className='input'
+              label={<label className="label">Username</label>}
+              ref={usernameInputRef}
+              input={{
+              id: "username",
+              type: "text",
+              placeholder: " ",
+              }}/>
             </div>
             <div className="inputbox">
-            <i class="fa fa-key" aria-hidden="true"></i>
-              <input
-                placeholder=" "
-                type="password"
-                ref={passwordInputRef}
-              />
-              <label for="">Password</label>
+            <FontAwesomeIcon className="font-awesome" icon={faKey} />
+              <Input
+              className='input'
+              label={<label className="label">Password</label>}
+              ref={passwordInputRef}
+              input={{
+              id: "password",
+              type: "password",
+              placeholder: " ",
+              }}/>
             </div>
             <button onClick={loginButtonHandler} type="submit">
               Login

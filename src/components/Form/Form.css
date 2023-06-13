@@ -71,7 +71,8 @@ input:not(:placeholder-shown) ~ label{
     padding: 0 35px 0 5px;
     color: #fff;
 }
-.inputbox i{
+
+.font-awesome{
     position: absolute;
     right: 8px;
     color: white;
