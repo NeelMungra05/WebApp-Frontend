@@ -23,6 +23,7 @@ section{
     justify-content: center;
     align-items: center;
 }
+
 .form-box-register{
     position: relative;
     width: 400px;
@@ -36,17 +37,20 @@ section{
     margin-top: 70px;
     margin-bottom: 70px;
 }
+
 h2{
     font-size: 2em;
     color: #fff;
     text-align: center;
 }
+
 .inputbox{
     position: relative;
     margin: 30px 0;
     width: 310px;
     border-bottom: 2px solid #fff;
 }
+
 .inputbox label{
     position: absolute;
     top: 50%;
@@ -57,10 +61,12 @@ h2{
     pointer-events: none;
     transition: 0.5s;
 }
+
 input:focus ~ label,
 input:not(:placeholder-shown) ~ label{
     top: -5px;
 }
+
 .inputbox input{
     width: 100%;
     height: 50px;
@@ -79,6 +85,7 @@ input:not(:placeholder-shown) ~ label{
     font-size: 1.2em;
     top: 20px;
 }
+
 button{
     width: 100%;
     height: 40px;
@@ -90,17 +97,20 @@ button{
     font-size: 1em;
     font-weight: 600;
 }
+
 .linkButton{
     font-size: 0.9em;
     color: #fff;
     text-align: center;
     margin: 25px 0 10px;
 }
+
 .linkButton p a{
     text-decoration: none;
     color: #fff;
     font-weight: 600;
 }
+
 .linkButton p a:hover{
     text-decoration: underline;
 }
