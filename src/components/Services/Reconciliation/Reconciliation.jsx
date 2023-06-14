@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import FormSection from "../../MultiStepForm/FormSection";
 import Input from "../../UI/Input";
 import styles from "./Reconciliation.module.css";
 
@@ -36,10 +37,11 @@ const Reconciliation = () => {
 
   return (
     <form action="" className={styles.form}>
-      <section
-        className={`${styles.form__section} ${
-          steps === 1 ? styles["form__section--active"] : ""
-        }`}
+      <FormSection
+        currentStep={steps}
+        defaultStep={1}
+        className={styles.form__section}
+        activeClassName={styles["form__section--active"]}
       >
         <div className={styles.section__header}>Step 1</div>
         <div className={styles.section__input}>
@@ -53,23 +55,25 @@ const Reconciliation = () => {
             }}
           />
         </div>
-      </section>
+      </FormSection>
 
-      <section
-        className={`${styles.form__section} ${
-          steps === 2 ? styles["form__section--active"] : ""
-        }`}
+      <FormSection
+        currentStep={steps}
+        defaultStep={2}
+        className={styles.form__section}
+        activeClassName={styles["form__section--active"]}
       >
         <div className={styles.section__header}>Step 2</div>
-      </section>
+      </FormSection>
 
-      <section
-        className={`${styles.form__section} ${
-          steps === 3 ? styles["form__section--active"] : ""
-        }`}
+      <FormSection
+        currentStep={steps}
+        defaultStep={3}
+        className={styles.form__section}
+        activeClassName={styles["form__section--active"]}
       >
         <div className={styles.section__header}>Step 3</div>
-      </section>
+      </FormSection>
 
       <div className={styles.form__navigation}>
         <button
