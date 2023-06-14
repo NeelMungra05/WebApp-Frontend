@@ -13,12 +13,12 @@ const FileUpload = (props) => {
       <div className={styles.section__header}>Step 1</div>
       <div className={styles.section__input}>
         <Input
-          label="Source file"
+          label={props.label}
           input={{
             type: "file",
             multiple: true,
             onChange: fileChangeHandler,
-            accept: ".xlsx",
+            accept: props.accept,
           }}
         />
       </div>
