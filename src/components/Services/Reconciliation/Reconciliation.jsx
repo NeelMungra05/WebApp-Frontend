@@ -14,6 +14,10 @@ const Reconciliation = () => {
     setFiles((prevState) => [...prevState, ...file]);
   };
 
+  const fileRemoveHandler = (name) => {
+    setFiles((prevState) => prevState.filter((file) => file.name !== name));
+  };
+
   const prevButtonHandler = (e) => {
     if (steps - 1 === 1) {
       setPrevButtonDisable(true);
@@ -49,6 +53,7 @@ const Reconciliation = () => {
           label=" "
           accept=".xlsx"
           files={files}
+          onRemove={fileRemoveHandler}
         />
       </FormSection>
 

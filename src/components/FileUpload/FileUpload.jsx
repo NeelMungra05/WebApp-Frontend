@@ -24,7 +24,7 @@ const FileUpload = (props) => {
             accept: props.accept,
           }}
         />
-        {files && <FileList files={files} />}
+        {files && <FileList files={files} onRemove={props.onRemove} />}
       </div>
     </>
   );
