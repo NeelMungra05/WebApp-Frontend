@@ -1,1 +1,17 @@
 @import url("../../../variables.css");
+
+.form{
+    background-color: var(--header-color);
+    width: 100%;
+    padding: 1rem 10%;
+    border-radius: 5px;
+}
+
+.form__section{
+    width: 100%;
+    display: none;
+}
+
+.form__section--active{
+    display: block;
+}
