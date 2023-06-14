@@ -44,8 +44,12 @@ const Reconciliation = () => {
         className={styles.form__section}
         activeClassName={styles["form__section--active"]}
       >
-        <FileUpload onUpload={fileChangeHandler} label=" " accept=".xlsx" />
-        {files && <FileList files={files} />}
+        <FileUpload
+          onUpload={fileChangeHandler}
+          label=" "
+          accept=".xlsx"
+          files={files}
+        />
       </FormSection>
 
       <FormSection
