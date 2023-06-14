@@ -1,16 +1,17 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import FileList from "../../FileList/FileList";
+import FileUpload from "../../FileUpload/FileUpload";
 import FormSection from "../../MultiStepForm/FormSection";
-import Input from "../../UI/Input";
 import styles from "./Reconciliation.module.css";
 
 const Reconciliation = () => {
   const [steps, setSteps] = useState(1);
   const [nextButtonDiabled, setNextButtonDiabled] = useState(false);
   const [prevButtonDisable, setPrevButtonDisable] = useState(true);
+  const [files, setFiles] = useState([]);
 
-  const fileChangeHandler = (e) => {
-    console.log("1 ", e.target.files[0]);
+  const fileChangeHandler = (file) => {
+    setFiles((prevState) => [...prevState, ...file]);
   };
 
   const prevButtonHandler = (e) => {
@@ -43,18 +44,8 @@ const Reconciliation = () => {
         className={styles.form__section}
         activeClassName={styles["form__section--active"]}
       >
-        <div className={styles.section__header}>Step 1</div>
-        <div className={styles.section__input}>
-          <Input
-            label="Source file"
-            input={{
-              type: "file",
-              multiple: true,
-              onChange: fileChangeHandler,
-              accept: ".xlsx",
-            }}
-          />
-        </div>
+        <FileUpload onUpload={fileChangeHandler} />
+        {files && <FileList files={files} />}
       </FormSection>
 
       <FormSection
