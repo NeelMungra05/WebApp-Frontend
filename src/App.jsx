@@ -82,11 +82,11 @@ function App() {
   }
 
   if (isLogin) {
-    content = <LoginForm loginHandler={loginHandler} />;
+    content = <LoginForm loginHandler={loginHandler} navbarStateChanger={navbarStateChanger} />;
   }
 
   if (isRegister) {
-    content = <SignupForm registerHandler={registerHandler} />;
+    content = <SignupForm registerHandler={registerHandler} navbarStateChanger={navbarStateChanger} />;
   }
 
   return (
