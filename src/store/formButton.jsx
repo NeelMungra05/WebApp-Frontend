@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit/dist/createSlice";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   showPrevButton: false,
@@ -10,19 +10,14 @@ const formButtonSlice = createSlice({
   name: "formButton",
   initialState,
   reducers: {
-    prevButton(state) {
-      state.showNextButton = false;
-      (state.showSubmitButton = false), (state.showPrevButton = true);
+    prevButton(state, action) {
+      state.showPrevButton = action.payload;
     },
-    nextButton(state) {
-      state.showNextButton = true;
-      state.showPrevButton = false;
-      state.showSubmitButton = false;
+    nextButton(state, action) {
+      state.showNextButton = action.payload;
     },
-    submitButton(state) {
-      state.showNextButton = false;
-      state.showPrevButton = false;
-      state.showSubmitButton = true;
+    submitButton(state, action) {
+      state.showSubmitButton = action.payload;
     },
   },
 });

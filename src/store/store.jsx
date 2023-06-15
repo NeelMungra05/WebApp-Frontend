@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit/dist/configureStore";
+import { configureStore } from "@reduxjs/toolkit";
 import stepsReducer from "./steps";
 import formButtonReducer from "./formButton";
 import fileReducer from "./files";
@@ -11,4 +11,4 @@ const store = configureStore({
   },
 });
 
-export default store;
+export { store };
