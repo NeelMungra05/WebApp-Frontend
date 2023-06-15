@@ -28,7 +28,7 @@ const fileSlice = createSlice({
   },
 });
 
-const fileSliceReducer = fileSlice.reducer;
+const fileReducer = fileSlice.reducer;
 
-export const fileSliceAction = fileSlice.actions;
-export default fileSliceReducer;
+export const fileAction = fileSlice.actions;
+export default fileReducer;
