@@ -7,6 +7,12 @@
     padding: 1rem 20%;
 }
 
+.steps{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .progress_bar{
     width: 100%;
     height: 30px;
