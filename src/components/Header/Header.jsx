@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
+import logo from "../Images/dlogo.png"
 
 const Header = (props) => {
   console.log("This is header.jsx");
@@ -57,7 +58,7 @@ const Header = (props) => {
     <header className={styles.header}>
       <div className={styles["nav-container"]}>
         <div className={styles.header__logo}>
-          <span className={styles.header__name}>Logo</span>
+          <span className={styles.header__name}><img src={logo} width="200px" alt="" /></span>
         </div>
         {navbar}
       </div>
