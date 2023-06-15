@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FileList from "../../FileList/FileList";
 import FileUpload from "../../FileUpload/FileUpload";
 import FormSection from "../../MultiStepForm/FormSection";
+import ProgressBar from "../../ProgressBar/ProgressBar";
 import styles from "./Reconciliation.module.css";
 
 const Reconciliation = () => {
@@ -41,59 +42,62 @@ const Reconciliation = () => {
   };
 
   return (
-    <form action="" className={styles.form}>
-      <FormSection
-        currentStep={steps}
-        defaultStep={1}
-        className={styles.form__section}
-        activeClassName={styles["form__section--active"]}
-      >
-        <FileUpload
-          onUpload={fileChangeHandler}
-          label=" "
-          accept=".xlsx"
-          files={files}
-          onRemove={fileRemoveHandler}
-        />
-      </FormSection>
-
-      <FormSection
-        currentStep={steps}
-        defaultStep={2}
-        className={styles.form__section}
-        activeClassName={styles["form__section--active"]}
-      >
-        <div className={styles.section__header}>Step 2</div>
-      </FormSection>
-
-      <FormSection
-        currentStep={steps}
-        defaultStep={3}
-        className={styles.form__section}
-        activeClassName={styles["form__section--active"]}
-      >
-        <div className={styles.section__header}>Step 3</div>
-      </FormSection>
-
-      <div className={styles.form__navigation}>
-        <button
-          type="button"
-          className={`${styles.form__button} ${styles["form__navigation--back"]}`}
-          disabled={prevButtonDisable}
-          onClick={prevButtonHandler}
+    <>
+      <ProgressBar />
+      <form action="" className={styles.form}>
+        <FormSection
+          currentStep={steps}
+          defaultStep={1}
+          className={styles.form__section}
+          activeClassName={styles["form__section--active"]}
         >
-          Previous
-        </button>
-        <button
-          type="button"
-          className={`${styles.form__button} ${styles["form__navigation--forward"]}`}
-          disabled={nextButtonDiabled}
-          onClick={nextButtonHandler}
+          <FileUpload
+            onUpload={fileChangeHandler}
+            label=" "
+            accept=".xlsx"
+            files={files}
+            onRemove={fileRemoveHandler}
+          />
+        </FormSection>
+
+        <FormSection
+          currentStep={steps}
+          defaultStep={2}
+          className={styles.form__section}
+          activeClassName={styles["form__section--active"]}
         >
-          Next
-        </button>
-      </div>
-    </form>
+          <div className={styles.section__header}>Step 2</div>
+        </FormSection>
+
+        <FormSection
+          currentStep={steps}
+          defaultStep={3}
+          className={styles.form__section}
+          activeClassName={styles["form__section--active"]}
+        >
+          <div className={styles.section__header}>Step 3</div>
+        </FormSection>
+
+        <div className={styles.form__navigation}>
+          <button
+            type="button"
+            className={`${styles.form__button} ${styles["form__navigation--back"]}`}
+            disabled={prevButtonDisable}
+            onClick={prevButtonHandler}
+          >
+            Previous
+          </button>
+          <button
+            type="button"
+            className={`${styles.form__button} ${styles["form__navigation--forward"]}`}
+            disabled={nextButtonDiabled}
+            onClick={nextButtonHandler}
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 
