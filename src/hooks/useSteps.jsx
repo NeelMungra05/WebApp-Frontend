@@ -7,7 +7,14 @@ const STEPS_INFO = {
 };
 
 const useSteps = () => {
-  return STEPS_INFO;
+  const length = Object.keys(STEPS_INFO).length;
+
+  const stepInfoArr = Object.keys(STEPS_INFO).map((idx) => STEPS_INFO[idx]);
+
+  return {
+    length,
+    stepInfoArr,
+  };
 };
 
 export default useSteps;
