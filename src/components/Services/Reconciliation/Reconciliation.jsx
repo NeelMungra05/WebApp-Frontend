@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import FileList from "../../FileList/FileList";
 import FileUpload from "../../FileUpload/FileUpload";
 import FormSection from "../../MultiStepForm/FormSection";
 import ProgressBar from "../../ProgressBar/ProgressBar";
 import styles from "./Reconciliation.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { stepsAction } from "../../../store/steps";
+import { formButtonAction } from "../../../store/formButton";
 
 const Reconciliation = () => {
-  const [steps, setSteps] = useState(1);
-  const [nextButtonDiabled, setNextButtonDiabled] = useState(false);
-  const [prevButtonDisable, setPrevButtonDisable] = useState(true);
+  const steps = useSelector((state) => state.steps.steps);
+  const {
+    showPrevButton: prevButton,
+    showNextButton: nextButton,
+    showSubmitButton: submitButton,
+  } = useSelector((state) => state.formButton);
+  const dispatch = useDispatch();
+
   const [files, setFiles] = useState([]);
 
   const fileChangeHandler = (file) => {
@@ -21,24 +28,24 @@ const Reconciliation = () => {
 
   const prevButtonHandler = (e) => {
     if (steps - 1 === 1) {
-      setPrevButtonDisable(true);
+      dispatch(formButtonAction.prevButton(false));
     } else {
-      setPrevButtonDisable(false);
+      dispatch(formButtonAction.prevButton(true));
     }
 
-    setNextButtonDiabled(false);
-    setSteps((prev) => prev - 1);
+    dispatch(formButtonAction.nextButton(true));
+    dispatch(stepsAction.previous());
   };
 
   const nextButtonHandler = (e) => {
     if (steps + 1 === 3) {
-      setNextButtonDiabled(true);
+      dispatch(formButtonAction.nextButton(false));
     } else {
-      setNextButtonDiabled(false);
+      dispatch(formButtonAction.nextButton(true));
     }
 
-    setPrevButtonDisable(false);
-    setSteps((prev) => prev + 1);
+    dispatch(formButtonAction.prevButton(true));
+    dispatch(stepsAction.next());
   };
 
   return (
@@ -82,7 +89,7 @@ const Reconciliation = () => {
           <button
             type="button"
             className={`${styles.form__button} ${styles["form__navigation--back"]}`}
-            disabled={prevButtonDisable}
+            disabled={!prevButton}
             onClick={prevButtonHandler}
           >
             Previous
@@ -90,7 +97,7 @@ const Reconciliation = () => {
           <button
             type="button"
             className={`${styles.form__button} ${styles["form__navigation--forward"]}`}
-            disabled={nextButtonDiabled}
+            disabled={!nextButton}
             onClick={nextButtonHandler}
           >
             Next
