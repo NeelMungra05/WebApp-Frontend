@@ -16,7 +16,7 @@ const FileItem = (props) => {
           <FontAwesomeIcon className={styles.fileicon} icon="fas fa-file-alt" />
           <div className={styles.details}>
             <span className={styles.img_name}>{props.name}</span>
-            <span className={styles.size}>70KB</span>
+            <span className={styles.size}>{props.size} KB</span>
           </div>
         </div>
         <FontAwesomeIcon
