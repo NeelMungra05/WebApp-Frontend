@@ -14,8 +14,9 @@ const ProgressBar = () => {
   };
 
   const stepsInfo = stepArr.map((data, idx) => {
+    const stepClass = idx < Math.ceil((steps / length) * stepArr.length) ? styles.active_step : "";
     return (
-      <p>
+      <p className={`${styles.progress_text} ${stepClass}`} key={idx}>
         <span>{idx + 1}</span>
         <span>{data}</span>
       </p>

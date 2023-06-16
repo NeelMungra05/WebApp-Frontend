@@ -1,10 +1,42 @@
 @import url("../../variables.css");
 
 .container{
-    background-color: var(--header-color);
+    /* background-color: var(--header-color); */
+    background-color: white;
     height: 100px;
-    margin: 1rem auto;
-    padding: 1rem 20%;
+    margin: 1rem 10%;
+    padding: 1rem;
+    border-radius: 10px;
+    /* border: 2px solid black; */
+}
+
+.progress_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--progress-text-color, black);
+    font-weight: bold;
+    position: relative;
+}
+ 
+.progress_text span:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    background-color: var(--progress-index-color, black);
+    color: white;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.progress_text.active_step {
+    color: var(--accent-color);
+}
+
+.progress_text.active_step span:first-child {
+    background-color: var(--accent-color);
 }
 
 .steps{
@@ -15,15 +47,20 @@
 
 .progress_bar{
     width: 100%;
-    height: 30px;
- 
+    height: 8px;
     background-color: black; 
     border-radius: 50px;
+    margin-top: -8px;
 }
 
-.progress_bar__fill{
-    transition: 0.2s ease-in-out;
+.progress_bar__fill {
+    transition: 0.5s ease-in-out;
     background-color: var(--accent-color);
     height: 100%;
     border-radius: 50px;
 }
+
+  
+  
+  
+  
