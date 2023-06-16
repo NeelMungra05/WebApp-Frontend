@@ -1,6 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/fontawesome-free-solid";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faTrash } from "@fortawesome/fontawesome-free-solid";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import styles from "./FileItem.module.css";
 
 const FileItem = (props) => {
   const deleteClickHandler = () => {
@@ -8,10 +10,22 @@ const FileItem = (props) => {
   };
 
   return (
-    <li>
-      <span>{props.name}</span>
-      <FontAwesomeIcon icon={faTrash} onClick={deleteClickHandler} />
-    </li>
+    <section className={styles.uploaded_area}>
+      <li className={styles.row}>
+        <div className={styles.contents}>
+          <FontAwesomeIcon className={styles.fileicon} icon="fas fa-file-alt" />
+          <div className={styles.details}>
+            <span className={styles.img_name}>{props.name}</span>
+            <span className={styles.size}>70KB</span>
+          </div>
+        </div>
+        <FontAwesomeIcon
+          className={styles.delete_icon}
+          icon={faXmark}
+          onClick={deleteClickHandler}
+        />
+      </li>
+    </section>
   );
 };
 
