@@ -16,16 +16,6 @@ const Reconciliation = () => {
   } = useSelector((state) => state.formButton);
   const dispatch = useDispatch();
 
-  const [files, setFiles] = useState([]);
-
-  const fileChangeHandler = (file) => {
-    setFiles((prevState) => [...prevState, ...file]);
-  };
-
-  const fileRemoveHandler = (name) => {
-    setFiles((prevState) => prevState.filter((file) => file.name !== name));
-  };
-
   const prevButtonHandler = (e) => {
     if (steps - 1 === 1) {
       dispatch(formButtonAction.prevButton(false));
@@ -58,14 +48,7 @@ const Reconciliation = () => {
           className={styles.form__section}
           activeClassName={styles["form__section--active"]}
         >
-          <FileUpload
-            onUpload={fileChangeHandler}
-            label=" "
-            accept=".xlsx"
-            files={files}
-            onRemove={fileRemoveHandler}
-            heading="Source Files Upload"
-          />
+          <FileUpload label=" " accept=".xlsx" heading="Source Files Upload" />
         </FormSection>
 
         <FormSection
