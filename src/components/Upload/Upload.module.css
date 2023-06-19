@@ -1,0 +1,6 @@
+@import url("../../variables.css");
+
+.uploader{
+    display: flex;
+    justify-content: space-between;
+}
