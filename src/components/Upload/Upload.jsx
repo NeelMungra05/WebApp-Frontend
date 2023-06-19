@@ -9,7 +9,12 @@ const Upload = () => {
         <FileUpload label=" " accept=".xlsx" heading="Source Files Upload" />
       </div>
       <div className={styles.uploader__target}>
-        <FileUpload lable=" " accept=".xlsx" heading="Target Files Upload" />
+        <FileUpload
+          lable=" "
+          accept=".xlsx"
+          isSource={false}
+          heading="Target Files Upload"
+        />
       </div>
     </div>
   );
