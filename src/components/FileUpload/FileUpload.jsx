@@ -6,22 +6,35 @@ import Input from "../UI/Input";
 import styles from "./FileUpload.module.css";
 import { fileAction } from "../../store/files";
 import { useSelector, useDispatch } from "react-redux";
+import { useRef } from "react";
 
 const FileUpload = (props) => {
-  const files = useSelector((state) => state.files.sourceFile);
+  const { heading, isSource = true } = props;
+  const files = useSelector((state) =>
+    isSource ? state.files.sourceFile : state.files.targetFile
+  );
+  const fileInputRef = useRef(null);
   const dispatch = useDispatch();
-  const { heading } = props;
 
   console.log(files);
 
   const removeFileHandler = (fileName) => {
-    dispatch(fileAction.removeSourceFile(fileName));
+    if (isSource) {
+      dispatch(fileAction.removeSourceFile(fileName));
+    } else {
+      dispatch(fileAction.removeTargetFile(fileName));
+    }
   };
 
   const fileChangeHandler = (e) => {
     e.preventDefault();
-    console.log(e.target.files);
-    dispatch(fileAction.addSourceFile(e.target.files));
+
+    if (isSource) {
+      dispatch(fileAction.addSourceFile(e.target.files));
+    } else {
+      dispatch(fileAction.addTargetFile(e.target.files));
+    }
+    fileInputRef.current.value = null;
   };
 
   return (
@@ -31,6 +44,7 @@ const FileUpload = (props) => {
           <BsCloudArrowUp fontSize={64} />
           <Input
             label={props.label}
+            ref={fileInputRef}
             input={{
               type: "file",
               multiple: true,
