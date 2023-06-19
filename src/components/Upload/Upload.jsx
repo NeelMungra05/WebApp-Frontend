@@ -4,8 +4,8 @@ import FileUpload from "../FileUpload/FileUpload";
 const Upload = () => {
   return (
     <div>
-      <FileUpload />
-      <FileUpload />
+      <FileUpload lable=" " accept=".xlsx" heading="Target Files Upload" />
+      <FileUpload label=" " accept=".xlsx" heading="Source Files Upload" />
     </div>
   );
 };

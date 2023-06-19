@@ -6,6 +6,7 @@ import styles from "./Reconciliation.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { stepsAction } from "../../../store/steps";
 import { formButtonAction } from "../../../store/formButton";
+import Upload from "../../Upload/Upload";
 
 const Reconciliation = () => {
   const steps = useSelector((state) => state.steps.steps);
@@ -48,7 +49,7 @@ const Reconciliation = () => {
           className={styles.form__section}
           activeClassName={styles["form__section--active"]}
         >
-          <FileUpload label=" " accept=".xlsx" heading="Source Files Upload" />
+          <Upload />
         </FormSection>
 
         <FormSection
