@@ -70,24 +70,24 @@ const Reconciliation = () => {
           <div className={styles.section__header}>Step 3</div>
         </FormSection>
 
-        <div className={styles.form__navigation}>
-          <button
-            type="button"
-            className={`${styles.form__button} ${styles["form__navigation--back"]}`}
-            disabled={!prevButton}
-            onClick={prevButtonHandler}
-          >
-            Previous
-          </button>
-          <button
-            type="button"
-            className={`${styles.form__button} ${styles["form__navigation--forward"]}`}
-            disabled={!nextButton}
-            onClick={nextButtonHandler}
-          >
-            Next
-          </button>
-        </div>
+      <div className={styles.form__navigation}>
+        <button
+          type="button"
+          className={`${styles.form__button} ${styles.form__button__previous}`}
+          disabled={!prevButton}
+          onClick={prevButtonHandler}
+        >
+        <span className={styles["form__navigation--back"]}>Previous</span>
+        </button>
+        <button
+          type="button"
+          className={`${styles.form__button} ${styles.form__button__next}`}
+          disabled={!nextButton}
+          onClick={nextButtonHandler}
+        >
+        <span className={styles["form__navigation--forward"]}>Next</span>
+        </button>
+      </div>
       </form>
     </>
   );

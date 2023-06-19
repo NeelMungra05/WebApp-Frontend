@@ -15,3 +15,68 @@
 .form__section--active{
     display: block;
 }
+.form__navigation {
+    display: flex;
+    justify-content: space-between;
+}
+    
+.form__button__next {
+    margin-left: auto;
+}
+
+.form__button {
+    border-radius: 5px;
+    background-color: hsl(81,67%,54%);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 25px;
+    padding: 8px 16px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+  
+.form__button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.form__button .form__navigation--back:before {
+    content: '\00ab';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -20px;
+    transition: 0.5s;
+}
+  
+  .form__button:hover .form__navigation--back {
+    padding-left: 25px;
+  }
+  
+  .form__button:hover .form__navigation--back:before {
+    opacity: 1;
+    left: 0;
+  }
+  
+.form__button .form__navigation--forward:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.form__button:hover .form__navigation--forward {
+    padding-right: 25px;
+}
+  
+.form__button:hover .form__navigation--forward:after {
+    opacity: 1;
+    right: 0;
+}
