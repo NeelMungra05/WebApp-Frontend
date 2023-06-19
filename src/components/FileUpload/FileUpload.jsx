@@ -4,13 +4,24 @@ import { BsChevronDown, BsCloudArrowUp } from "react-icons/bs";
 import FileList from "../FileList/FileList";
 import Input from "../UI/Input";
 import styles from "./FileUpload.module.css";
+import { fileAction } from "../../store/files";
+import { useSelector, useDispatch } from "react-redux";
 
 const FileUpload = (props) => {
-  const { files, heading } = props;
+  const files = useSelector((state) => state.files.sourceFile);
+  const dispatch = useDispatch();
+  const { heading } = props;
+
+  console.log(files);
+
+  const removeFileHandler = (fileName) => {
+    dispatch(fileAction.removeSourceFile(fileName));
+  };
 
   const fileChangeHandler = (e) => {
     e.preventDefault();
-    props.onUpload(e.target.files);
+    console.log(e.target.files);
+    dispatch(fileAction.addSourceFile(e.target.files));
   };
 
   return (
@@ -36,7 +47,7 @@ const FileUpload = (props) => {
         </div>
       </div>
       <div className={styles.section__header}>{heading}</div>
-      {files && <FileList files={files} onRemove={props.onRemove} />}
+      {files && <FileList files={files} onRemove={removeFileHandler} />}
     </>
   );
 };

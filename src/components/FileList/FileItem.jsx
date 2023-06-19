@@ -1,8 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faTrash } from "@fortawesome/fontawesome-free-solid";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faFileAlt, faXmark } from "@fortawesome/free-solid-svg-icons";
 import styles from "./FileItem.module.css";
+import { fileAction } from "../../store/files";
+import { useSelector, useDispatch } from "react-redux";
 
 const FileItem = (props) => {
   const deleteClickHandler = () => {
@@ -13,7 +14,7 @@ const FileItem = (props) => {
     <section className={styles.uploaded_area}>
       <li className={styles.row}>
         <div className={styles.contents}>
-          <FontAwesomeIcon className={styles.fileicon} icon="fas fa-file-alt" />
+          <FontAwesomeIcon className={styles.fileicon} icon={faFileAlt} />
           <div className={styles.details}>
             <span className={styles.img_name}>{props.name}</span>
             <span className={styles.size}>{props.size} KB</span>
