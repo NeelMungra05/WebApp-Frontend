@@ -56,6 +56,8 @@
    margin: .75rem ;
     font-weight: bold;
     letter-spacing: 0.1ch;
+    word-spacing: 0.5ch;
+    line-height: 150%;
     font-size: 1.25rem;
     text-align: center;
     max-width: 430px;

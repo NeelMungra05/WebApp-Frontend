@@ -64,6 +64,7 @@ const Reconciliation = () => {
             accept=".xlsx"
             files={files}
             onRemove={fileRemoveHandler}
+            heading="Source Files Upload"
           />
         </FormSection>
 

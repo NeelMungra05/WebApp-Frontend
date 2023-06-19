@@ -6,7 +6,7 @@ import Input from "../UI/Input";
 import styles from "./FileUpload.module.css";
 
 const FileUpload = (props) => {
-  const { files } = props;
+  const { files, heading } = props;
 
   const fileChangeHandler = (e) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ const FileUpload = (props) => {
           </button>
         </div>
       </div>
-      <div className={styles.section__header}>Step 1</div>
+      <div className={styles.section__header}>{heading}</div>
       {files && <FileList files={files} onRemove={props.onRemove} />}
     </>
   );
