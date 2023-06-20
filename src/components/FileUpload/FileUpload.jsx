@@ -39,6 +39,7 @@ const FileUpload = (props) => {
 
   return (
     <>
+     <div className={styles.section__header}>{heading}</div>
       <div className={styles.uploadBox}>
         <div className={`${styles.uploadBox__input} `}>
           <BsCloudArrowUp fontSize={64} />
@@ -60,7 +61,7 @@ const FileUpload = (props) => {
           </button>
         </div>
       </div>
-      <div className={styles.section__header}>{heading}</div>
+     
       {files && <FileList files={files} onRemove={removeFileHandler} />}
     </>
   );

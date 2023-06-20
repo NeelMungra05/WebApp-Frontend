@@ -7,17 +7,20 @@ const Upload = () => {
     <div className={styles.uploader}>
      
       <div className={styles.uploader__source}>
-      <h3 >Source Files Upload</h3>
-        <FileUpload label=" " 
+   
+        <FileUpload 
+        label=" " 
         accept=".xlsx" 
+        heading ="Source File Upload"
          />
       </div>
       
       <div className={styles.uploader__target}>
-      <h3>Target Files Upload</h3>  
+     
         <FileUpload
           label=" "
           accept=".xlsx"
+          heading = "Target files upload"
           isSource={false}
         />
       </div>
