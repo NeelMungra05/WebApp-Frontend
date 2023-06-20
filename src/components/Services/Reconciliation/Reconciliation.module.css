@@ -33,16 +33,22 @@
     font-size: 25px;
     padding: 8px 16px;
     width: 150px;
-    transition: all 0.5s;
+    transition: all 0.1s;
     cursor: pointer;
     margin: 5px;
+}
+  
+.form__button:disabled,.form__button:disabled span {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
 }
   
 .form__button span {
     cursor: pointer;
     display: inline-block;
     position: relative;
-    transition: 0.5s;
+    transition: 0.1s;
 }
   
 .form__button .form__navigation--back:before {
@@ -51,14 +57,14 @@
     opacity: 0;
     top: 0;
     left: -20px;
-    transition: 0.5s;
+    transition: all 0.1s;
 }
   
-  .form__button:hover .form__navigation--back {
+  .form__button:hover:enabled .form__navigation--back {
     padding-left: 25px;
   }
   
-  .form__button:hover .form__navigation--back:before {
+  .form__button:hover:enabled .form__navigation--back:before {
     opacity: 1;
     left: 0;
   }
@@ -69,14 +75,14 @@
     opacity: 0;
     top: 0;
     right: -20px;
-    transition: 0.5s;
+    transition: all 0.1s;
 }
 
-.form__button:hover .form__navigation--forward {
+.form__button:hover:enabled .form__navigation--forward {
     padding-right: 25px;
 }
   
-.form__button:hover .form__navigation--forward:after {
+.form__button:hover:enabled .form__navigation--forward:after {
     opacity: 1;
     right: 0;
 }
