@@ -5,15 +5,20 @@ import styles from "./Upload.module.css";
 const Upload = () => {
   return (
     <div className={styles.uploader}>
+     
       <div className={styles.uploader__source}>
-        <FileUpload label=" " accept=".xlsx" heading="Source Files Upload" />
+      <h3 >Source Files Upload</h3>
+        <FileUpload label=" " 
+        accept=".xlsx" 
+         />
       </div>
+      
       <div className={styles.uploader__target}>
+      <h3>Target Files Upload</h3>  
         <FileUpload
-          lable=" "
+          label=" "
           accept=".xlsx"
           isSource={false}
-          heading="Target Files Upload"
         />
       </div>
     </div>

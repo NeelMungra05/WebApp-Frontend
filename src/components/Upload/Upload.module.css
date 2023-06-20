@@ -4,4 +4,13 @@
     display: flex;
     justify-content: space-between;
     color: #617b60;
+
+}
+
+.uploader__source h3{
+    text-align: center;
+}
+
+.uploader__target h3{
+    text-align: center;
 }
