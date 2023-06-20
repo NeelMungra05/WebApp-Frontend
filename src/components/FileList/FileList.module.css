@@ -1,0 +1,13 @@
+@import url("../../variables.css");
+
+.wrapper{
+    width: 430px;
+    padding: 16px;
+    background: #fff;
+}
+/* .wrapper header{
+    color: red;
+    font-size: 27px;
+    font-weight: 600;
+    text-align: center;#a8e735
+} */

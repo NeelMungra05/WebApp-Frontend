@@ -1,0 +1,83 @@
+@import url("../../variables.css");
+
+section .row{
+    background: var(--header-color);
+    margin-bottom: 10px;
+    list-style: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+section .row .fileicon{
+    font-size: 30px;
+    color: var(--accent-color);
+}
+
+section .details span{
+    font-size: 14px;
+}
+
+.progress_area .row .contents{
+    width: 100%;
+    margin-left: 15px;
+}
+
+.progress_area .details{
+    display: flex;
+    align-items: center;
+    margin-bottom: 7px;
+    justify-content: space-between;
+}
+
+.progress_area .progress_bar{
+    height: 6px;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 4px;  
+    border-radius: 30px;    
+}
+
+.progress_bar .progress{
+    height: 100%;
+    width: 30%;
+    background: var(--accent-color);
+    border-radius: inherit;
+}
+
+.uploaded_area{
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+.uploaded_area .row .contents{
+    display: flex;
+    align-items: center;
+
+}
+.uploaded_area::-webkit-scrollbar{
+    width: 0px;
+}
+
+.uploaded_area .row .details{
+    display: flex;
+    margin-left: 15px;
+    flex-direction: column;
+}
+
+.uploaded_area .details .size{
+    font-size: 11px;
+    color: black;
+}
+
+.uploaded_area .delete_icon{
+    color: var(--text-dark) ;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.delete_icon:hover{
+    transform: scale(1.2);
+}
