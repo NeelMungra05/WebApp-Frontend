@@ -1,7 +1,7 @@
 @import url("../../../variables.css");
 
 .form{
-    background-color: var(--header-color);
+    background-color: #FFFFFF;
     width: 100%;
     padding: 1rem 10%;
     border-radius: 5px;
@@ -30,9 +30,9 @@
     border: none;
     color: #FFFFFF;
     text-align: center;
-    font-size: 25px;
+    font-size: 15px;
     padding: 8px 16px;
-    width: 150px;
+    width: 125px;
     transition: all 0.1s;
     cursor: pointer;
     margin: 5px;
