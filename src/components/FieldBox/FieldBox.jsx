@@ -31,18 +31,20 @@ const FieldBox = () => {
             type: "checkbox",
           }}
         />
+        <Input
+          label="field 2"
+          reverse={true}
+          input={{
+            id: "field2",
+            type: "checkbox",
+          }} />
         <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-          doloremque inventore adipisci vero perspiciatis voluptate, qui aut
-          velit, veritatis fuga sit? Dolorum aliquam nihil illum quam quia nemo
-          delectus architecto, dolorem quae inventore corporis omnis vel, quidem
-          ullam. Accusantium officia repudiandae voluptas! Aut quos
-          exercitationem et labore debitis, voluptate facilis, unde ex nisi
-          corporis quam vitae? Ut, porro. Numquam aliquid tempore sit? Saepe
-          provident impedit doloremque error qui ut a atque illum perferendis
-          quasi! Nulla sed repellendus ad, eligendi delectus, nemo sunt quasi
-          deserunt, aliquam nesciunt quidem modi? Eum itaque quidem possimus?
-          Minus animi eligendi at esse sint accusamus maiores.
+        Here you will find our list of known bugs and pending feature
+        requests. If your problem is not listed in there, or in the FAQ, or
+        in the manuals, read the Feedback page to find out how to report
+        bugs to us. PLEASE read the Feedback page carefully: it is there to
+        save you time as well as us. Do not send us one-line bug reports
+        telling us `it doesn't work'.
         </div>
       </div>
     </div>

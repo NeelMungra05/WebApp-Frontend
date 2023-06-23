@@ -20,7 +20,7 @@ const Upload = () => {
         <FileUpload
           label=" "
           accept=".xlsx"
-          heading = "Target files upload"
+          heading = "Target File Upload"
           isSource={false}
         />
       </div>
