@@ -13,7 +13,7 @@
 .container__search--logo{
     position: absolute;
     transform: translateY(-50%);
-    top:50%;
+    top:40%;
     right:1%
 }
 
@@ -21,6 +21,7 @@
     width: 100%;
     padding: 4px 8px;
     margin-bottom: 8px;
+    font-family: inherit;
 }
 
 .container__fields{
@@ -41,7 +42,7 @@
 .container__fields::-webkit-scrollbar-thumb{
     /* outline: 1px solid slategray; */
     border-radius: 50px;
-    background-color: var(--accent-color);
+    background-color: var(--light-gray-2);
 }
 
 .container__fields > *{

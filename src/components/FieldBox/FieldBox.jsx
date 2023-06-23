@@ -27,6 +27,7 @@ const FieldBox = () => {
           label="field 1"
           reverse={true}
           input={{
+            id: "field1",
             type: "checkbox",
           }}
         />
