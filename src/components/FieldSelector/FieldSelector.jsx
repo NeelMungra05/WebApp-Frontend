@@ -6,7 +6,9 @@ const FieldSelector = () => {
   return (
     <article>
       <h3>Source Field Selection</h3>
-      <div style={styles.container}>
+      <div className={styles.container}>
+        <FieldBox />
+        <FieldBox />
         <FieldBox />
         <FieldBox />
         <FieldBox />
