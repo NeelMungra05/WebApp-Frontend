@@ -3,7 +3,6 @@
 .uploader{
     display: flex;
     justify-content: space-between;
-    color: #617b60;
-
+    color: var(--accent-head-color);
 }
 
