@@ -1,7 +1,12 @@
 import React from "react";
+import FieldSelector from "../FieldSelector/FieldSelector";
 
 const Selector = () => {
-  return <div>Selector</div>;
+  return (
+    <main>
+      <FieldSelector />
+    </main>
+  );
 };
 
 export default Selector;

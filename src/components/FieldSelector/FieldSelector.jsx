@@ -2,9 +2,9 @@ import React from "react";
 
 const FieldSelector = () => {
   return (
-    <main>
-      <article>Step 2</article>
-    </main>
+    <article>
+      <h3>Source Field Selection</h3>
+    </article>
   );
 };
 

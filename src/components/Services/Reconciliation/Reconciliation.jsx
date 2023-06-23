@@ -8,6 +8,7 @@ import { stepsAction } from "../../../store/steps";
 import { formButtonAction } from "../../../store/formButton";
 import Upload from "../../Upload/Upload";
 import FieldSelector from "../../FieldSelector/FieldSelector";
+import Selector from "../../Selector/Selector";
 
 const Reconciliation = () => {
   const steps = useSelector((state) => state.steps.steps);
@@ -59,7 +60,7 @@ const Reconciliation = () => {
           className={styles.form__section}
           activeClassName={styles["form__section--active"]}
         >
-          <FieldSelector />
+          <Selector />
         </FormSection>
 
         <FormSection
