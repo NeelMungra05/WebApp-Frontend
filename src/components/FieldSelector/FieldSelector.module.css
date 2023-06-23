@@ -1,0 +1,16 @@
+@import url("../../variables.css");
+
+.container{
+    display: flex;
+    gap : 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container > *{
+    flex: 0 0 15rem;
+    border-radius: 5px;
+    height: 300px;
+    border: 1px solid var(--text-dark);
+    padding: 0.5rem;
+}

@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { stepsAction } from "../../../store/steps";
 import { formButtonAction } from "../../../store/formButton";
 import Upload from "../../Upload/Upload";
+import FieldSelector from "../../FieldSelector/FieldSelector";
+import Selector from "../../Selector/Selector";
 
 const Reconciliation = () => {
   const steps = useSelector((state) => state.steps.steps);
@@ -58,7 +60,7 @@ const Reconciliation = () => {
           className={styles.form__section}
           activeClassName={styles["form__section--active"]}
         >
-          <div className={styles.section__header}>Step 2</div>
+          <Selector />
         </FormSection>
 
         <FormSection
@@ -70,24 +72,24 @@ const Reconciliation = () => {
           <div className={styles.section__header}>Step 3</div>
         </FormSection>
 
-      <div className={styles.form__navigation}>
-        <button
-          type="button"
-          className={`${styles.form__button} ${styles.form__button__previous}`}
-          disabled={!prevButton}
-          onClick={prevButtonHandler}
-        >
-        <span className={styles["form__navigation--back"]}>Previous</span>
-        </button>
-        <button
-          type="button"
-          className={`${styles.form__button} ${styles.form__button__next}`}
-          disabled={!nextButton}
-          onClick={nextButtonHandler}
-        >
-        <span className={styles["form__navigation--forward"]}>Next</span>
-        </button>
-      </div>
+        <div className={styles.form__navigation}>
+          <button
+            type="button"
+            className={`${styles.form__button} ${styles.form__button__previous}`}
+            disabled={!prevButton}
+            onClick={prevButtonHandler}
+          >
+            <span className={styles["form__navigation--back"]}>Previous</span>
+          </button>
+          <button
+            type="button"
+            className={`${styles.form__button} ${styles.form__button__next}`}
+            disabled={!nextButton}
+            onClick={nextButtonHandler}
+          >
+            <span className={styles["form__navigation--forward"]}>Next</span>
+          </button>
+        </div>
       </form>
     </>
   );
