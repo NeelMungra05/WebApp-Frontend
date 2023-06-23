@@ -59,7 +59,12 @@
 
 .container__fields > *{
     display: flex;
-    gap: 0.25rem;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.container__fields > *:not(:last-child){
+    margin: 0.5rem 0;
 }
 
 .container__fields > * input {
