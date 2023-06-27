@@ -45,6 +45,10 @@
     width: 0.5em;
 }
 
+.disabled::-webkit-scrollbar{
+    display: none;
+}
+
 .container__fields::-webkit-scrollbar-track{
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4);
     border-radius: 50px;
