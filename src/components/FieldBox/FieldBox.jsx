@@ -15,11 +15,12 @@ const FieldBox = (props) => {
   useEffect(() => {
     const currentHeight = scrollBoxDivRef.current.scrollHeight;
     const scrollThresholdHeight = scrollBoxDivRef.current.clientHeight;
-
-    if (currentHeight <= scrollThresholdHeight) {
-      scrollBoxDivRef.current.classList.add(styles.disabled);
+  
+    if (currentHeight > scrollThresholdHeight) {
+      scrollBoxDivRef.current.classList.remove(styles.disabled);
     }
-  }, [scrollBoxDivRef]);
+  }, [fields]);
+  
 
   const searchInputHandler = (e) => {
     const searchValue = e.target.value.trim();
