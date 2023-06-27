@@ -1,9 +1,9 @@
 import React from "react";
 
 const STEPS_INFO = {
-  0: "Src & Target Upload",
+  0: "Src & Trgt Upload",
   1: "Field Selection",
-  2: "Src & Target Mapping",
+  2: "Src & Trgt Mapping",
 };
 
 const useSteps = () => {
