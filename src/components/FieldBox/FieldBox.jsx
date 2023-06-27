@@ -1,6 +1,7 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import Input from "../UI/Input";
@@ -9,6 +10,7 @@ import styles from "./FieldBox.module.css";
 const FieldBox = (props) => {
   const { fileName, fields, id } = props;
   const scrollBoxDivRef = useRef();
+  const [searchList, setSearchList] = useState(fields);
 
   useEffect(() => {
     const currentHeight = scrollBoxDivRef.current.scrollHeight;
@@ -19,7 +21,22 @@ const FieldBox = (props) => {
     }
   }, [scrollBoxDivRef]);
 
-  const fieldsChoice = fields.map((field) => (
+  const searchInputHandler = (e) => {
+    const searchValue = e.target.value.trim();
+
+    if (searchValue === "") {
+      setSearchList(fields);
+    }
+    setSearchList(
+      fields.filter((item) => {
+        if (item.toLowerCase().includes(searchValue.toLowerCase())) {
+          return item;
+        }
+      })
+    );
+  };
+
+  const fieldsChoice = searchList.map((field) => (
     <Input
       label={field}
       reverse={true}
@@ -41,6 +58,7 @@ const FieldBox = (props) => {
           input={{
             type: "text",
             placeholder: "Search the fieldname",
+            onChange: searchInputHandler,
           }}
         />
         <FontAwesomeIcon
