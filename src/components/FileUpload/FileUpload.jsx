@@ -7,6 +7,8 @@ import styles from "./FileUpload.module.css";
 import { fileAction } from "../../store/files";
 import { useSelector, useDispatch } from "react-redux";
 import { useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpload } from "@fortawesome/fontawesome-free-solid";
 
 const FileUpload = (props) => {
   const { heading, isSource = true } = props;
@@ -42,7 +44,7 @@ const FileUpload = (props) => {
      <div className={styles.section__header}>{heading}</div>
       <div className={styles.uploadBox}>
         <div className={`${styles.uploadBox__input} `}>
-          <BsCloudArrowUp fontSize={64} />
+        <FontAwesomeIcon icon={faUpload} />
           <Input
             label={props.label}
             ref={fileInputRef}
