@@ -15,7 +15,6 @@ h3{
 
 .container > *{
     flex: 0 0 15rem;
-    border-radius: 10px;
     height: 300px;
     /* border: 1px solid var(--text-dark); */
     background-color: #f4f9ec;
