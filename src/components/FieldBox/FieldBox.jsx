@@ -21,7 +21,6 @@ const FieldBox = (props) => {
     }
   }, [fields]);
   
-
   const searchInputHandler = (e) => {
     const searchValue = e.target.value.trim();
 
@@ -37,19 +36,41 @@ const FieldBox = (props) => {
     );
   };
 
-  const fieldsChoice = searchList.map((field) => (
-    <Input
-      label={field}
-      reverse={true}
-      input={{
-        key: `${id}${fileName}${field}`,
-        id: `${id}${fileName}${field}`,
-        name: `${fileName}-${field}`,
-        type: "checkbox",
-      }}
-    />
-  ));
-
+const fieldsChoice = (
+  <>
+    <div className={styles.checkboxContainer}>
+      <div className={styles.fieldHeading}>PK</div>
+      <div className={styles.fieldHeading}>RF</div>
+      <div className={styles.fieldHeading}>Description</div>
+    </div>
+    {searchList.map((field) => (
+      <div key={`${id}${fileName}${field}`} className={styles.checkboxContainer}>
+      <Input
+        label=""
+        reverse={true}
+        input={{
+              key: `${id}${fileName}${field}-primaryKey`,
+              id: `${id}${fileName}${field}-primaryKey`,
+              name: `${fileName}-${field}-primaryKey`,
+              type: "checkbox",
+            }}
+      />
+      <Input
+        label=""
+        reverse={true}
+        input={{
+              key: `${id}${fileName}${field}`,
+              id: `${id}${fileName}${field}`,
+              name: `${fileName}-${field}`,
+              type: "checkbox",
+            }}
+      />
+      <div className={styles.fieldName}>{field}</div>
+      </div>
+      ))}
+    </>
+  );
+  
   return (
     <div className={styles.container}>
       <h6 className={styles.heading}>{fileName}</h6>
