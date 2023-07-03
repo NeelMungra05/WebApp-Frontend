@@ -41,7 +41,7 @@
 .form__button:disabled,.form__button:disabled span {
     background-color: hsl(81,67%,54%);
     color: #FFFFFF;
-    opacity: 0.2;
+    opacity: 0.4;
     cursor: not-allowed;
 }
   
