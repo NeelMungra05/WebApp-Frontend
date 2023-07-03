@@ -33,7 +33,7 @@ const FileUpload = (props) => {
 
     if (isSource) {
       dispatch(fileAction.addSourceFile(e.target.files));
-    } else {
+    } else {[]
       dispatch(fileAction.addTargetFile(e.target.files));
     }
     fileInputRef.current.value = null;
@@ -45,6 +45,8 @@ const FileUpload = (props) => {
       <div className={styles.uploadBox}>
         <div className={`${styles.uploadBox__input} `}>
         <FontAwesomeIcon icon={faUpload} />
+        <i class="fa-sharp fa-solid fa-upload fa-xs"></i>
+        
           <Input
             label={props.label}
             ref={fileInputRef}
