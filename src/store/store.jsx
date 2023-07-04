@@ -3,6 +3,7 @@ import stepsReducer from "./steps";
 import formButtonReducer from "./formButton";
 import fileReducer from "./files";
 import fieldsReducer from "./fields-slice";
+import validationReducer from "./validations";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     formButton: formButtonReducer,
     files: fileReducer,
     fields: fieldsReducer,
+    validations: validationReducer,
   },
 });
 
