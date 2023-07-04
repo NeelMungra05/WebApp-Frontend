@@ -4,13 +4,13 @@ const initialState = {
   fileUpload: {
     source: {
       isLessThan5: true,
-      isZero: true,
+      isNotZero: true,
       areLessThan50MB: true,
       isValidFileFormat: true,
     },
     target: {
       isLessThan5: true,
-      isZero: true,
+      isNotZero: true,
       areLessThan50MB: true,
       isValidFileFormat: true,
     },
