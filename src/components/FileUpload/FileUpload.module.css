@@ -34,7 +34,12 @@
     left: 0;
     opacity: 0;
 }
+.uploadIcon{
+    font-size: 3em;
+    padding-bottom: 8px;
+    color: var(--accent-color);
 
+}
 .uploadBox__button{
     display: flex;
     padding: 8px 8px;

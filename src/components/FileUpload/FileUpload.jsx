@@ -44,8 +44,8 @@ const FileUpload = (props) => {
      <div className={styles.section__header}>{heading}</div>
       <div className={styles.uploadBox}>
         <div className={`${styles.uploadBox__input} `}>
-        <FontAwesomeIcon icon={faUpload} />
-        <i class="fa-sharp fa-solid fa-upload fa-xs"></i>
+        <FontAwesomeIcon icon={faUpload} className={styles.uploadIcon} />
+        
         
           <Input
             label={props.label}
