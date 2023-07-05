@@ -3,7 +3,7 @@ import { useRef } from "react";
 import Input from "../UI/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
-import img from "../../assets/login.jpg";;
+import img4 from "../../assets/login.jpg";
 import styles from "./Form.module.css";
 
 const LoginForm = (props) => {
@@ -48,7 +48,7 @@ return (
 
     <div className={styles.imageContainer}>
 
-      <img src={img} alt="" className={styles.image} />
+      <img src={img4} alt="" className={styles.image} />
 
     </div>
 
