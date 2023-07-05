@@ -4,13 +4,13 @@ const initialState = {
   fileUpload: {
     source: {
       isLessThan5: true,
-      isNotZero: true,
+      isNotZero: false,
       areLessThan50MB: true,
       isValidFileFormat: true,
     },
     target: {
       isLessThan5: true,
-      isNotZero: true,
+      isNotZero: false,
       areLessThan50MB: true,
       isValidFileFormat: true,
     },
@@ -27,7 +27,7 @@ const validationSlice = createSlice({
       state.fileUpload.target = action.payload.target;
       state.fileUpload.isValid = Object.values(
         action.payload.source && action.payload.target
-      ).reduce(prev, (curr) => prev && curr);
+      ).reduce((prev, curr) => prev && curr);
     },
   },
 });

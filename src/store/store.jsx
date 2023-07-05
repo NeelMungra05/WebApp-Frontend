@@ -11,7 +11,7 @@ const store = configureStore({
     formButton: formButtonReducer,
     files: fileReducer,
     fields: fieldsReducer,
-    validations: validationReducer,
+    validation: validationReducer,
   },
 });
 
