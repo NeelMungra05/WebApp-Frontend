@@ -16,8 +16,6 @@ const FileUpload = (props) => {
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
 
-  console.log(files);
-
   const removeFileHandler = (fileName) => {
     if (isSource) {
       dispatch(fileAction.removeSourceFile(fileName));
@@ -39,7 +37,7 @@ const FileUpload = (props) => {
 
   return (
     <>
-     <div className={styles.section__header}>{heading}</div>
+      <div className={styles.section__header}>{heading}</div>
       <div className={styles.uploadBox}>
         <div className={`${styles.uploadBox__input} `}>
           <BsCloudArrowUp fontSize={64} />
@@ -61,7 +59,7 @@ const FileUpload = (props) => {
           </button>
         </div>
       </div>
-     
+
       {files && <FileList files={files} onRemove={removeFileHandler} />}
     </>
   );
