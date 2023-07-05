@@ -33,7 +33,7 @@ const FileUpload = (props) => {
 
     if (isSource) {
       dispatch(fileAction.addSourceFile(e.target.files));
-    } else {[]
+    } else {
       dispatch(fileAction.addTargetFile(e.target.files));
     }
     fileInputRef.current.value = null;
