@@ -36,6 +36,9 @@
     transition: all 0.1s;
     cursor: pointer;
     margin: 5px;
+    position: relative;
+    top: 50px;
+    left: -5px;
 }
   
 .form__button:disabled,.form__button:disabled span {
@@ -43,6 +46,7 @@
     color: #FFFFFF;
     opacity: 0.7;
     cursor: not-allowed;
+
 }
   
 .form__button span {
@@ -56,9 +60,9 @@
     content: '\00ab';
     position: absolute;
     opacity: 0;
-    top: 0;
     left: -20px;
     transition: all 0.1s;
+    
 }
   
   .form__button:hover:enabled .form__navigation--back {
