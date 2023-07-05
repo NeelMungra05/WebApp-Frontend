@@ -3,6 +3,7 @@ import { useRef } from "react";
 import Input from "../UI/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
+import img from "../../assets/login.jpg";;
 import styles from "./Form.module.css";
 
 const LoginForm = (props) => {
@@ -25,18 +26,46 @@ const LoginForm = (props) => {
     props.navbarStateChanger("register");
   };
 
-  return (
-    <>
-      <section className={styles.section}>
-        <div className={styles["form-box-login"]}>
+//   return (
+//     <>
+   
+   
+//       <section className={styles.section}>
+
+//         <div classname = {styles.imgdiv}>
+//         <img src={img} alt="logo" height="500px"/>
+//         </div>
+
+
+
+
+
+return (
+
+  <>
+
+    <div className={styles.container}>
+
+    <div className={styles.imageContainer}>
+
+      <img src={img} alt="" className={styles.image} />
+
+    </div>
+
+    <div className={styles.formContainer}>
+
+    <section className={styles.section}>
+
+      
+    <div className={styles["form-box-login"]}>
           <div className={styles["form-value"]}>
             <form action="">
               <h2>Login</h2>
               <div className={styles.inputbox}>
-                <FontAwesomeIcon
+                {/* <FontAwesomeIcon
                   className={styles["font-awesome"]}
                   icon={faUser}
-                />
+                /> */}
                 <Input
                   label="Username"
                   reverse={true}
@@ -44,15 +73,15 @@ const LoginForm = (props) => {
                   input={{
                     id: "username",
                     type: "text",
-                    placeholder: " ",
+                    placeholder: "Enter your Username ",
                   }}
                 />
               </div>
               <div className={styles.inputbox}>
-                <FontAwesomeIcon
+                {/* <FontAwesomeIcon
                   className={styles["font-awesome"]}
                   icon={faKey}
-                />
+                /> */}
                 <Input
                   reverse={true}
                   label="Password"
@@ -60,7 +89,7 @@ const LoginForm = (props) => {
                   input={{
                     id: "password",
                     type: "password",
-                    placeholder: " ",
+                    placeholder: "Enter your Password ",
                   }}
                 />
               </div>
@@ -78,9 +107,18 @@ const LoginForm = (props) => {
             </form>
           </div>
         </div>
-      </section>
-    </>
-  );
-};
 
+ 
+
+    </section>
+
+    </div>
+
+    </div>
+
+  </>
+
+);
+
+};
 export default LoginForm;

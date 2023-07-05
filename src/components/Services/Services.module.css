@@ -2,9 +2,13 @@
 
 .section{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
+    /* align-items: center; */
+    /* justify-content: center; */
+    width: 80%; 
     gap: 5rem;
     margin: 2rem auto;
+}
+
+.section > *{
+    width: 100%;
 }
