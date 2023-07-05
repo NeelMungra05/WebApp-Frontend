@@ -4,9 +4,11 @@
     width: 430px;
     height: 200px;
     border-radius: 0px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    background-color: hsl(81,67%,54%) ;
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);*/
+   /* background-color: hsl(81,67%,54%) ;*/
     padding: 0.5rem;
+    border-style: dotted;
+    border-color: var(--text-muted);
 }
 
 .uploadBox__input{
@@ -34,17 +36,27 @@
     left: 0;
     opacity: 0;
 }
+.uploadIcon{
+    font-size: 3em;
+    padding-bottom: 8px;
+    /*color: var(--accent-color);*/
 
+}
 .uploadBox__button{
     display: flex;
     padding: 8px 8px;
     align-items: center;
     border: none;
-    background-color: var(--background-color);
+    /* background-color: var(--text-dark);
+    color: var(--background-color); */
     border-radius: 0px;
     cursor: pointer;
     width: 50%;
     justify-content: space-between;
+    position :absolute;
+    left : -12.5px;
+    top :200px;
+    
 }
 
 .uploadBox_button span {
