@@ -20,5 +20,6 @@
     --dark-gray-1:#53565A;
     --dark-gray-2:#63666A;
     --dark-gray-3:#75787B;
+    --error-text: hsl(4, 77%, 48%);
 }
 

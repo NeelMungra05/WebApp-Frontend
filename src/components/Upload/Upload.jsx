@@ -24,6 +24,14 @@ const Upload = () => {
         {!sourceValidation.isValidFileFormat && (
           <p className={styles.error}>File should be in xlsx format only.</p>
         )}
+        {!sourceValidation.areLessThan50MB && (
+          <p className={styles.error}>
+            All file size should be less than 50 mb.
+          </p>
+        )}
+        {!sourceValidation.isLessThan5 && (
+          <p className={styles.error}>Maximum of only 5 files can be upload.</p>
+        )}
         <FileUpload label=" " accept=".xlsx" heading="Source File Upload" />
       </div>
 
