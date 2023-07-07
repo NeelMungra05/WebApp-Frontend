@@ -19,3 +19,4 @@ const SelectJoinType = ({ onChange, disabled, joinTypes }) => {
 };
 
 export default SelectJoinType;
+

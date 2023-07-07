@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "../TableButton/TableButton.module.css";
 
-const TableButton = ({ table, isSelected, onClick, isLastSelected }) => {
+const TableButton = ({ table, onClick, disabled }) => {
   return (
     <button
       className={styles.tableButton}
-      onClick={() => onClick(table)}
-      disabled={isSelected || isLastSelected}
+      onClick={onClick}
+      disabled={disabled}
     >
       {table}
     </button>
@@ -14,3 +14,4 @@ const TableButton = ({ table, isSelected, onClick, isLastSelected }) => {
 };
 
 export default TableButton;
+

@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "../JoinDataSection/JoinDataSection.module.css";
-import DiscardJoinDataButton from "../DiscardJoinDataButton/DiscardJoinDataButton";
 
-const JoinDataSection = ({ join, onDiscardJoin }) => {
+const JoinDataSection =({ join, index, onDiscard }) => {
   return (
     <div className={styles.section__header}>
       <h2>Join Data</h2>
@@ -11,7 +10,12 @@ const JoinDataSection = ({ join, onDiscardJoin }) => {
         {join.tables.map((table, tableIndex) => (
           <p key={tableIndex}>{table}</p>
         ))}
-        <DiscardJoinDataButton onClick={() => onDiscardJoin(join)} />
+        <button
+          className={styles.discardButton}
+          onClick={() => onDiscard(index)}
+        >
+          Discard
+        </button>
       </div>
       <hr />
     </div>
@@ -19,3 +23,4 @@ const JoinDataSection = ({ join, onDiscardJoin }) => {
 };
 
 export default JoinDataSection;
+
