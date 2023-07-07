@@ -1,0 +1,17 @@
+@import url("../../variables.css");
+
+.section__header {
+    margin-bottom: 20px;
+}
+.section__header h2{
+    color: var(--accent-color);
+}
+.joinContainer {
+  background-color: var(--light-gray-1);
+  padding: 10px;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+}
+.joinContainer h3{
+  color: var(--text-dark);
+}

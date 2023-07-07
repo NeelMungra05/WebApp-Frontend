@@ -7,6 +7,38 @@
     background: #ffffff;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .imageContainer {
+    flex: 1;
+    padding-right: 20px; /* Adjust spacing between image and form */
+  }
+  
+  .image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .formContainer {
+    flex: 1;
+  }
+  
+  /* @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .imageContainer {
+      padding-right: 0;
+      padding-bottom: 20px; 
+    }
+  } */
+  
+
 .form-box-login{
     position: relative;
     width: 400px;
