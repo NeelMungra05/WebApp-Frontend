@@ -15,7 +15,6 @@ const Upload = () => {
       condition === true && Object.values(targetValidation)[idx] === condition
   );
 
-  console.table(sourceValidation && targetValidation);
   dispatch(formButtonAction.nextButton(isValid));
 
   return (
@@ -36,6 +35,17 @@ const Upload = () => {
       </div>
 
       <div className={styles.uploader__target}>
+        {!targetValidation.isValidFileFormat && (
+          <p className={styles.error}>File should be in xlsx format only.</p>
+        )}
+        {!targetValidation.areLessThan50MB && (
+          <p className={styles.error}>
+            All file size should be less than 50 mb.
+          </p>
+        )}
+        {!targetValidation.isLessThan5 && (
+          <p className={styles.error}>Maximum of only 5 files can be upload.</p>
+        )}
         <FileUpload
           label=" "
           accept=".xlsx"
