@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ServiceList.module.css";
-import img from "../../assets/recon.jpg";
+import img from "../../assets/recon.png";
 
 const ServiceList = (props) => {
   return (
@@ -11,7 +11,7 @@ const ServiceList = (props) => {
           <h1 className={styles.card__header}>{props.header}</h1>
           <p className={styles.card__text}>{props.content}</p>
           <button onClick={props.onClick} className={styles.card__btn}>
-            Explore <span>&rarr;</span>
+            Explore 
           </button>
         </div>
       </div>

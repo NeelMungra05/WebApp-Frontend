@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Services.module.css";
-import img from "../../assets/reconciliation.png";
-import img1 from "../../assets/Data-Mining.jpg";
-import img2 from "../../assets/EDRA.jpg";
+import img from "../../assets/recon.png";
+import img1 from "../../assets/profiling.png";
+import img2 from "../../assets/transformation.png";
 import ServiceList from "./ServiceList";
 import { useState } from "react";
 import { useMemo } from "react";

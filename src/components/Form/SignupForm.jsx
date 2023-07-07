@@ -1,7 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import Input from "../UI/Input";
-import img from "../../assets/login.jpg";;
+import img from "../../assets/loginimg.png";;
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
