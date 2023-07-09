@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { stepsAction } from "../../../store/steps";
 import { formButtonAction } from "../../../store/formButton";
 import Upload from "../../Upload/Upload";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const Reconciliation = () => {
   const steps = useSelector((state) => state.steps.steps);
@@ -77,7 +80,8 @@ const Reconciliation = () => {
           disabled={!prevButton}
           onClick={prevButtonHandler}
         >
-        <span className={styles["form__navigation--back"]}>Previous</span>
+        <span className={styles["form__navigation--back"]}></span>
+        <FontAwesomeIcon icon={faChevronLeft} />
         </button>
         <button
           type="button"
@@ -85,7 +89,8 @@ const Reconciliation = () => {
           disabled={!nextButton}
           onClick={nextButtonHandler}
         >
-        <span className={styles["form__navigation--forward"]}>Next</span>
+        <span className={styles["form__navigation--forward"]}></span>
+        <FontAwesomeIcon icon={faChevronRight} />
         </button>
       </div>
       </form>

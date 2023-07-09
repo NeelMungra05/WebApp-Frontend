@@ -8,7 +8,13 @@ import { fileAction } from "../../store/files";
 import { useSelector, useDispatch } from "react-redux";
 import { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpload } from "@fortawesome/fontawesome-free-solid";
+import { faArrowUp } from "@fortawesome/fontawesome-free-solid";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
+
+
+
+
 
 const FileUpload = (props) => {
   const { heading, isSource = true } = props;
@@ -39,15 +45,23 @@ const FileUpload = (props) => {
     fileInputRef.current.value = null;
   };
 
+  const fileChangeHandlerTwo = () => {
+    fileInputRef.current.click()
+  };
+
+
+
+
   return (
     <>
      <div className={styles.section__header}>{heading}</div>
       <div className={styles.uploadBox}>
         <div className={`${styles.uploadBox__input} `}>
-        <FontAwesomeIcon icon={faUpload} className={styles.uploadIcon} />
-        <span>Drag and Drop here or</span>
-        
-        
+        <FontAwesomeIcon icon={faArrowUp} className={styles.uploadIcon} />
+        {/* <FontAwesomeIcon icon={faArrowUpFromBracket} className={styles.uploadIcon} /> */}
+        <span>Drag and Drop here or </span>
+      
+       
           <Input
             label={props.label}
             ref={fileInputRef}
@@ -59,15 +73,16 @@ const FileUpload = (props) => {
               className: styles["uploadBox__input-box"],
             }}
           />
-          <button type="button" className={styles.uploadBox__button}>
-            <AiOutlineFileText fontSize={20} />
-            <span>Choose files</span>
-            <BsChevronDown fontSize={20} />
+          <button type="button" className={styles.uploadBox__button} onClick={fileChangeHandlerTwo} >
+            {/* <AiOutlineFileText fontSize={20} /> */}
+            <span >Choose files</span>
+            {/* <BsChevronDown fontSize={20} /> */}
           </button>
+  
         </div>
       </div>
      
-      {files && <FileList files={files} onRemove={removeFileHandler} />}
+      {files && <FileList files={files} onRemove={removeFileHandler}  />}
     </>
   );
 };
