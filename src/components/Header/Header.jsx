@@ -1,10 +1,8 @@
 import React from "react";
 import styles from "./Header.module.css";
-import logo from "../Images/dlogo.png"
+import logo from "../Images/dlogo.png";
 
 const Header = (props) => {
-  console.log("This is header.jsx");
-
   const navClickHandler = (e) => {
     e.preventDefault();
     props.navbarStateChanger(e.target.innerText.toLowerCase());
@@ -12,8 +10,6 @@ const Header = (props) => {
 
   const navActiveStyle = `${styles.nav__link} ${styles["nav__link--active"]}`;
   const navStyle = styles.nav__link;
-
-  console.log(props.home);
 
   let navbar = (
     <nav className={styles["nav"]}>
@@ -44,7 +40,6 @@ const Header = (props) => {
   );
 
   if (props.isLoggedIn) {
-    console.log(props.isLoggedIn);
     navbar = (
       <nav className={styles.nav}>
         <a onClick={navClickHandler} href="/logout" className={navStyle}>
@@ -58,7 +53,9 @@ const Header = (props) => {
     <header className={styles.header}>
       <div className={styles["nav-container"]}>
         <div className={styles.header__logo}>
-          <span className={styles.header__name}><img src={logo} width="200px" alt="" /></span>
+          <span className={styles.header__name}>
+            <img src={logo} width="200px" alt="" />
+          </span>
         </div>
         {navbar}
       </div>
