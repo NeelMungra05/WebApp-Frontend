@@ -121,3 +121,12 @@
     transform: rotate(45deg);
 }
   
+.container__fields input[type="checkbox"]:disabled{
+    border: 1px solid var(--light-gray-1)
+}
+  
+.container__fields input[type="checkbox"]:disabled:hover{
+    background-color: var(--background-color);
+    cursor: auto;
+}
+  
