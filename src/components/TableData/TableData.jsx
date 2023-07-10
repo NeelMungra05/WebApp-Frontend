@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from "./TableData.module.css";
+import styles from "../TableData/TableData.module.css";
 import TableButton from "../TableButton/TableButton";
 import JoinTypeSelect from "../SelectJoinType/SelectJoinType";
-import JoinDataSection from "../JoinDataSection/JoinDataSection";
+import JoinData from "../JoinDataSection/JoinDataSection";
 
 const TableData = () => {
   const [selectedTables, setSelectedTables] = useState([]);
@@ -18,7 +18,7 @@ const TableData = () => {
     event.preventDefault();
   };
 
-  const handleJoinTypeChange = (event) => {
+const handleJoinTypeChange = (event) => {
     const selectedJoin = event.target.value;
     if (selectedJoin && selectedTables.length === 2) {
       const newJoin = { type: selectedJoin, tables: selectedTables };
@@ -30,24 +30,34 @@ const TableData = () => {
 
       const joinedTable = `Table${joinedTables}`;
       setSelectedTables([joinedTable]);
+      event.target.value = "";
     }
   };
 
-  const handleDiscardJoin = (index) => {
-    const updatedJoins = [...selectedJoins];
-    updatedJoins.splice(index, updatedJoins.length - index);
+const handleDiscardJoin = (index) => {
+    const updatedJoins = selectedJoins.slice(0, index);
+    const discardedJoin = selectedJoins[index];
+  
+    const discardedTables = discardedJoin.tables;
+    const remainingTables = discardedTables.slice(0, discardedTables.length - 1);
+  
+    setSelectedJoins(updatedJoins);
+    setSelectedTables(remainingTables);
 
-    if (index > 0) {
-      const previousJoin = updatedJoins[index - 1];
-      setSelectedTables(previousJoin.tables);
-    } else {
+    const joinTypeDropdown = document.getElementById("joinTypeDropdown");
+    if (joinTypeDropdown) {
+        joinTypeDropdown.value = "";
+    }
+  
+    if (updatedJoins.length === 0) {
       setSelectedTables([]);
     }
-
-    setSelectedJoins(updatedJoins);
   };
+  
+  
+  
 
-  const isTableUsed = (table) => {
+const isTableUsed = (table) => {
     for (const join of selectedJoins) {
       if (join.tables.includes(table)) {
         return true;
@@ -56,7 +66,7 @@ const TableData = () => {
     return false;
   };
 
-  const getAvailableTables = () => {
+const getAvailableTables = () => {
     const usedTables = selectedJoins.reduce(
       (tables, join) => tables.concat(join.tables),
       []
@@ -92,7 +102,7 @@ const TableData = () => {
       </div>
 
       {selectedJoins.map((join, index) => (
-        <JoinDataSection
+        <JoinData
           join={join}
           index={index}
           onDiscard={handleDiscardJoin}
