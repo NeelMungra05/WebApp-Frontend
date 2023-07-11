@@ -2,7 +2,7 @@
 
 .container h6{
     margin: 8px 0;
-    color: var(--accent-head-color);
+    color: black;
 }
 
 .container__fields .checkboxContainer {
@@ -10,7 +10,7 @@
 }
 
 .container__fields .fieldHeading {
-    color: var(--accent-head-color);
+    color: black;
     font-weight: bold;
     margin-right: 0.5rem;
   }
@@ -36,7 +36,7 @@
     font-family: inherit;
     border: none;
     background-color:  var(--highlighted-font-color);;
-    box-shadow: 0 0px 5px var(--accent-color);
+    /* box-shadow: 0 0px 5px var(--accent-color); */
     transform: translateY(0);
     transition: transform 0.3s ease;
 }
@@ -60,6 +60,7 @@
 
 .container__fields::-webkit-scrollbar-track{
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.4);
+    background-color: white;
 }
 
 .container__fields::-webkit-scrollbar-thumb{
