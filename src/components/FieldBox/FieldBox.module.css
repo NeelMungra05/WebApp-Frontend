@@ -130,3 +130,10 @@
     cursor: auto;
 }
   
+.container__fields input[type="checkbox"]:disabled:checked{
+    background-color: var(--background-color);
+}
+
+.container__fields input[type="checkbox"]:disabled:checked::after{
+    content: none;
+}
