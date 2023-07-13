@@ -46,7 +46,11 @@
 
 }
 
-
+.uploadBox_button_container{
+    left : -12.5px;
+    top :200px;
+    
+}
 
 .uploadBox__button{
     display: flex;
