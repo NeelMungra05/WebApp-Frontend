@@ -2,9 +2,12 @@
 
 .wrapper{
     width: 430px;
-    padding: 16px;
+    
+    padding:16px;
     background: #fff;
 }
+
+
 /* .wrapper header{
     color: red;
     font-size: 27px;
