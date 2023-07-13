@@ -1,0 +1,23 @@
+@import url("../../variables.css");
+
+h3{
+    display: flex;
+    justify-content: center;
+    color: var(--accent-head-color);
+}
+
+.container{
+    display: flex;
+    gap : 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container > *{
+    flex: 0 0 15rem;
+    border-radius: 10px;
+    height: 300px;
+    /* border: 1px solid var(--text-dark); */
+    background-color: #f4f9ec;
+    padding: 0.5rem;
+}

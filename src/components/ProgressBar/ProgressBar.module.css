@@ -6,7 +6,7 @@
     height: 100px;
     margin: 0rem 10%;
     padding: 1rem;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     /* border: 2px solid black; */
 }
 
@@ -25,9 +25,9 @@
     align-items: center;
     width: 20px;
     height: 20px;
-    background-color: var(--progress-index-color, #949494);
-    color: white;
-    border-radius: 50%;
+    background-color: var(--progress-index-color);
+    color: var(--light gray);
+    /* border-radius: 50%; */
     margin-bottom: 5px;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .progress_text.active_step span:first-child {
-    background-color: var(--accent-color);
+    /* background-color: var(--accent-color); */
 }
 
 .steps{
@@ -49,7 +49,7 @@
     width: 100%;
     height: 8px;
     background-color: #949494; 
-    border-radius: 50px;
+    /* border-radius: 50px; */
     margin-top: -8px;
 }
 
@@ -57,7 +57,7 @@
     transition: 0.5s ease-in-out;
     background-color: var(--accent-color);
     height: 100%;
-    border-radius: 50px;
+    /* border-radius: 50px; */
 }
 
   
