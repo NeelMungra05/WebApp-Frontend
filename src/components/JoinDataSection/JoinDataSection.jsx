@@ -15,13 +15,16 @@ const JoinDataSection =({ join, index, onDiscard }) => {
         <h3>{join.type}</h3>
 
 
-
-        {/* new code */}
+<div className = {styles.joindata}>
+    
         {join.tables.map((table, tableIndex) => (
-          <select>
+          <select className={styles.joinselect}>
           <option key={tableIndex}>{table}</option>
+          <option key={tableIndex}>{table}</option>
+          
           </select>
         ))}
+        </div>
         
       
       </div>
