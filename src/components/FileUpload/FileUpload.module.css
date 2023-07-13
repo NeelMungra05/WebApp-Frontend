@@ -21,6 +21,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color:var(--text-dark);
+    
 }
 
 .uploadBox__input.dragover{
@@ -37,25 +39,36 @@
     opacity: 0;
 }
 .uploadIcon{
-    font-size: 3em;
+    font-size: 2em;
     padding-bottom: 8px;
-    /*color: var(--accent-color);*/
+    color: var(--text-dark);
+    
 
 }
+
+.uploadBox_button_container{
+    left : -12.5px;
+    top :200px;
+    
+}
+
 .uploadBox__button{
     display: flex;
     padding: 8px 8px;
     align-items: center;
+    justify-content: center;
     border: none;
-    /* background-color: var(--text-dark);
-    color: var(--background-color); */
+    background-color: var(--deloitte-green);
+    color: var(--text-light); 
     border-radius: 0px;
     cursor: pointer;
-    width: 50%;
-    justify-content: space-between;
+    width: 125px;
+    /* justify-content: space-between; */
     position :absolute;
     left : -12.5px;
     top :200px;
+    
+
     
 }
 

@@ -26,7 +26,8 @@
 
 .form__button {
     border-radius: 0px;
-    background-color: hsl(81,67%,54%);
+    /* background-color: hsl(81,67%,54%); */
+    background-color: var(--deloitte-green);
     border: none;
     color: #FFFFFF;
     text-align: center;
@@ -42,7 +43,8 @@
 }
   
 .form__button:disabled,.form__button:disabled span {
-    background-color: hsl(81,67%,54%);
+    /* background-color: hsl(81,67%,54%); */
+    background-color: var(--deloitte-green);
     color: #FFFFFF;
     opacity: 0.7;
     cursor: not-allowed;
@@ -65,14 +67,14 @@
     
 }
   
-  .form__button:hover:enabled .form__navigation--back {
+  /* .form__button:hover:enabled .form__navigation--back {
     padding-left: 25px;
   }
   
   .form__button:hover:enabled .form__navigation--back:before {
     opacity: 1;
     left: 0;
-  }
+  } */
   
 .form__button .form__navigation--forward:after {
     content: '\00bb';
@@ -83,11 +85,11 @@
     transition: all 0.1s;
 }
 
-.form__button:hover:enabled .form__navigation--forward {
+/* .form__button:hover:enabled .form__navigation--forward {
     padding-right: 25px;
 }
   
 .form__button:hover:enabled .form__navigation--forward:after {
     opacity: 1;
     right: 0;
-}
+} */
