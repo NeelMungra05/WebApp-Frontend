@@ -2,6 +2,7 @@ import React from "react";
 import FieldBox from "../FieldBox/FieldBox";
 import styles from "./FieldSelector.module.css";
 import { useSelector } from "react-redux";
+import useFieldSelectValidation from "../../hooks/useFieldSelectValidation";
 
 const FieldSelector = (props) => {
   const { type, heading } = props;
@@ -13,6 +14,9 @@ const FieldSelector = (props) => {
   const content = Object.keys(typeOfField).map((data, idx) => (
     <FieldBox fileName={data} id={idx} key={`${idx}${data}`} type={type} />
   ));
+
+  const validations = useFieldSelectValidation();
+  console.log(validations);
 
   return (
     <article>
