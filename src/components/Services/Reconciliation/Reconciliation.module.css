@@ -22,6 +22,7 @@
     
 .form__button__next {
     margin-left: auto;
+    
 }
 
 .form__button {
@@ -40,6 +41,7 @@
     position: relative;
     top: 50px;
     left: -5px;
+    margin-bottom: 100px;
 }
   
 .form__button:disabled,.form__button:disabled span {

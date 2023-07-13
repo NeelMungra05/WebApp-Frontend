@@ -50,8 +50,9 @@ section .details span{
 .uploaded_area{
     max-height: 150px;
     overflow-y: scroll;
-    padding-top: 50px ;
+    margin-top:50px;
     margin-left: -20px;
+    
 }
 
 .uploaded_area .row .contents{
