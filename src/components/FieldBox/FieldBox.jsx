@@ -4,23 +4,28 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fieldsAction } from "../../store/fields-slice";
 import Input from "../UI/Input";
 import styles from "./FieldBox.module.css";
 
 const FieldBox = (props) => {
-  const { fileName, fields, id } = props;
+  const { fileName, id, type } = props;
   const scrollBoxDivRef = useRef();
-  const [originalList, setOriginalList] = useState(
-    fields.reduce((acc, curr) => {
-      acc[curr] = {
-        name: curr,
-        PK: false,
-        RF: false,
-        PKDisabled: true,
-      };
-      return acc;
-    }, {})
+  const list = useSelector((state) =>
+    type === "source" ? state.fields.sourceFields : state.fields.targetFields
   );
+  const originalList = Object.keys(list)
+    .filter((val) => val === fileName)
+    .reduce((acc, key) => {
+      acc = list[key];
+      return acc;
+    }, {});
+  const dispatch = useDispatch();
+  const action =
+    type === "source"
+      ? fieldsAction.changeSourceState
+      : fieldsAction.changeTargetState;
   const [searchList, setSearchList] = useState(originalList);
 
   useEffect(() => {
@@ -30,7 +35,7 @@ const FieldBox = (props) => {
     if (currentHeight > scrollThresholdHeight) {
       scrollBoxDivRef.current.classList.remove(styles.disabled);
     }
-  }, [fields]);
+  }, [originalList]);
 
   const searchInputHandler = (e) => {
     const searchValue = e.target.value.trim();
@@ -54,62 +59,78 @@ const FieldBox = (props) => {
     const fieldName = name.split("|")[1];
 
     if (name.split("|").includes("primaryKey")) {
-      setOriginalList((prevState) => {
-        const pkSelectedCount = Object.values(prevState).filter((value) =>
-          value.name === fieldName ? value.PK === false : value.PK === true
-        ).length;
+      const pkSelectedCount = Object.values(originalList).filter((value) =>
+        value.name === fieldName ? value.PK === false : value.PK === true
+      ).length;
 
-        console.log(pkSelectedCount);
+      console.log(pkSelectedCount);
 
-        if (pkSelectedCount <= 4) {
-          return {
-            ...prevState,
-            [fieldName]: {
-              ...prevState[fieldName],
-              PK: !prevState[fieldName].PK,
+      if (pkSelectedCount <= 4) {
+        dispatch(
+          action({
+            [fileName]: {
+              ...originalList,
+              [fieldName]: {
+                ...originalList[fieldName],
+                PK: !originalList[fieldName].PK,
+              },
             },
-          };
-        } else {
-          const updatedState = { ...prevState };
+          })
+        );
+      } else {
+        const updatedState = Object.assign(
+          {},
+          ...Object.keys(originalList).map((value) => ({
+            [value]: {
+              ...originalList[value],
+              PKDisabled: !originalList[value].PK,
+            },
+          }))
+        );
+        console.log(updatedState);
 
-          Object.keys(updatedState).forEach((key) => {
-            if (updatedState[key].PK !== true) {
-              updatedState[key].PKDisabled = true;
-            }
-          });
-
-          return updatedState;
-        }
-      });
+        dispatch(
+          action({
+            [fileName]: updatedState,
+          })
+        );
+      }
     } else {
-      setOriginalList((prevState) => {
-        const pkSelectedCount = Object.values(prevState).filter((value) =>
-          value.name === fieldName ? value.PK === false : value.PK === true
-        ).length;
+      const pkSelectedCount = Object.values(originalList).filter((value) =>
+        value.name === fieldName ? value.PK === false : value.PK === true
+      ).length;
 
-        if (pkSelectedCount <= 4) {
-          return {
-            ...prevState,
-            [fieldName]: {
-              ...prevState[fieldName],
-              RF: !prevState[fieldName].RF,
-              PKDisabled: prevState[fieldName].RF,
-              PK: false,
+      if (pkSelectedCount <= 4) {
+        console.log("Selected Me");
+        dispatch(
+          action({
+            [fileName]: {
+              ...originalList,
+              [fieldName]: {
+                ...originalList[fieldName],
+                RF: !originalList[fieldName].RF,
+                PKDisabled: originalList[fieldName].RF,
+                PK: false,
+              },
             },
-          };
-        } else {
-          const updatedState = { ...prevState };
-          return {
-            ...updatedState,
-            [fieldName]: {
-              ...updatedState[fieldName],
-              RF: !prevState[fieldName].RF,
-              PKDisabled: true,
-              PK: false,
+          })
+        );
+      } else {
+        const updatedState = { ...originalList };
+        dispatch(
+          action({
+            [fileName]: {
+              ...updatedState,
+              [fieldName]: {
+                ...updatedState[fieldName],
+                RF: !originalList[fieldName].RF,
+                PKDisabled: true,
+                PK: false,
+              },
             },
-          };
-        }
-      });
+          })
+        );
+      }
     }
   };
 

@@ -15,6 +15,12 @@ const fieldsSlice = createSlice({
     addTargetFields(state, action) {
       state.targetFields = action.payload;
     },
+    changeSourceState(state, action) {
+      state.sourceFields = { ...state.sourceFields, ...action.payload };
+    },
+    changeTargetState(state, action) {
+      state.targetFields = { ...state.targetFields, ...action.payload };
+    },
   },
 });
 
