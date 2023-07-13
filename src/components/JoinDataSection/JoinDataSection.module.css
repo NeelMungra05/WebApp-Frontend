@@ -15,3 +15,12 @@
 .joinContainer h3{
   color: var(--text-dark);
 }
+.discardButton{
+  background-color: none;
+  border-color: black; 
+  margin-right: 0;
+  margin-left:auto;
+  display:block;
+
+
+}

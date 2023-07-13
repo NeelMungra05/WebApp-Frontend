@@ -6,16 +6,24 @@ const JoinDataSection =({ join, index, onDiscard }) => {
     <div className={styles.section__header}>
       <h2>Join Data</h2>
       <div className={styles.joinContainer}>
-        <h3>{join.type}</h3>
-        {join.tables.map((table, tableIndex) => (
-          <p key={tableIndex}>{table}</p>
-        ))}
-        <button
+      <button
           className={styles.discardButton}
           onClick={() => onDiscard(index)}
         >
-          Discard
+          x
         </button>
+        <h3>{join.type}</h3>
+
+
+
+        {/* new code */}
+        {join.tables.map((table, tableIndex) => (
+          <select>
+          <option key={tableIndex}>{table}</option>
+          </select>
+        ))}
+        
+      
       </div>
       <hr />
     </div>
