@@ -1,37 +1,26 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useMemo } from "react";
+import { useCallback } from "react";
+import { useSelector } from "react-redux";
 
 const useFieldSelectValidation = () => {
-  const dispatch = useDispatch();
   const sourceFields = useSelector((state) => state.fields.sourceFields);
   const targetFields = useSelector((state) => state.fields.targetFields);
 
-  const hasSelectedSourceRF =
-    Object.keys(sourceFields).filter((key) => {
-      return (
-        Object.values(sourceFields[key]).filter((val) => val.RF === true)
-          .length > 0
-      );
-    }).length > 0;
+  const hasSelectedFields = (fields, property) =>
+    Object.values(fields).some((field) =>
+      Object.values(field).some((val) => val[property] === true)
+    );
 
-  const hasSelectedTargetRF =
-    Object.keys(targetFields).filter((key) => {
-      return (
-        Object.values(targetFields[key]).filter((val) => val.RF === true)
-          .length > 0
-      );
-    }).length > 0;
-
-  const hasSelectedSourcePK =
-    Object.keys(sourceFields).filter((key) => {
-      return (
-        Object.values(sourceFields[key]).filter((val) => val.PK === true)
-          .length > 0
-      );
-    }).length > 0;
+  const hasSelectedSourceRF = hasSelectedFields(sourceFields, "RF");
+  const hasSelectedTargetRF = hasSelectedFields(targetFields, "RF");
+  const hasSelectedSourcePK = hasSelectedFields(sourceFields, "PK");
+  const hasSelectedTargetPK = hasSelectedFields(targetFields, "PK");
 
   return {
     hasSelectedSourceRF,
     hasSelectedTargetRF,
+    hasSelectedTargetPK,
+    hasSelectedSourcePK,
   };
 };
 

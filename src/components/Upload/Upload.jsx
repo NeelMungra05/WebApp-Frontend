@@ -4,6 +4,7 @@ import useFileUploadValidation from "../../hooks/useFileUploadValidation";
 import FileUpload from "../FileUpload/FileUpload";
 import styles from "./Upload.module.css";
 import { formButtonAction } from "../../store/formButton";
+import useFormButton from "../../hooks/useFormButton";
 
 const Upload = () => {
   const sourceValidation = useFileUploadValidation({ type: "source" });
@@ -15,7 +16,7 @@ const Upload = () => {
       condition === true && Object.values(targetValidation)[idx] === condition
   );
 
-  dispatch(formButtonAction.nextButton(isValid));
+  useFormButton({ isValid, buttonType: "next" });
 
   return (
     <div className={styles.uploader}>

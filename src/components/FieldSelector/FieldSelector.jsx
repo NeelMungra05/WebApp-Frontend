@@ -15,9 +15,6 @@ const FieldSelector = (props) => {
     <FieldBox fileName={data} id={idx} key={`${idx}${data}`} type={type} />
   ));
 
-  const validations = useFieldSelectValidation();
-  console.log(validations);
-
   return (
     <article>
       <h3>{heading}</h3>
