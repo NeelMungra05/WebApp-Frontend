@@ -3,6 +3,8 @@ import styles from "../TableData/TableData.module.css";
 import TableButton from "../TableButton/TableButton";
 import JoinTypeSelect from "../SelectJoinType/SelectJoinType";
 import JoinData from "../JoinDataSection/JoinDataSection";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const TableData = () => {
   const [selectedTables, setSelectedTables] = useState([]);
@@ -109,6 +111,7 @@ const getAvailableTables = () => {
           key={index}
         />
       ))}
+            
     </div>
   );
 };
