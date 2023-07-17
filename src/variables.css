@@ -3,6 +3,8 @@
     --header-color: #efefef;
     --accent-color:#86BC25;
     --accent-dark-color: #43B02A;
+    --accessible-green: #26890D;
+    --deloitte-green: #86BC25;
     --accent-head-color: #617b60;
     --main-font-color: #000;
     --highlighted-font-color: #fff;
@@ -20,5 +22,6 @@
     --dark-gray-1:#53565A;
     --dark-gray-2:#63666A;
     --dark-gray-3:#75787B;
+    --deloitte-blue: #007CB0;
 }
 

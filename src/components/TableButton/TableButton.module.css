@@ -2,5 +2,14 @@
 
 .tableButton {
     margin-right: 10px;
+    border-radius: none;
+    background-color: var(--deloitte-green);
+    color: white;
+    /* color: black; */
 }
 
+.tableButton:disabled {
+    background-color: var(--accent-color);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
