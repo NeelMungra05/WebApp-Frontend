@@ -7,7 +7,8 @@
     color: var(--accent-color);
 }
 .joinContainer {
-  background-color: var(--light-gray-1);
+  background-color: var(--background-color);
+  border: solid var(--text-dark);
   padding: 10px;
   margin-bottom: 20px;
   color: var(--text-dark);
@@ -30,4 +31,12 @@ display: flex;
 justify-content: center;
 align-items: center;
 margin-bottom: 50px;
+}
+
+.joinselect {
+  margin-right: 10px;
+}
+
+.iconBetweenDropdowns {
+  margin: 0 10px;
 }
