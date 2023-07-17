@@ -25,8 +25,9 @@
 }
 
 .form__button {
-    border-radius: 5px;
-    background-color: hsl(81,67%,54%);
+    border-radius: 0px;
+    /* background-color: hsl(81,67%,54%); */
+    background-color: var(--deloitte-green);
     border: none;
     color: #FFFFFF;
     text-align: center;
@@ -36,12 +37,18 @@
     transition: all 0.1s;
     cursor: pointer;
     margin: 5px;
+    position: relative;
+    top: 50px;
+    left: -5px;
 }
   
 .form__button:disabled,.form__button:disabled span {
-    background-color: #ccc;
-    color: #666;
+    /* background-color: hsl(81,67%,54%); */
+    background-color: var(--deloitte-green);
+    color: #FFFFFF;
+    opacity: 0.7;
     cursor: not-allowed;
+
 }
   
 .form__button span {
@@ -55,19 +62,19 @@
     content: '\00ab';
     position: absolute;
     opacity: 0;
-    top: 0;
     left: -20px;
     transition: all 0.1s;
+    
 }
   
-  .form__button:hover:enabled .form__navigation--back {
+  /* .form__button:hover:enabled .form__navigation--back {
     padding-left: 25px;
   }
   
   .form__button:hover:enabled .form__navigation--back:before {
     opacity: 1;
     left: 0;
-  }
+  } */
   
 .form__button .form__navigation--forward:after {
     content: '\00bb';
@@ -78,11 +85,11 @@
     transition: all 0.1s;
 }
 
-.form__button:hover:enabled .form__navigation--forward {
+/* .form__button:hover:enabled .form__navigation--forward {
     padding-right: 25px;
 }
   
 .form__button:hover:enabled .form__navigation--forward:after {
     opacity: 1;
     right: 0;
-}
+} */
