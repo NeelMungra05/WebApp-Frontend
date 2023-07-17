@@ -12,10 +12,6 @@ import { faArrowUp } from "@fortawesome/fontawesome-free-solid";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
 
-
-
-
-
 const FileUpload = (props) => {
   const { heading, isSource = true } = props;
   const files = useSelector((state) =>
@@ -44,22 +40,18 @@ const FileUpload = (props) => {
   };
 
   const fileChangeHandlerTwo = () => {
-    fileInputRef.current.click()
+    fileInputRef.current.click();
   };
-
-
-
 
   return (
     <>
       <div className={styles.section__header}>{heading}</div>
       <div className={styles.uploadBox}>
         <div className={`${styles.uploadBox__input} `}>
-        <FontAwesomeIcon icon={faArrowUp} className={styles.uploadIcon} />
-        {/* <FontAwesomeIcon icon={faArrowUpFromBracket} className={styles.uploadIcon} /> */}
-        <span>Drag and Drop here or </span>
-      
-       
+          <FontAwesomeIcon icon={faArrowUp} className={styles.uploadIcon} />
+          {/* <FontAwesomeIcon icon={faArrowUpFromBracket} className={styles.uploadIcon} /> */}
+          <span>Drag and Drop here or </span>
+
           <Input
             label={props.label}
             ref={fileInputRef}
@@ -71,14 +63,18 @@ const FileUpload = (props) => {
               className: styles["uploadBox__input-box"],
             }}
           />
-          <button type="button" className={styles.uploadBox__button} onClick={fileChangeHandlerTwo} >
-            {/* <AiOutlineFileText fontSize={20} /> */}
-            <span >Choose files</span>
-            {/* <BsChevronDown fontSize={20} /> */}
-          </button>
-  
         </div>
       </div>
+      <button
+        type="button"
+        className={styles.uploadBox__button}
+        onClick={fileChangeHandlerTwo}
+      >
+        {/* <AiOutlineFileText fontSize={20} /> */}
+        <span>Choose files</span>
+        {/* <BsChevronDown fontSize={20} /> */}
+      </button>
+
       {files && <FileList files={files} onRemove={removeFileHandler} />}
     </>
   );
