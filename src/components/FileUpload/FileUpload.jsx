@@ -24,8 +24,6 @@ const FileUpload = (props) => {
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
 
-  console.log(files);
-
   const removeFileHandler = (fileName) => {
     if (isSource) {
       dispatch(fileAction.removeSourceFile(fileName));
@@ -54,7 +52,7 @@ const FileUpload = (props) => {
 
   return (
     <>
-     <div className={styles.section__header}>{heading}</div>
+      <div className={styles.section__header}>{heading}</div>
       <div className={styles.uploadBox}>
         <div className={`${styles.uploadBox__input} `}>
         <FontAwesomeIcon icon={faArrowUp} className={styles.uploadIcon} />
@@ -81,8 +79,7 @@ const FileUpload = (props) => {
   
         </div>
       </div>
-     
-      {files && <FileList files={files} onRemove={removeFileHandler}  />}
+      {files && <FileList files={files} onRemove={removeFileHandler} />}
     </>
   );
 };
