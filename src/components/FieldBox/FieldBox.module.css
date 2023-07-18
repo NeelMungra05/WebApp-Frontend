@@ -36,7 +36,6 @@
     font-family: inherit;
     border: none;
     background-color:  var(--highlighted-font-color);;
-    /* box-shadow: 0 0px 5px black; */
     transform: translateY(0);
     transition: transform 0.3s ease;
 }

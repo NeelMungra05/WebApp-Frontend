@@ -11,7 +11,7 @@ const ServiceList = (props) => {
           <h1 className={styles.card__header}>{props.header}</h1>
           <p className={styles.card__text}>{props.content}</p>
           <button onClick={props.onClick} className={styles.card__btn}>
-            Explore
+            Explore 
           </button>
         </div>
       </div>

@@ -1,0 +1,15 @@
+@import url("../../variables.css");
+
+
+.section__header {
+    margin-bottom: 20px;
+}
+.section__header h2{
+    color: var(--deloitte-green);
+}
+.tableContainer {
+    display: flex;
+   
+}
+
+  
