@@ -3,10 +3,12 @@
 .uploadBox{
     width: 430px;
     height: 200px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    background-color: hsl(81,67%,54%) ;
+    border-radius: 0px;
+    /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);*/
+   /* background-color: hsl(81,67%,54%) ;*/
     padding: 0.5rem;
+    border-style: dotted;
+    border-color: var(--text-muted);
 }
 
 .uploadBox__input{
@@ -14,15 +16,17 @@
     position: relative;
     height: 100%;
     background: rgba(255,255,255,0.5);
-    border-radius: 5px;
+    border-radius: 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color:var(--text-dark);
+    
 }
 
 .uploadBox__input.dragover{
-    opacity: 0.5;
+    opacity: 0.2;
 }
 
 .uploadBox__input-box{
@@ -34,17 +38,39 @@
     left: 0;
     opacity: 0;
 }
+.uploadIcon{
+    font-size: 2em;
+    padding-bottom: 8px;
+    color: var(--text-dark);
+    
+
+}
+
+.uploadBox_button_container{
+    left : -12.5px;
+    top :200px;
+    
+}
 
 .uploadBox__button{
     display: flex;
     padding: 8px 8px;
     align-items: center;
+    justify-content: center;
     border: none;
-    background-color: var(--background-color);
-    border-radius: 25px;
+    background-color: var(--deloitte-green);
+    color: var(--text-light); 
+    border-radius: 0px;
     cursor: pointer;
-    width: 50%;
-    justify-content: space-between;
+    width: 125px;
+    margin-top: 1rem;
+    /* justify-content: space-between; */
+    /* position :absolute; */
+    left : -12.5px;
+    top :200px;
+    
+
+    
 }
 
 .uploadBox_button span {

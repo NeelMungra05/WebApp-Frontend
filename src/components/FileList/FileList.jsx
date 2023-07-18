@@ -5,8 +5,6 @@ import styles from "./FileList.module.css";
 const FileList = (props) => {
   const { files } = props;
 
-  console.log(files);
-
   const content = files.map((file) => (
     <FileItem
       name={file.name}

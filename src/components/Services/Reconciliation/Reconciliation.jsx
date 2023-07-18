@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { stepsAction } from "../../../store/steps";
 import { formButtonAction } from "../../../store/formButton";
 import Upload from "../../Upload/Upload";
+import FieldSelector from "../../FieldSelector/FieldSelector";
+import Selector from "../../Selector/Selector";
 
 const Reconciliation = () => {
   const steps = useSelector((state) => state.steps.steps);
@@ -39,28 +41,33 @@ const Reconciliation = () => {
     dispatch(stepsAction.next());
   };
 
-  return (
-    <>
-      <ProgressBar />
-      <form action="" className={styles.form}>
+  let content;
+
+  switch (steps) {
+    case 1:
+      content = (
         <FormSection
-          currentStep={steps}
-          defaultStep={1}
           className={styles.form__section}
           activeClassName={styles["form__section--active"]}
         >
           <Upload />
         </FormSection>
+      );
+      break;
 
+    case 2:
+      content = (
         <FormSection
-          currentStep={steps}
-          defaultStep={2}
           className={styles.form__section}
           activeClassName={styles["form__section--active"]}
         >
-          <div className={styles.section__header}>Step 2</div>
+          <Selector />
         </FormSection>
+      );
+      break;
 
+    case 3:
+      content = (
         <FormSection
           currentStep={steps}
           defaultStep={3}
@@ -69,25 +76,35 @@ const Reconciliation = () => {
         >
           <div className={styles.section__header}>Step 3</div>
         </FormSection>
+      );
+      break;
+    default:
+      break;
+  }
 
-      <div className={styles.form__navigation}>
-        <button
-          type="button"
-          className={`${styles.form__button} ${styles.form__button__previous}`}
-          disabled={!prevButton}
-          onClick={prevButtonHandler}
-        >
-        <span className={styles["form__navigation--back"]}>Previous</span>
-        </button>
-        <button
-          type="button"
-          className={`${styles.form__button} ${styles.form__button__next}`}
-          disabled={!nextButton}
-          onClick={nextButtonHandler}
-        >
-        <span className={styles["form__navigation--forward"]}>Next</span>
-        </button>
-      </div>
+  return (
+    <>
+      <ProgressBar />
+      <form action="" className={styles.form}>
+        {content}
+        <div className={styles.form__navigation}>
+          <button
+            type="button"
+            className={`${styles.form__button} ${styles.form__button__previous}`}
+            disabled={!prevButton}
+            onClick={prevButtonHandler}
+          >
+            <span className={styles["form__navigation--back"]}>Previous</span>
+          </button>
+          <button
+            type="button"
+            className={`${styles.form__button} ${styles.form__button__next}`}
+            disabled={!nextButton}
+            onClick={nextButtonHandler}
+          >
+            <span className={styles["form__navigation--forward"]}>Next</span>
+          </button>
+        </div>
       </form>
     </>
   );
