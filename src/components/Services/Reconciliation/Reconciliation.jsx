@@ -41,28 +41,33 @@ const Reconciliation = () => {
     dispatch(stepsAction.next());
   };
 
-  return (
-    <>
-      <ProgressBar />
-      <form action="" className={styles.form}>
+  let content;
+
+  switch (steps) {
+    case 1:
+      content = (
         <FormSection
-          currentStep={steps}
-          defaultStep={1}
           className={styles.form__section}
           activeClassName={styles["form__section--active"]}
         >
           <Upload />
         </FormSection>
+      );
+      break;
 
+    case 2:
+      content = (
         <FormSection
-          currentStep={steps}
-          defaultStep={2}
           className={styles.form__section}
           activeClassName={styles["form__section--active"]}
         >
           <Selector />
         </FormSection>
+      );
+      break;
 
+    case 3:
+      content = (
         <FormSection
           currentStep={steps}
           defaultStep={3}
@@ -71,7 +76,17 @@ const Reconciliation = () => {
         >
           <div className={styles.section__header}>Step 3</div>
         </FormSection>
+      );
+      break;
+    default:
+      break;
+  }
 
+  return (
+    <>
+      <ProgressBar />
+      <form action="" className={styles.form}>
+        {content}
         <div className={styles.form__navigation}>
           <button
             type="button"

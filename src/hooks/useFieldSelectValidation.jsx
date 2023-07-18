@@ -6,9 +6,11 @@ const useFieldSelectValidation = () => {
   const sourceFields = useSelector((state) => state.fields.sourceFields);
   const targetFields = useSelector((state) => state.fields.targetFields);
 
+  console.log(targetFields);
+
   const hasSelectedFields = (fields, property) =>
-    Object.values(fields).some((field) =>
-      Object.values(field).some((val) => val[property] === true)
+    Object.keys(fields).every((key) =>
+      Object.values(fields[key]).some((val) => val[property] === true)
     );
 
   const hasSelectedSourceRF = hasSelectedFields(sourceFields, "RF");
