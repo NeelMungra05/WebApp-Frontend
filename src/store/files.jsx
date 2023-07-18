@@ -10,7 +10,10 @@ const fileSlice = createSlice({
   initialState,
   reducers: {
     addSourceFile(state, action) {
-      state.sourceFile = [...state.sourceFile, ...action.payload];
+      const filteredFiles = Array.from(action.payload).filter(
+        (file) => file.size <= 50 * 1024 * 1024
+      );
+      state.sourceFile = [...state.sourceFile, ...filteredFiles];
     },
     removeSourceFile(state, action) {
       state.sourceFile = state.sourceFile.filter(

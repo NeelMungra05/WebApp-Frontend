@@ -2,25 +2,17 @@ import React from "react";
 import FieldBox from "../FieldBox/FieldBox";
 import styles from "./FieldSelector.module.css";
 import { useSelector } from "react-redux";
+import useFieldSelectValidation from "../../hooks/useFieldSelectValidation";
 
 const FieldSelector = (props) => {
-  let typeOfField;
-
   const { type, heading } = props;
 
-  if (type === "source") {
-    typeOfField = useSelector((state) => state.fields.sourceFields);
-  } else {
-    typeOfField = useSelector((state) => state.fields.targetFields);
-  }
+  const typeOfField = useSelector((state) =>
+    type === "source" ? state.fields.sourceFields : state.fields.targetFields
+  );
 
-  const content = typeOfField.map((data, idx) => (
-    <FieldBox
-      fileName={data.name}
-      fields={data.result}
-      id={idx}
-      key={`${idx}${data.name}`}
-    />
+  const content = Object.keys(typeOfField).map((data, idx) => (
+    <FieldBox fileName={data} id={idx} key={`${idx}${data}`} type={type} />
   ));
 
   return (

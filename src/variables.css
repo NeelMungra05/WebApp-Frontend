@@ -13,6 +13,7 @@
     --text-dark: #000;
     --text-light: #fbf2f2;
     --text-muted: #595959;
+    --accessible-green: #26890D;
     --primary-font-size:3rem;
     --secondary-font-size:1.75rem;
     --normal-font-size:1.125rem;
@@ -22,6 +23,9 @@
     --dark-gray-1:#53565A;
     --dark-gray-2:#63666A;
     --dark-gray-3:#75787B;
+    --error-text: hsl(4, 77%, 48%);
+    --hover-color: rgba(255,255,255,0.15);
+    --active-hover-color: hsl(109,61%,35%)
     --deloitte-blue: #007CB0;
 }
 

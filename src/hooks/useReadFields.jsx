@@ -16,12 +16,34 @@ const useReadFields = ({ type = "source" }) => {
 
   const xlsxReader = useCallback((result) => {
     const workBook = xlsx.read(result, { type: "binary" });
-
+    console.log("Called xlsxReader");
     const rowObjArr = xlsx.utils.sheet_to_json(
       workBook.Sheets[workBook.SheetNames[0]]
     );
 
     return Object.keys(rowObjArr[0]);
+  }, []);
+
+  const resultReducer = useCallback((result) => {
+    const newResult = result.reduce((acc, curr) => {
+      const fieldObj = curr.result.reduce((resAcc, resCurr) => {
+        resAcc[resCurr] = {
+          name: resCurr,
+          RF: false,
+          PK: false,
+          PKDisabled: true,
+        };
+        return resAcc;
+      }, {});
+
+      acc[curr.name] = {
+        ...fieldObj,
+      };
+
+      return acc;
+    }, {});
+
+    return newResult;
   }, []);
 
   useEffect(() => {
@@ -43,11 +65,13 @@ const useReadFields = ({ type = "source" }) => {
     });
 
     Promise.all(promises).then((result) => {
-      if (type === "source") {
-        dispatch(fieldsAction.addSourceFields(result));
-      } else {
-        dispatch(fieldsAction.addTargetFields(result));
-      }
+      const reduceResult = resultReducer(result);
+
+      dispatch(
+        type === "source"
+          ? fieldsAction.addSourceFields(reduceResult)
+          : fieldsAction.addTargetFields(reduceResult)
+      );
     });
   }, [files]);
 };

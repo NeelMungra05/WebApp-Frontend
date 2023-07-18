@@ -1,15 +1,11 @@
 import React from "react";
 
 const FormSection = (props) => {
-   const { currentStep, defaultStep, className, activeClassName } = props;
+  const { className, activeClassName } = props;
 
-   let style = className;
+  const style = `${className} ${activeClassName}`;
 
-   if (currentStep === defaultStep) {
-     style = `${className} ${activeClassName}`;
-   }
-
-   return <section className={style}>{props.children}</section>;
+  return <section className={style}>{props.children}</section>;
 };
 
 export default FormSection;

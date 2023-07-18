@@ -5,7 +5,7 @@ section .row{
     margin-bottom: 10px;
     list-style: none;
     padding: 15px 20px;
-    /* border-radius: 5px; */
+    border-radius: 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -50,6 +50,7 @@ section .details span{
 .uploaded_area{
     max-height: 150px;
     overflow-y: scroll;
+    margin-left: -20px;
 }
 
 .uploaded_area .row .contents{

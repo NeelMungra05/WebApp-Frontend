@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
-import logo from "../Images/dlogo.png";
+import logo from "../../assets/sapCompanyLogo.png";
 
 const Header = (props) => {
   const navClickHandler = (e) => {
@@ -54,8 +54,9 @@ const Header = (props) => {
       <div className={styles["nav-container"]}>
         <div className={styles.header__logo}>
           <span className={styles.header__name}>
-            <img src={logo} width="200px" alt="" />
+            <img src={logo} width="100px" height="auto" alt="" />
           </span>
+          <p className={styles["header__tool--name"]}>IntelliGen360</p>
         </div>
         {navbar}
       </div>
