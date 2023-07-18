@@ -2,4 +2,6 @@
   
 .joinTypeSelect {
     padding: 5px;
+    border-radius: 0px;
+    border: solid var(--accent-color);
 }

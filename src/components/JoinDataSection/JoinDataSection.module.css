@@ -7,23 +7,25 @@
     color: var(--accent-color);
 }
 .joinContainer {
+  position: relative;
   background-color: var(--background-color);
   border: solid var(--text-dark);
-  padding: 10px;
+  padding: 10px 10px 40px 10px;
   margin-bottom: 20px;
   color: var(--text-dark);
 }
+
 .joinContainer h3{
   color: var(--text-dark);
 }
 .discardButton{
   background-color: none;
-  border-color: black; 
+  border-color: var(--text-dark); 
   margin-right: 0;
   margin-left:auto;
   display:block;
-
-
+  cursor: pointer;
+  font-size: 15px;
 }
 
 .joindata{
@@ -31,12 +33,11 @@ display: flex;
 justify-content: center;
 align-items: center;
 margin-bottom: 50px;
-}
-
-.joinselect {
-  margin-right: 10px;
+font-weight: bold;
 }
 
 .iconBetweenDropdowns {
-  margin: 0 10px;
+  margin: 0 80px;
+  color: var(--accent-color);
+  font-size: 20px;
 }
