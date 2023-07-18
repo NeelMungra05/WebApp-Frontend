@@ -56,7 +56,7 @@ const Header = (props) => {
           <span className={styles.header__name}>
             <img src={logo} width="100px" height="auto" alt="" />
           </span>
-          <p className={styles["header__tool--name"]}>IDA</p>
+          <p className={styles["header__tool--name"]}>IntelliGen360</p>
         </div>
         {navbar}
       </div>
