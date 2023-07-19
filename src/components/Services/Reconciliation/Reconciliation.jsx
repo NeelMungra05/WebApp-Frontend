@@ -9,7 +9,7 @@ import { formButtonAction } from "../../../store/formButton";
 import Upload from "../../Upload/Upload";
 import FieldSelector from "../../FieldSelector/FieldSelector";
 import Selector from "../../Selector/Selector";
-import TableData from "../../TableData/TableData"
+import TableData from "../../TableData/TableData";
 
 const Reconciliation = () => {
   const steps = useSelector((state) => state.steps.steps);
@@ -46,38 +46,15 @@ const Reconciliation = () => {
 
   switch (steps) {
     case 1:
-      content = (
-        <FormSection
-          className={styles.form__section}
-          activeClassName={styles["form__section--active"]}
-        >
-          <Upload />
-        </FormSection>
-      );
+      content = <Upload />;
       break;
 
     case 2:
-      content = (
-        <FormSection
-          className={styles.form__section}
-          activeClassName={styles["form__section--active"]}
-        >
-          <Selector />
-        </FormSection>
-      );
+      content = <Selector />;
       break;
 
     case 3:
-      content = (
-        <FormSection
-          currentStep={steps}
-          defaultStep={3}
-          className={styles.form__section}
-          activeClassName={styles["form__section--active"]}
-        >
-            <TableData />
-        </FormSection>
-      );
+      content = <TableData />;
       break;
     default:
       break;
@@ -87,7 +64,12 @@ const Reconciliation = () => {
     <>
       <ProgressBar />
       <form action="" className={styles.form}>
-        {content}
+        <FormSection
+          className={styles.form__section}
+          activeClassName={styles["form__section--active"]}
+        >
+          {content}
+        </FormSection>
         <div className={styles.form__navigation}>
           <button
             type="button"
