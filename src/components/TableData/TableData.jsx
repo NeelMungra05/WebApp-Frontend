@@ -4,13 +4,14 @@ import TableButton from "../TableButton/TableButton";
 import JoinTypeSelect from "../SelectJoinType/SelectJoinType";
 import JoinData from "../JoinDataSection/JoinDataSection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { useSelector } from "react-redux";
 
 const TableData = () => {
   const [selectedTables, setSelectedTables] = useState([]);
   const [selectedJoins, setSelectedJoins] = useState([]);
 
-  const tables = ["Table1", "Table2", "Table3", "Table4"];
+  const fields = useSelector((state) => state.fields.sourceFields);
+  const tables = Object.keys(fields);
   const joinTypes = ["Inner Join", "Left Join"];
 
   const handleTableClick = (table, event) => {
@@ -20,46 +21,48 @@ const TableData = () => {
     event.preventDefault();
   };
 
-const handleJoinTypeChange = (event) => {
+  const handleJoinTypeChange = (event) => {
     const selectedJoin = event.target.value;
     if (selectedJoin && selectedTables.length === 2) {
       const newJoin = { type: selectedJoin, tables: selectedTables };
       setSelectedJoins([...selectedJoins, newJoin]);
 
       const joinedTables = selectedTables
-        .map((table) => table.slice(5))
-        .join("");
+        .map((table) =>
+          table.slice(-5) === ".xlsx" ? table.slice(0, -5) : table
+        )
+        .join("|");
 
-      const joinedTable = `Table${joinedTables}`;
+      const joinedTable = `${joinedTables}`;
       setSelectedTables([joinedTable]);
       event.target.value = "";
     }
   };
 
-const handleDiscardJoin = (index) => {
+  const handleDiscardJoin = (index) => {
     const updatedJoins = selectedJoins.slice(0, index);
     const discardedJoin = selectedJoins[index];
-  
+
     const discardedTables = discardedJoin.tables;
-    const remainingTables = discardedTables.slice(0, discardedTables.length - 1);
-  
+    const remainingTables = discardedTables.slice(
+      0,
+      discardedTables.length - 1
+    );
+
     setSelectedJoins(updatedJoins);
     setSelectedTables(remainingTables);
 
     const joinTypeDropdown = document.getElementById("joinTypeDropdown");
     if (joinTypeDropdown) {
-        joinTypeDropdown.value = "";
+      joinTypeDropdown.value = "";
     }
-  
+
     if (updatedJoins.length === 0) {
       setSelectedTables([]);
     }
   };
-  
-  
-  
 
-const isTableUsed = (table) => {
+  const isTableUsed = (table) => {
     for (const join of selectedJoins) {
       if (join.tables.includes(table)) {
         return true;
@@ -68,7 +71,7 @@ const isTableUsed = (table) => {
     return false;
   };
 
-const getAvailableTables = () => {
+  const getAvailableTables = () => {
     const usedTables = selectedJoins.reduce(
       (tables, join) => tables.concat(join.tables),
       []
@@ -89,7 +92,8 @@ const getAvailableTables = () => {
               table={table}
               onClick={(event) => handleTableClick(table, event)}
               disabled={
-                (selectedTables.length === 2 && !selectedTables.includes(table)) ||
+                (selectedTables.length === 2 &&
+                  !selectedTables.includes(table)) ||
                 isTableUsed(table)
               }
             />
@@ -107,11 +111,11 @@ const getAvailableTables = () => {
         <JoinData
           join={join}
           index={index}
+          filesField={fields}
           onDiscard={handleDiscardJoin}
           key={index}
         />
       ))}
-            
     </div>
   );
 };

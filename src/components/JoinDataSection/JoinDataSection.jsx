@@ -6,54 +6,71 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins, faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
 
 const JOIN_TYPES = {
-  INNER_JOIN: 'Inner Join',
+  INNER_JOIN: "Inner Join",
 };
 
 const ICONS = {
   [JOIN_TYPES.INNER_JOIN]: faCoins,
 };
 
-const DISCARD_BUTTON_TEXT = 'x';
+const DISCARD_BUTTON_TEXT = "x";
 
-const tableOptionsMapping = {
-  Table1: ['T1-A', 'T1-B', 'T1-C','T1-A', 'T1-B', 'T1-C','T1-A', 'T1-B', 'T1-C'],
-  Table2: ['T2-A', 'T2-B', 'T2-C'],
-};
-
-const JoinDataSection = ({ join, index, onDiscard }) => {
-  console.log(join.tables);
-
+const JoinDataSection = ({ join, index, onDiscard, filesField }) => {
   const joinDataObject = join.tables.reduce((acc, table) => {
-    acc[table] = tableOptionsMapping[table] || [];
+    const splittedFiles = table
+      .split("|")
+      .map((val) => (val.slice("-5") === ".xlsx" ? val : val.concat(".xlsx")));
+
+    console.log(splittedFiles);
+
+    const fields = splittedFiles.map((val) =>
+      Object.keys(filesField[val]).filter((field) => filesField[val][field].RF)
+    );
+
+    const setUnion = new Set();
+
+    fields.forEach((value) => value.forEach((val) => setUnion.add(val)));
+
+    acc[table] = Array.from(setUnion);
     return acc;
   }, {});
+
+  // const joinDataObject = join.tables.reduce((acc, table) => {
+  //   acc[table] = tableOptionsMapping[table] || [];
+  //   return acc;
+  // }, {});
 
   const iconToUse = ICONS[join.type] || faCircleHalfStroke;
 
   return (
-   <div className={styles.section__header}>
+    <div className={styles.section__header}>
       <h2>Join Data</h2>
       <div className={styles.joinContainer}>
-        <button className={styles.discardButton} onClick={() => onDiscard(index)}>
+        <button
+          className={styles.discardButton}
+          onClick={() => onDiscard(index)}
+        >
           {DISCARD_BUTTON_TEXT}
         </button>
         <h3>{join.type}</h3>
         <div className={styles.joindata}>
-          {Object.entries(joinDataObject).map(([table, options], tableIndex) => (
-            <React.Fragment key={tableIndex}>
-              <CustomMultiSelect
-                className={styles.joinselect}
-                options={options}
-                placeholder={table}
-              />
-              {tableIndex < Object.keys(joinDataObject).length - 1 && (
-                <FontAwesomeIcon
-                  icon={iconToUse}
-                  className={styles.iconBetweenDropdowns}
+          {Object.entries(joinDataObject).map(
+            ([table, options], tableIndex) => (
+              <React.Fragment key={tableIndex}>
+                <CustomMultiSelect
+                  className={styles.joinselect}
+                  options={options}
+                  placeholder={table}
                 />
-              )}
-            </React.Fragment>
-          ))}
+                {tableIndex < Object.keys(joinDataObject).length - 1 && (
+                  <FontAwesomeIcon
+                    icon={iconToUse}
+                    className={styles.iconBetweenDropdowns}
+                  />
+                )}
+              </React.Fragment>
+            )
+          )}
         </div>
       </div>
     </div>
