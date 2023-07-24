@@ -1,8 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  sourceJoins: [],
-  targetJoins: [],
+  sourceJoins: {
+    fileOrder: [],
+    joinType: [],
+    joinOn: [],
+  },
+  targetJoins: {},
+};
+
+const JOINS = {
+  "Inner Join": "inner",
+  "Left Join": "left",
 };
 
 const joinsSlice = createSlice({
@@ -10,13 +19,15 @@ const joinsSlice = createSlice({
   initialState,
   reducers: {
     addSourceJoins(state, action) {
-      state.sourceJoins = state.sourceJoins;
+      const { type, tables } = action.payload;
+      state.sourceJoins.fileOrder = tables;
+      state.sourceJoins.joinType = [...state.sourceJoins.joinType, JOINS[type]];
     },
   },
 });
 
-const joinsReducer = joinsSlice.reducer();
+const joinsReducer = joinsSlice.reducer;
 
-export const joinsActions = joinsSlice.actions();
+export const joinsActions = joinsSlice.actions;
 
 export default joinsReducer;

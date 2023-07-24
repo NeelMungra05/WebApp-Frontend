@@ -4,13 +4,15 @@ import TableButton from "../TableButton/TableButton";
 import JoinTypeSelect from "../SelectJoinType/SelectJoinType";
 import JoinData from "../JoinDataSection/JoinDataSection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { joinsActions } from "../../store/joins-slice";
 
 const TableData = () => {
   const [selectedTables, setSelectedTables] = useState([]);
   const [selectedJoins, setSelectedJoins] = useState([]);
-
   const fields = useSelector((state) => state.fields.sourceFields);
+  const dispatch = useDispatch();
+
   const tables = Object.keys(fields);
   const joinTypes = ["Inner Join", "Left Join"];
 
@@ -25,6 +27,12 @@ const TableData = () => {
     const selectedJoin = event.target.value;
     if (selectedJoin && selectedTables.length === 2) {
       const newJoin = { type: selectedJoin, tables: selectedTables };
+      dispatch(
+        joinsActions.addSourceJoins({
+          type: selectedJoin,
+          tables: selectedTables.map((val) => val.split("|")).flat(),
+        })
+      );
       setSelectedJoins([...selectedJoins, newJoin]);
 
       const joinedTables = selectedTables
