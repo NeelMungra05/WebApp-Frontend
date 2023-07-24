@@ -50,7 +50,7 @@ const TableData = () => {
   const handleDiscardJoin = (index) => {
     const updatedJoins = selectedJoins.slice(0, index);
     const discardedJoin = selectedJoins[index];
-
+    dispatch(joinsActions.removeSourceJoins({ index }));
     const discardedTables = discardedJoin.tables;
     const remainingTables = discardedTables.slice(
       0,

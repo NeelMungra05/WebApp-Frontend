@@ -32,6 +32,13 @@ const joinsSlice = createSlice({
         [type]: selectedOptions,
       };
     },
+    removeSourceJoins(state, action) {
+      const { index } = action.payload;
+      state.sourceJoins.fileOrder =
+        index == 0 ? [] : state.sourceJoins.fileOrder.slice(0, index + 1);
+      state.sourceJoins.joinOn = state.sourceJoins.joinOn.slice(0, index);
+      state.sourceJoins.joinType = state.sourceJoins.joinType.slice(0, index);
+    },
   },
 });
 
