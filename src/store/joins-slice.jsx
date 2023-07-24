@@ -23,6 +23,15 @@ const joinsSlice = createSlice({
       state.sourceJoins.fileOrder = tables;
       state.sourceJoins.joinType = [...state.sourceJoins.joinType, JOINS[type]];
     },
+    addSourceJoinsFields(state, action) {
+      const { type, selectedOptions, index } = action.payload;
+
+      state.sourceJoins = { ...state.sourceJoins };
+      state.sourceJoins.joinOn[index] = {
+        ...state.sourceJoins.joinOn[index],
+        [type]: selectedOptions,
+      };
+    },
   },
 });
 

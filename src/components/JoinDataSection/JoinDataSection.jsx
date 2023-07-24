@@ -4,6 +4,8 @@ import styles from "../JoinDataSection/JoinDataSection.module.css";
 import CustomMultiSelect from "../customMultiselect/customMultiselect";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins, faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { joinsActions } from "../../store/joins-slice";
 
 const JOIN_TYPES = {
   INNER_JOIN: "Inner Join",
@@ -16,6 +18,8 @@ const ICONS = {
 const DISCARD_BUTTON_TEXT = "x";
 
 const JoinDataSection = ({ join, index, onDiscard, filesField }) => {
+  const dispatch = useDispatch();
+
   const joinDataObject = join.tables.reduce((acc, table) => {
     const splittedFiles = table
       .split("|")
@@ -34,6 +38,14 @@ const JoinDataSection = ({ join, index, onDiscard, filesField }) => {
     acc[table] = Array.from(setUnion);
     return acc;
   }, {});
+
+  const addJoinsFields = (isLeft, selectedOptions) => {
+    const type = isLeft ? "leftOn" : "rightOn";
+
+    dispatch(
+      joinsActions.addSourceJoinsFields({ type, selectedOptions, index })
+    );
+  };
 
   // const joinDataObject = join.tables.reduce((acc, table) => {
   //   acc[table] = tableOptionsMapping[table] || [];
@@ -61,6 +73,8 @@ const JoinDataSection = ({ join, index, onDiscard, filesField }) => {
                   className={styles.joinselect}
                   options={options}
                   placeholder={table}
+                  isLeft={tableIndex < Object.keys(joinDataObject).length - 1}
+                  onAddFields={addJoinsFields}
                 />
                 {tableIndex < Object.keys(joinDataObject).length - 1 && (
                   <FontAwesomeIcon

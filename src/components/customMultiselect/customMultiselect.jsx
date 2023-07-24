@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
-import styles from '../customMultiselect/customMultiselect.module.css';
+import React, { useState } from "react";
+import { useEffect } from "react";
+import styles from "../customMultiselect/customMultiselect.module.css";
 
-const CustomMultiselect = ({ options, placeholder, onSelectionChange }) => {
+const CustomMultiselect = ({
+  options,
+  placeholder,
+  onSelectionChange,
+  isLeft,
+  onAddFields,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -12,12 +19,16 @@ const CustomMultiselect = ({ options, placeholder, onSelectionChange }) => {
   const handleOptionClick = (option) => {
     const isSelected = selectedOptions.includes(option);
 
-    if (isSelected) {
-      setSelectedOptions(selectedOptions.filter((item) => item !== option));
-    } else {
-      setSelectedOptions([...selectedOptions, option]);
-    }
+    setSelectedOptions((prevState) =>
+      isSelected
+        ? prevState.filter((item) => item !== option)
+        : [...prevState, option]
+    );
   };
+
+  useEffect(() => {
+    onAddFields(isLeft, selectedOptions);
+  }, [selectedOptions]);
 
   return (
     <div className={styles.dropdown}>
@@ -43,7 +54,7 @@ const CustomMultiselect = ({ options, placeholder, onSelectionChange }) => {
             ))}
           </div>
         )}
-        <span className={styles.dropdown__arrow}>{isOpen ? '▲' : '▼'}</span>
+        <span className={styles.dropdown__arrow}>{isOpen ? "▲" : "▼"}</span>
       </div>
       {isOpen && (
         <div className={styles.dropdown__content}>
