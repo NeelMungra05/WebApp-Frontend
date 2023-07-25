@@ -6,7 +6,7 @@ import useFieldSelectValidation from "../../hooks/useFieldSelectValidation";
 import useFormButton from "../../hooks/useFormButton";
 import useReadFields from "../../hooks/useReadFields";
 import { formButtonAction } from "../../store/formButton";
-import FieldSelector from "../FieldSelector/FieldSelector";
+import FieldSelector from "../FieldSelector/FieldSelector"; 
 
 const Selector = () => {
   useReadFields({ type: "source" });

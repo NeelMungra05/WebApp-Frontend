@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../JoinDataSection/JoinDataSection.module.css";
-// import Multiselect from 'multiselect-react-dropdown';
 import CustomMultiSelect from "../customMultiselect/customMultiselect";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins, faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
@@ -41,9 +40,11 @@ const JoinDataSection = ({ join, index, onDiscard, filesField }) => {
 
   const addJoinsFields = (isLeft, selectedOptions) => {
     const type = isLeft ? "leftOn" : "rightOn";
-
     dispatch(
       joinsActions.addSourceJoinsFields({ type, selectedOptions, index })
+    );
+    dispatch(
+      joinsActions.addTargetJoinsFields({ type, selectedOptions, index })
     );
   };
 

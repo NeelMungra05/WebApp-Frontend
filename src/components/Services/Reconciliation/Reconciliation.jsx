@@ -9,7 +9,7 @@ import { formButtonAction } from "../../../store/formButton";
 import Upload from "../../Upload/Upload";
 import FieldSelector from "../../FieldSelector/FieldSelector";
 import Selector from "../../Selector/Selector";
-import TableData from "../../TableData/TableData";
+import SourceAndTargetTables from "../../SourceAndTargetTables/SourceAndTargetTables";
 
 const Reconciliation = () => {
   const steps = useSelector((state) => state.steps.steps);
@@ -54,7 +54,7 @@ const Reconciliation = () => {
       break;
 
     case 3:
-      content = <TableData />;
+      content = <SourceAndTargetTables />;
       break;
     default:
       break;
