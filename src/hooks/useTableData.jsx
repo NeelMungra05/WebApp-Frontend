@@ -5,12 +5,11 @@ import { joinsActions } from "../store/joins-slice";
 const useTableData = ({ type }) => {
   const [selectedTables, setSelectedTables] = useState([]);
   const [selectedJoins, setSelectedJoins] = useState([]);
-  console.log(type);
   const fields = useSelector((state) => state.fields[type]);
-  const dispatch = useDispatch();   
+  const dispatch = useDispatch();
 
   const tables = Object.keys(fields);
-  const joinTypes = ["Inner Join", "Left Join"];    
+  const joinTypes = ["Inner Join", "Left Join"];
 
   const handleTableClick = (table, event) => {
     if (selectedTables.length < 2 && !selectedTables.includes(table)) {
@@ -23,12 +22,21 @@ const useTableData = ({ type }) => {
     const selectedJoin = event.target.value;
     if (selectedJoin && selectedTables.length === 2) {
       const newJoin = { type: selectedJoin, tables: selectedTables };
-      dispatch(
-        joinsActions.addSourceJoins({
-          type: selectedJoin,
-          tables: selectedTables.map((val) => val.split("|")).flat(),
-        })
-      );
+      if (type === "sourceFields") {
+        dispatch(
+          joinsActions.addSourceJoins({
+            type: selectedJoin,
+            tables: selectedTables.map((val) => val.split("|")).flat(),
+          })
+        );
+      } else if (type === "targetFields") {
+        dispatch(
+          joinsActions.addTargetJoins({
+            type: selectedJoin,
+            tables: selectedTables.map((val) => val.split("|")).flat(),
+          })
+        );
+      }
       setSelectedJoins([...selectedJoins, newJoin]);
 
       const joinedTables = selectedTables
@@ -44,7 +52,11 @@ const useTableData = ({ type }) => {
   const handleDiscardJoin = (index) => {
     const updatedJoins = selectedJoins.slice(0, index);
     const discardedJoin = selectedJoins[index];
-    dispatch(joinsActions.removeSourceJoins({ index }));
+    if (type === "sourceFields") {
+      dispatch(joinsActions.removeSourceJoins({ index }));
+    } else if (type === "targetFields") {
+      dispatch(joinsActions.removeTargetJoins({ index }));
+    }
     const discardedTables = discardedJoin.tables;
     const remainingTables = discardedTables.slice(
       0,

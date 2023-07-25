@@ -17,12 +17,14 @@ const TableData = ({ type }) => {
     handleDiscardJoin,
     isTableUsed,
     getAvailableTables,
-  } = useTableData( {type} );
+  } = useTableData({ type });
+
+  const heading = type === 'sourceFields' ? 'Source Tables' : 'Target Tables';
 
   return (
     <div>
       <div className={styles.section__header}>
-        <h2>Tables</h2>
+        <h2>{heading}</h2>
         <div className={styles.tableContainer}>
           {tables.map((table, index) => (
             <TableButton
