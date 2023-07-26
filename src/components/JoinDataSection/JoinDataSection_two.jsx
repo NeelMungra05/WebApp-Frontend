@@ -16,7 +16,7 @@ const ICONS = {
 
 const DISCARD_BUTTON_TEXT = "x";
 
-const JoinDataSection = ({ join, index, onDiscard, filesField }) => {
+const JoinDataSection2 = ({ join, index, onDiscard, filesField }) => {
   const dispatch = useDispatch();
 
   const joinDataObject = join.tables.reduce((acc, table) => {
@@ -92,4 +92,4 @@ const JoinDataSection = ({ join, index, onDiscard, filesField }) => {
   );
 };
 
-export default JoinDataSection;
+export default JoinDataSection2;

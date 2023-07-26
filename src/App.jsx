@@ -3,8 +3,7 @@ import LoginForm from "./components/Form/LoginForm";
 import SignupForm from "./components/Form/SignupForm";
 import Header from "./components/Header/Header";
 import Services from "./components/Services/Services";
-import Footer from './components/Footer/Footer';
-
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [isHome, setIsHome] = useState(true);

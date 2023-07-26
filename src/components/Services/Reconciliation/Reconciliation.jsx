@@ -10,6 +10,7 @@ import Upload from "../../Upload/Upload";
 import FieldSelector from "../../FieldSelector/FieldSelector";
 import Selector from "../../Selector/Selector";
 import SourceAndTargetTables from "../../SourceAndTargetTables/SourceAndTargetTables";
+import SourceAndTargetTables2 from "../../SourceAndTargetTables/SourceAndTargetTables2";
 
 const Reconciliation = () => {
   const steps = useSelector((state) => state.steps.steps);
@@ -32,7 +33,7 @@ const Reconciliation = () => {
   };
 
   const nextButtonHandler = (e) => {
-    if (steps + 1 === 3) {
+    if (steps + 1 === 5) {
       dispatch(formButtonAction.nextButton(false));
     } else {
       dispatch(formButtonAction.nextButton(true));
@@ -54,7 +55,12 @@ const Reconciliation = () => {
       break;
 
     case 3:
+     
       content = <SourceAndTargetTables />;
+      break;
+    case 4:
+   
+      content = <SourceAndTargetTables2 />;
       break;
     default:
       break;

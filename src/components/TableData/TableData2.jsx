@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../TableData/TableData.module.css";
 import TableButton from "../TableButton/TableButton";
 import JoinTypeSelect from "../SelectJoinType/SelectJoinType";
-import JoinData from "../JoinDataSection/JoinDataSection";
+
 import JoinData2 from "../JoinDataSection/JoinDataSection_two";
 import useTableData from "../../hooks/useTableData";
 
@@ -49,7 +49,7 @@ const TableData = ({ type }) => {
       </div>
 
       {selectedJoins.map((join, index) => (
-        <JoinData
+        <JoinData2
           join={join}
           index={index}
           filesField={fields}
