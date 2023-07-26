@@ -17,6 +17,7 @@ const TableData = ({ type }) => {
     handleDiscardJoin,
     isTableUsed,
     getAvailableTables,
+    joinTypeDropdownRef,
   } = useTableData({ type });
 
   const heading = type === 'sourceFields' ? 'Source Tables' : 'Target Tables';

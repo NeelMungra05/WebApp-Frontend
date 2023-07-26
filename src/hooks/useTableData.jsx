@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { joinsActions } from "../store/joins-slice";
 
@@ -7,6 +7,7 @@ const useTableData = ({ type }) => {
   const [selectedJoins, setSelectedJoins] = useState([]);
   const fields = useSelector((state) => state.fields[type]);
   const dispatch = useDispatch();
+  const joinTypeDropdownRef = useRef(null); 
 
   const tables = Object.keys(fields);
   const joinTypes = ["Inner Join", "Left Join"];
@@ -22,21 +23,17 @@ const useTableData = ({ type }) => {
     const selectedJoin = event.target.value;
     if (selectedJoin && selectedTables.length === 2) {
       const newJoin = { type: selectedJoin, tables: selectedTables };
-      if (type === "sourceFields") {
-        dispatch(
-          joinsActions.addSourceJoins({
-            type: selectedJoin,
-            tables: selectedTables.map((val) => val.split("|")).flat(),
-          })
-        );
-      } else if (type === "targetFields") {
-        dispatch(
-          joinsActions.addTargetJoins({
-            type: selectedJoin,
-            tables: selectedTables.map((val) => val.split("|")).flat(),
-          })
-        );
-      }
+      dispatch(
+        type === "sourceFields"
+          ? joinsActions.addSourceJoins({
+              type: selectedJoin,
+              tables: selectedTables.map((val) => val.split("|")).flat(),
+            })
+          : joinsActions.addTargetJoins({
+              type: selectedJoin,
+              tables: selectedTables.map((val) => val.split("|")).flat(),
+            })
+      );
       setSelectedJoins([...selectedJoins, newJoin]);
 
       const joinedTables = selectedTables
@@ -45,18 +42,18 @@ const useTableData = ({ type }) => {
 
       const joinedTable = `${joinedTables}`;
       setSelectedTables([joinedTable]);
-      event.target.value = "";
+      event.target.value = ""; 
     }
   };
 
   const handleDiscardJoin = (index) => {
     const updatedJoins = selectedJoins.slice(0, index);
     const discardedJoin = selectedJoins[index];
-    if (type === "sourceFields") {
-      dispatch(joinsActions.removeSourceJoins({ index }));
-    } else if (type === "targetFields") {
-      dispatch(joinsActions.removeTargetJoins({ index }));
-    }
+    dispatch(
+      type === "sourceFields"
+        ? joinsActions.removeSourceJoins({ index })
+        : joinsActions.removeTargetJoins({ index })
+    );
     const discardedTables = discardedJoin.tables;
     const remainingTables = discardedTables.slice(
       0,
@@ -66,9 +63,8 @@ const useTableData = ({ type }) => {
     setSelectedJoins(updatedJoins);
     setSelectedTables(remainingTables);
 
-    const joinTypeDropdown = document.getElementById("joinTypeDropdown");
-    if (joinTypeDropdown) {
-      joinTypeDropdown.value = "";
+    if (joinTypeDropdownRef.current) {
+      joinTypeDropdownRef.current.value = "";
     }
 
     if (updatedJoins.length === 0) {
@@ -106,6 +102,7 @@ const useTableData = ({ type }) => {
     handleDiscardJoin,
     isTableUsed,
     getAvailableTables,
+    joinTypeDropdownRef,
   };
 };
 
