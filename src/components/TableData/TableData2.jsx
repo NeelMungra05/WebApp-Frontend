@@ -3,7 +3,7 @@ import styles from "../TableData/TableData.module.css";
 import TableButton from "../TableButton/TableButton";
 import JoinTypeSelect from "../SelectJoinType/SelectJoinType";
 
-import JoinData2 from "../JoinDataSection/JoinDataSection_two";
+import JoinData2 from "../JoinDataSection/JoinDataSection2";
 import useTableData from "../../hooks/useTableData";
 
 const TableData = ({ type }) => {

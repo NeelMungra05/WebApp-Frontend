@@ -33,7 +33,7 @@ const Reconciliation = () => {
   };
 
   const nextButtonHandler = (e) => {
-    if (steps + 1 === 5) {
+    if (steps + 1 === 4) {
       dispatch(formButtonAction.nextButton(false));
     } else {
       dispatch(formButtonAction.nextButton(true));

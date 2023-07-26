@@ -27,7 +27,7 @@ const JoinDataSection2 = ({ join, index, onDiscard, filesField }) => {
     console.log(splittedFiles);
 
     const fields = splittedFiles.map((val) =>
-      Object.keys(filesField[val]).filter((field) => filesField[val][field].RF)
+      Object.keys(filesField[val]).filter((field) => filesField[val][field].PK)
     );
 
     const setUnion = new Set();

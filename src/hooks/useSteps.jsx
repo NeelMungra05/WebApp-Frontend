@@ -4,6 +4,7 @@ const STEPS_INFO = {
   0: "Src & Trgt Upload",
   1: "Field Selection",
   2: "Src & Trgt Mapping",
+  3: "Src & Trgt Mapping part two",
 };
 
 const useSteps = () => {

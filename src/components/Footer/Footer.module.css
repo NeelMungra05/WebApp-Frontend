@@ -1,0 +1,38 @@
+/* .footer{
+
+  background-color: var(--text-dark);
+  color: var(--text-light);
+  font-family: inherit;
+  font-size: 8px;
+  
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    position: fixed;
+    bottom: 0;
+   
+ 
+  } */
+
+  .footer{
+
+    display: inline-block;
+    position: fixed;
+    bottom: 0;
+
+    padding: auto;
+    background-color: black;
+    color: white;
+    font-family: inherit;
+    font-size: 8px;
+    text-align: left;
+   
+     
+   
+    }
+  .foot-container{
+   
+    max-width: 100%;
+    
+
+  }
