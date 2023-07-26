@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Header.module.css";
 import logo from "../../assets/sapCompanyLogo.png";
+import { MdLogout } from 'react-icons/md';
 
 const Header = (props) => {
   const navClickHandler = (e) => {
@@ -38,11 +39,13 @@ const Header = (props) => {
       </a>
     </nav>
   );
+  
 
   if (props.isLoggedIn) {
     navbar = (
       <nav className={styles.nav}>
-        <a onClick={navClickHandler} href="/logout" className={navStyle}>
+        <a onClick={navClickHandler} href="/logout" className={navStyle}> <MdLogout/>
+       
           <span className={styles.nav__item}>Logout</span>
         </a>
       </nav>
