@@ -2,14 +2,6 @@ import React from "react";
 import { useRef } from "react";
 import Input from "../UI/Input";
 import img from "../../assets/login_img.png";;
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faUser,
-  faKey,
-  faCheck,
-} from "@fortawesome/free-solid-svg-icons";
 import styles from "./Form.module.css";
 
 const SignupForm = (props) => {

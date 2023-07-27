@@ -3,6 +3,7 @@ import LoginForm from "./components/Form/LoginForm";
 import SignupForm from "./components/Form/SignupForm";
 import Header from "./components/Header/Header";
 import Services from "./components/Services/Services";
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [isHome, setIsHome] = useState(true);
@@ -75,7 +76,7 @@ function App() {
     navbarStateChanger("home");
   };
 
-  let content = <p>Welcome home</p>;
+  let content = <p><b>Welcome homes</b></p>;
 
   if (isLoggedIn) {
     content = <Services />;
@@ -98,7 +99,10 @@ function App() {
         isLoggedIn={isLoggedIn}
         navbarStateChanger={navbarStateChanger}
       />
-      <main>{content}</main>
+      <main>
+        {content}
+      </main>
+      <Footer />
     </>
   );
 }
