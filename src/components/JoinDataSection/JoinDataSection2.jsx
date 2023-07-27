@@ -43,9 +43,7 @@ const JoinDataSection2 = ({ join, index, onDiscard, filesField }) => {
     dispatch(
       joinsActions.addSourceJoinsFields({ type, selectedOptions, index })
     );
-    dispatch(
-      joinsActions.addTargetJoinsFields({ type, selectedOptions, index })
-    );
+ 
   };
 
   // const joinDataObject = join.tables.reduce((acc, table) => {
@@ -57,7 +55,7 @@ const JoinDataSection2 = ({ join, index, onDiscard, filesField }) => {
 
   return (
     <div className={styles.section__header}>
-      <h2>Join Data</h2>
+   
       <div className={styles.joinContainer}>
         <button
           className={styles.discardButton}
@@ -65,7 +63,7 @@ const JoinDataSection2 = ({ join, index, onDiscard, filesField }) => {
         >
           {DISCARD_BUTTON_TEXT}
         </button>
-        <h3>{join.type}</h3>
+        {/* <h3>{join.type}</h3> */}
         <div className={styles.joindata}>
           {Object.entries(joinDataObject).map(
             ([table, options], tableIndex) => (
@@ -77,12 +75,12 @@ const JoinDataSection2 = ({ join, index, onDiscard, filesField }) => {
                   isLeft={tableIndex < Object.keys(joinDataObject).length - 1}
                   onAddFields={addJoinsFields}
                 />
-                {tableIndex < Object.keys(joinDataObject).length - 1 && (
-                  <FontAwesomeIcon
-                    icon={iconToUse}
-                    className={styles.iconBetweenDropdowns}
-                  />
-                )}
+                {/* {tableIndex < Object.keys(joinDataObject).length - 1 && (
+                  // <FontAwesomeIcon
+                  //   icon={iconToUse}
+                  //   className={styles.iconBetweenDropdowns}
+                  // />
+                )} */}
               </React.Fragment>
             )
           )}

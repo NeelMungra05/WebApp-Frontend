@@ -20,31 +20,13 @@ const TableData = ({ type }) => {
     getAvailableTables,
   } = useTableData({ type });
 
-  const heading = type === 'sourceFields' ? 'Source Tables' : 'Target Tables';
+  // const heading = type === 'sourceFields' ? 'Primary Key Selection' : 'Target Tables';
 
   return (
     <div>
       <div className={styles.section__header}>
-        <h2>{heading}</h2>
-        <div className={styles.tableContainer}>
-          {tables.map((table, index) => (
-            <TableButton
-              key={index}
-              table={table}
-              onClick={(event) => handleTableClick(table, event)}
-              disabled={
-                (selectedTables.length === 2 &&
-                  !selectedTables.includes(table)) ||
-                isTableUsed(table)
-              }
-            />
-          ))}
-          <JoinTypeSelect
-            onChange={handleJoinTypeChange}
-            disabled={selectedTables.length !== 2}
-            joinTypes={joinTypes}
-          />
-        </div>
+        <h2>Primary Key Selection</h2>
+    
         <hr />
       </div>
 

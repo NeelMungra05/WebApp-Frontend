@@ -7,7 +7,7 @@ const SourceAndTargetTables2 = () => {
       
       <TableData2 type="sourceFields"  />
       <hr />
-      <TableData2 type="targetFields" />
+     
     </div>
   );
 };

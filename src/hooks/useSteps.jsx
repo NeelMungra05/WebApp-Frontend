@@ -3,8 +3,8 @@ import React from "react";
 const STEPS_INFO = {
   0: "Src & Trgt Upload",
   1: "Field Selection",
-  2: "Src & Trgt Mapping",
-  3: "Src & Trgt Mapping part two",
+  2: "Src & Trgt Join",
+  3: "Src & Trgt Mapping",
 };
 
 const useSteps = () => {
