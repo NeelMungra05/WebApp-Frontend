@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import styles from "../customMultiselect/customMultiselect.module.css";
 
-const CustomMultiselect = ({
-  options,
-  placeholder,
-  onSelectionChange,
-  isLeft,
-  onAddFields,
-}) => {
+const CustomMultiselect = ({ options, placeholder, onAddFields, isLeft }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -27,7 +21,9 @@ const CustomMultiselect = ({
   };
 
   useEffect(() => {
-    onAddFields(isLeft, selectedOptions);
+    if (onAddFields && isLeft !== undefined) {
+      onAddFields(isLeft, selectedOptions);
+    }
   }, [selectedOptions]);
 
   return (
