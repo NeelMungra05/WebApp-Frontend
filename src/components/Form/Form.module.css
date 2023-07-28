@@ -1,6 +1,5 @@
 .section{
     display: flex;
- 
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -22,25 +21,17 @@
     flex: 1;
     padding-right: 10px;    
 
-  }
-
- 
-
+}
 .image {
 
     max-width: 100%;
-    height: 500px;
+    height: 450px;
     padding-left: 150px;
-
+    padding-top: 10px;
 }
-
-
 .formContainer {
     flex: 1;
 }
-
-
-
 .form-box-login{
     position: relative;
     /* box-shadow: inset 0 0 0 1px black; */
