@@ -1,0 +1,18 @@
+@import url("../../variables.css");
+
+.cardWithTable {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 200px;
+  margin: 10px;
+  transition: box-shadow 0.2s;
+}
+
+.cardWithTable:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cardWithTable.active { 
+  background-color: #f9f9f9;
+}
