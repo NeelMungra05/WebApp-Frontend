@@ -35,7 +35,8 @@ const TableData = ({ type }) => {
               disabled={
                 (selectedTables.length === 2 &&
                   !selectedTables.includes(table)) ||
-                isTableUsed(table)
+                  isTableUsed(table) ||
+                  tables.length === 1
               }
             />
           ))}
