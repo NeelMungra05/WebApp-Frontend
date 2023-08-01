@@ -8,15 +8,17 @@ const PrimaryKeySelection = () => {
   const targetpk = useSelector((state) => state.fields.targetFields);
 
   const getFieldsWithPK = (files) => {
-    return Object.values(files).reduce((fieldsWithPK, file) => {
+    const fieldsWithPKSet = new Set();
+    Object.values(files).forEach((file) => {
       Object.entries(file).forEach(([fieldName, field]) => {
         if (field.PK) {
-          fieldsWithPK.push(field.name);
+          fieldsWithPKSet.add(field.name);
         }
       });
-      return fieldsWithPK;
-    }, []);
+    });
+    return Array.from(fieldsWithPKSet);
   };
+  
 
   const sourcefieldsWithPK = getFieldsWithPK(sourcepk);
   const targetfieldsWithPK = getFieldsWithPK(targetpk);

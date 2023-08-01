@@ -11,6 +11,7 @@ import FieldSelector from "../../FieldSelector/FieldSelector";
 import Selector from "../../Selector/Selector";
 import SourceAndTargetTables from "../../SourceAndTargetTables/SourceAndTargetTables";
 import PrimaryKeySelection from "../../PrimaryKeySelection/PrimaryKeySelection";
+import SummaryData from "../../SummaryData/SummaryData";
 
 const Reconciliation = () => {
   const steps = useSelector((state) => state.steps.steps);
@@ -33,7 +34,7 @@ const Reconciliation = () => {
   };
 
   const nextButtonHandler = (e) => {
-    if (steps + 1 === 4) {
+    if (steps + 1 === 5) {
       dispatch(formButtonAction.nextButton(false));
     } else {
       dispatch(formButtonAction.nextButton(true));
@@ -60,6 +61,10 @@ const Reconciliation = () => {
 
     case 4:
       content = <PrimaryKeySelection />;
+      break;
+    
+    case 5:
+      content = <SummaryData />
       break;
 
     default:
