@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './CardsWithTable.module.css'; // Import the CSS module
+import styles from './CardsWithTable.module.css';
 
 const CardsWithTable = ({ heading, icon, number, showTable, tableData, onCardClick }) => {
   const handleCardClick = () => {
@@ -8,10 +8,12 @@ const CardsWithTable = ({ heading, icon, number, showTable, tableData, onCardCli
 
   return (
     <div className={styles.cardWithTable} onClick={handleCardClick}>
-      <div>
-        <h3>{heading}</h3>
-        <div>{icon}</div>
-        <p>Number: {number}</p>
+      <div className={styles.cardData}>
+        <div className={styles.cardHeader}>
+          <h3>{heading}</h3>
+          <div className={styles.cardIcon}>{icon}</div>
+        </div>
+        <p>{number}</p>
       </div>
     </div>
   );

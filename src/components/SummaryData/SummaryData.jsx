@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import CardWithTable from '../CardsWithTable/CardsWithTable';
 import styles from './SummaryData.module.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser , faKiwiBird } from "@fortawesome/free-solid-svg-icons";
 
 const SummaryData = () => {
   const cardsData = [
-    { heading: 'Card 1', icon: 'Icon 1', number: 100, tableData: [
+    { heading: 'Card 1', icon: faUser, number: 100, tableData: []},
+    { heading: 'Card 2', icon: faKiwiBird, number: 200, tableData: [] },
+    { heading: 'Card 3', icon: faUser, number: 300, tableData: [] },
+    { heading: 'Card 4', icon: faKiwiBird, number: 400, tableData: [
       { column1: 'Data 1', column2: 'Data 2' },
       { column1: 'Data 3', column2: 'Data 4' },
-    ]},
-    { heading: 'Card 2', icon: 'Icon 2', number: 200, tableData: [] },
-    { heading: 'Card 3', icon: 'Icon 3', number: 300, tableData: [] },
-    { heading: 'Card 4', icon: 'Icon 4', number: 400, tableData: [
-      { column1: 'Data A', column2: 'Data B', column3: 'Data C' },
     ]},
   ];
 
@@ -61,7 +61,7 @@ const SummaryData = () => {
             <CardWithTable
               key={index}
               heading={card.heading}
-              icon={card.icon}
+              icon={<FontAwesomeIcon icon={card.icon} />}
               number={card.number}
               showTable={card.tableData.length > 0}
               tableData={card.tableData}
@@ -74,7 +74,7 @@ const SummaryData = () => {
         {displayedTableData.length > 0 && (
           <div className={styles.tableSection}>
             <h3>Displayed Table</h3>
-            <table>
+            <table className={styles.mainTable}>
               {generateTableHeaders()}
               <tbody>
                 {generateTableRows()}
