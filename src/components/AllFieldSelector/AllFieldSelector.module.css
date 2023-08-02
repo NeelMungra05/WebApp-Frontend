@@ -5,7 +5,7 @@
     height: 300px;
     width: 100%;
     justify-content: flex-start;
-    flex-direction: column;
+    flex-direction: row;
     max-height: 500px;
     overflow: auto;
   }
