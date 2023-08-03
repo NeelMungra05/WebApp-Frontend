@@ -5,7 +5,8 @@ const STEPS_INFO = {
   1: "Field Selection",
   2: "Src & Trgt Join",
   3: "Src & Trgt Mapping",
-  4: "Summary",
+  4: "RF Selection",
+  5: "Summary",
 };
 
 const useSteps = () => {
