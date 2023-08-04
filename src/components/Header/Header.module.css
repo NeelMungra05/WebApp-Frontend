@@ -18,7 +18,7 @@
   display: flex;
   align-items: center;
   height: 4rem;
-  margin-top: 5px;
+
 
 }
 
@@ -27,6 +27,7 @@
   text-transform: uppercase;
   font-weight: 600;
   font-size: 20px;
+  margin-top: 5px;
 }
 
 .header__tool--name{
@@ -34,7 +35,7 @@
   font-size: 1rem;
   display: flex;
   align-items: center;
-  margin-top: 15px;
+ 
 
 }
 
