@@ -18,6 +18,8 @@
   display: flex;
   align-items: center;
   height: 4rem;
+
+
 }
 
 .header__name{
@@ -25,13 +27,16 @@
   text-transform: uppercase;
   font-weight: 600;
   font-size: 20px;
+  margin-top: 5px;
 }
 
 .header__tool--name{
   margin-left: 0.5rem;
-  font-size: 1.25rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
+ 
+
 }
 
 .header__tool--name::before{
@@ -66,6 +71,7 @@
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: capitalize;
+
 }
 
 .nav__link--active{
