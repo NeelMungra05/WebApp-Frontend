@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
-import CardWithTable from '../CardsWithTable/CardsWithTable';
-import styles from './SummaryData.module.css';
+import React, { useState } from "react";
+import CardWithTable from "../CardsWithTable/CardsWithTable";
+import styles from "./SummaryData.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser , faKiwiBird } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faKiwiBird } from "@fortawesome/free-solid-svg-icons";
 
 const SummaryData = () => {
   const cardsData = [
-    { heading: 'Card 1', icon: faUser, number: 100, tableData: []},
-    { heading: 'Card 2', icon: faKiwiBird, number: 200, tableData: [] },
-    { heading: 'Card 3', icon: faUser, number: 300, tableData: [] },
-    { heading: 'Card 4', icon: faKiwiBird, number: 400, tableData: [
-      { column1: 'Data 1', column2: 'Data 2' },
-      { column1: 'Data 3', column2: 'Data 4' },
-    ]},
+    { heading: "Card 1", icon: faUser, number: 100, tableData: [] },
+    { heading: "Card 2", icon: faKiwiBird, number: 200, tableData: [] },
+    { heading: "Card 3", icon: faUser, number: 300, tableData: [] },
+    {
+      heading: "Card 4",
+      icon: faKiwiBird,
+      number: 400,
+      tableData: [
+        { column1: "Data 1", column2: "Data 2" },
+        { column1: "Data 3", column2: "Data 4" },
+      ],
+    },
   ];
 
   const [displayedTableData, setDisplayedTableData] = useState([]);
@@ -56,7 +61,7 @@ const SummaryData = () => {
   return (
     <div className={styles.summaryDataContainer}>
       <div className={styles.cardContainer}>
-        <div className={styles.cardGroup}>  
+        <div className={styles.cardGroup}>
           {cardsData.map((card, index) => (
             <CardWithTable
               key={index}
@@ -76,9 +81,7 @@ const SummaryData = () => {
             <h3>Displayed Table</h3>
             <table className={styles.mainTable}>
               {generateTableHeaders()}
-              <tbody>
-                {generateTableRows()}
-              </tbody>
+              <tbody>{generateTableRows()}</tbody>
             </table>
           </div>
         )}

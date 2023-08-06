@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import CustomMultiselect from "../customMultiselect/customMultiselect";
 import styles from "./AllFieldSelector.module.css";
 
-const AllFieldSelector = ({ title, fieldKey }) => {
+const AllFieldSelector = ({ title, fieldKey, onSelection }) => {
   const sourcepk = useSelector((state) => state.fields.sourceFields);
   const targetpk = useSelector((state) => state.fields.targetFields);
 
@@ -34,6 +34,8 @@ const AllFieldSelector = ({ title, fieldKey }) => {
             className={styles.joinselect}
             options={sourceFieldsWithKey}
             placeholder={`Source ${title}`}
+            onAddFields={onSelection}
+            isLeft={true}
           />
         </div>
         <hr />
@@ -45,6 +47,8 @@ const AllFieldSelector = ({ title, fieldKey }) => {
             className={styles.joinselect}
             options={targetFieldsWithKey}
             placeholder={`Target ${title}`}
+            onAddFields={onSelection}
+            isLeft={false}
           />
         </div>
       </div>
