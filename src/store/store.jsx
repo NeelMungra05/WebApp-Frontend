@@ -4,6 +4,7 @@ import formButtonReducer from "./formButton";
 import fileReducer from "./files";
 import fieldsReducer from "./fields-slice";
 import joinsReducer from "./joins-slice";
+import reconJoinReducer from "./recon-join-slice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     files: fileReducer,
     fields: fieldsReducer,
     joins: joinsReducer,
+    reconJoins: reconJoinReducer,
   },
 });
 
