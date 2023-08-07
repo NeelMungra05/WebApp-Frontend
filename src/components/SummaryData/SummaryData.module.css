@@ -34,6 +34,7 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  margin-top: 33px;
 }
 
 .tableSection {
@@ -51,11 +52,12 @@
 .mainTable th,
 .mainTable td {
   padding: 8px;
-  text-align: left;
+  text-align: center;
   border: 1px solid var(--background-color);
 }
 
 .mainTable th {
   background-color: var(--header-color);
-  font-weight: bold;
+  font-size: 15px;
+  align-items: center;
 }
