@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardWithTable from "../CardsWithTable/CardsWithTable";
 import styles from "./SummaryData.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKiwiBird } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux/es/exports";
 
 const SummaryData = () => {
   const cardsData = [
@@ -32,6 +33,47 @@ const SummaryData = () => {
       setDisplayedCardIndex(index);
     }
   };
+
+  const fileToFormBody = (files, data, name) =>
+    Array.from(files).forEach((file) => data.append(name, file));
+
+  const sourceFiles = useSelector((state) => state.files.sourceFile);
+  const targetFiles = useSelector((state) => state.files.targetFile);
+  const sourceFields = useSelector((state) => state.fields.sourceFields);
+  const targetFields = useSelector((state) => state.fields.targetFields);
+  const joins = useSelector((state) => state.joins);
+  const reconJoins = useSelector((state) => state.reconJoins);
+  console.log(
+    "🚀 ~ file: SummaryData.jsx:46 ~ SummaryData ~ reconJoins:",
+    reconJoins
+  );
+
+  useEffect(() => {
+    const reconResult = async () => {
+      let data = new FormData();
+      Array.from(sourceFiles).forEach((file) => data.append("source", file));
+      Array.from(targetFiles).forEach((file) => data.append("target", file));
+      data.append("sourceFields", JSON.stringify(sourceFields));
+      data.append("targetFields", JSON.stringify(targetFields));
+      data.append("joins", JSON.stringify(joins));
+      data.append("reconJoin", JSON.stringify(reconJoins));
+
+      const response = await fetch("http://127.0.0.1:8000/postload/recon/", {
+        method: "POST",
+        body: data,
+      });
+
+      if (!response.ok) {
+        throw new Error("Some error occurred");
+      }
+
+      return response.json();
+    };
+
+    reconResult()
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   const generateTableHeaders = () => {
     if (displayedTableData.length === 0) return null;
