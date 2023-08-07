@@ -18,10 +18,15 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   width: 100%;
-  max-width: 600px; 
-  margin: 0 auto; 
+  max-width: 600px;
+  margin: 0 auto;
   justify-content: center;
   position: relative;
+}
+
+.tabContainer {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .tableContainer {
@@ -36,22 +41,21 @@
   max-height: 500px;
   overflow: auto;
 }
-  
+
 .mainTable {
-    width: 100%;
-    border-collapse: collapse; 
-    border: 1px solid var(--background-color); 
-  }
-  
-  .mainTable th,
-  .mainTable td {
-    padding: 8px;
-    text-align: left;
-    border: 1px solid var(--background-color);
-  }
-  
-  .mainTable th {
-    background-color: var(--header-color);
-    font-weight: bold;
-  }
-  
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--background-color);
+}
+
+.mainTable th,
+.mainTable td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid var(--background-color);
+}
+
+.mainTable th {
+  background-color: var(--header-color);
+  font-weight: bold;
+}
