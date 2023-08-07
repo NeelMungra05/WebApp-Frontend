@@ -5,7 +5,7 @@ import { useSelector } from "react-redux/es/exports";
 
 const SummaryData = () => {
   const [displayedTableData, setDisplayedTableData] = useState([]);
-  const [displayedCardIndex, setDisplayedCardIndex] = useState(null);
+  const [displayedCardIndex, setDisplayedCardIndex] = useState(0);
   const [apiData, setApiData] = useState(null);
 
   const handleCardClick = (tableData, index) => {
@@ -80,18 +80,32 @@ const SummaryData = () => {
     ));
   };
 
+  useEffect(() => {
+    if (apiData) {
+      const cardsData = generateCardsData();
+      if (cardsData.length > 0) {
+        handleCardClick(cardsData[0].tableData, 0);
+      }
+    }
+  }, [apiData]);
+
+
   const generateCardsData = () => {
     if (!apiData) return [];
+
+    const roundToTwoDecimal = (num) => {
+      return parseFloat(num).toFixed(2);
+    };
 
     const cardsData = [
       {
         heading: "SRS VS TGT KPIs",
         tableData: [
           {
-            'Recon %': apiData.kpis?.src_trgt?.[0],
-            'KDS Recon %': apiData.kpis?.src_trgt?.[1],
-            'Text Recon %': apiData.kpis?.src_trgt?.[2],
-            'Number Recon %': apiData.kpis?.src_trgt?.[3],
+          'Recon %': roundToTwoDecimal(apiData.kpis?.src_trgt?.[0]),
+          'KDS Recon %': roundToTwoDecimal(apiData.kpis?.src_trgt?.[1]),
+          'Text Recon %': roundToTwoDecimal(apiData.kpis?.src_trgt?.[2]),
+          'Number Recon %': roundToTwoDecimal(apiData.kpis?.src_trgt?.[3]),
           },
         ],
       },
@@ -99,10 +113,10 @@ const SummaryData = () => {
         heading: "TGT VS SRC KPIs",
         tableData: [
           {
-            'Recon %': apiData.kpis?.trgt_src?.[0],
-            'KDS Recon %': apiData.kpis?.trgt_src?.[1],
-            'Text Recon %': apiData.kpis?.trgt_src?.[2],
-            'Number Recon %': apiData.kpis?.trgt_src?.[3],
+          'Recon %': roundToTwoDecimal(apiData.kpis?.trgt_src?.[0]),
+          'KDS Recon %': roundToTwoDecimal(apiData.kpis?.trgt_src?.[1]),
+          'Text Recon %': roundToTwoDecimal(apiData.kpis?.trgt_src?.[2]),
+          'Number Recon %': roundToTwoDecimal(apiData.kpis?.trgt_src?.[3]),
           },
         ],
       },
@@ -155,7 +169,7 @@ const SummaryData = () => {
       <div className={styles.tableContainer}>
         {displayedTableData.length > 0 && (
           <div className={styles.tableSection}>
-            <h3>Displayed Table</h3>
+            <h3>Recon Results</h3>
             <table className={styles.mainTable}>
               {generateTableHeaders()}
               <tbody>{generateTableRows()}</tbody>
