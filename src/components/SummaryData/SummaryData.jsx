@@ -1,28 +1,12 @@
 import React, { useEffect, useState } from "react";
-import CardWithTable from "../CardsWithTable/CardsWithTable";
+import CardWithTable from "../TabWithTable/TabWithTable";
 import styles from "./SummaryData.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faKiwiBird } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux/es/exports";
 
 const SummaryData = () => {
-  const cardsData = [
-    { heading: "Card 1", icon: faUser, number: 100, tableData: [] },
-    { heading: "Card 2", icon: faKiwiBird, number: 200, tableData: [] },
-    { heading: "Card 3", icon: faUser, number: 300, tableData: [] },
-    {
-      heading: "Card 4",
-      icon: faKiwiBird,
-      number: 400,
-      tableData: [
-        { column1: "Data 1", column2: "Data 2" },
-        { column1: "Data 3", column2: "Data 4" },
-      ],
-    },
-  ];
-
   const [displayedTableData, setDisplayedTableData] = useState([]);
   const [displayedCardIndex, setDisplayedCardIndex] = useState(null);
+  const [apiData, setApiData] = useState(null);
 
   const handleCardClick = (tableData, index) => {
     if (displayedCardIndex === index) {
@@ -34,46 +18,42 @@ const SummaryData = () => {
     }
   };
 
-  const fileToFormBody = (files, data, name) =>
-    Array.from(files).forEach((file) => data.append(name, file));
-
   const sourceFiles = useSelector((state) => state.files.sourceFile);
   const targetFiles = useSelector((state) => state.files.targetFile);
   const sourceFields = useSelector((state) => state.fields.sourceFields);
   const targetFields = useSelector((state) => state.fields.targetFields);
   const joins = useSelector((state) => state.joins);
   const reconJoins = useSelector((state) => state.reconJoins);
-  console.log(
-    "🚀 ~ file: SummaryData.jsx:46 ~ SummaryData ~ reconJoins:",
-    reconJoins
-  );
 
   useEffect(() => {
     const reconResult = async () => {
-      let data = new FormData();
-      Array.from(sourceFiles).forEach((file) => data.append("source", file));
-      Array.from(targetFiles).forEach((file) => data.append("target", file));
+      const data = new FormData();
+      sourceFiles.forEach((file) => data.append("source", file));
+      targetFiles.forEach((file) => data.append("target", file));
       data.append("sourceFields", JSON.stringify(sourceFields));
       data.append("targetFields", JSON.stringify(targetFields));
       data.append("joins", JSON.stringify(joins));
       data.append("reconJoin", JSON.stringify(reconJoins));
 
-      const response = await fetch("http://127.0.0.1:8000/postload/recon/", {
-        method: "POST",
-        body: data,
-      });
+      try {
+        const response = await fetch("http://127.0.0.1:8000/postload/recon/", {
+          method: "POST",
+          body: data,
+        });
 
-      if (!response.ok) {
-        throw new Error("Some error occurred");
+        if (!response.ok) {
+          throw new Error("Some error occurred");
+        }
+
+        const jsonData = await response.json();
+        setApiData(jsonData);
+      } catch (err) {
+        console.log(err);
       }
-
-      return response.json();
     };
 
-    reconResult()
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
-  }, []);
+    reconResult();
+  }, [sourceFiles, targetFiles, sourceFields, targetFields, joins, reconJoins]);
 
   const generateTableHeaders = () => {
     if (displayedTableData.length === 0) return null;
@@ -100,21 +80,76 @@ const SummaryData = () => {
     ));
   };
 
+  const generateCardsData = () => {
+    if (!apiData) return [];
+
+    const cardsData = [
+      {
+        heading: "SRS VS TGT KPIs",
+        tableData: [
+          {
+            'Recon %': apiData.kpis?.src_trgt?.[0],
+            'KDS Recon %': apiData.kpis?.src_trgt?.[1],
+            'Text Recon %': apiData.kpis?.src_trgt?.[2],
+            'Number Recon %': apiData.kpis?.src_trgt?.[3],
+          },
+        ],
+      },
+      {
+        heading: "TGT VS SRC KPIs",
+        tableData: [
+          {
+            'Recon %': apiData.kpis?.trgt_src?.[0],
+            'KDS Recon %': apiData.kpis?.trgt_src?.[1],
+            'Text Recon %': apiData.kpis?.trgt_src?.[2],
+            'Number Recon %': apiData.kpis?.trgt_src?.[3],
+          },
+        ],
+      },
+      {
+        heading: "SRS VS TGT SUMMARY",
+        tableData: generateSummaryTableData(apiData['source vs target']),
+      },
+      {
+        heading: "TGT VS SRC SUMMARY",
+        tableData: generateSummaryTableData(apiData['target vs source']),
+      },
+    ];
+
+    return cardsData;
+  };
+
+  const generateSummaryTableData = (data) => {
+    if (!data) return [];
+    return Object.entries(data).reduce((acc, [key, value]) => {
+      value.forEach((val, index) => {
+        if (!acc[index]) {
+          acc[index] = { Fields: `Value${index + 1}` };
+        }
+        acc[index][key] = val;
+      });
+      return acc;
+    }, []);
+  };
+
+  const cardsData = generateCardsData();
+
   return (
     <div className={styles.summaryDataContainer}>
       <div className={styles.cardContainer}>
         <div className={styles.cardGroup}>
-          {cardsData.map((card, index) => (
-            <CardWithTable
-              key={index}
-              heading={card.heading}
-              icon={<FontAwesomeIcon icon={card.icon} />}
-              number={card.number}
-              showTable={card.tableData.length > 0}
-              tableData={card.tableData}
-              onCardClick={() => handleCardClick(card.tableData, index)}
-            />
-          ))}
+          <div className={styles.tabContainer}>
+            {cardsData.map((card, index) => (
+              <CardWithTable
+                key={index}
+                heading={card.heading}
+                showTable={card.tableData.length > 0}
+                tableData={card.tableData}
+                onCardClick={() => handleCardClick(card.tableData, index)}
+                isActive={displayedCardIndex === index}
+              />
+            ))}
+          </div>
         </div>
       </div>
       <div className={styles.tableContainer}>
