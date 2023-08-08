@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import CardWithTable from "../TabWithTable/TabWithTable";
 import styles from "./SummaryData.module.css";
 import { useSelector } from "react-redux/es/exports";
+import Spinner from "../Spinner/Spinner";
 
 const SummaryData = () => {
   const [displayedTableData, setDisplayedTableData] = useState([]);
   const [displayedCardIndex, setDisplayedCardIndex] = useState(0);
   const [apiData, setApiData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleCardClick = (tableData, index) => {
     if (displayedCardIndex === index) {
@@ -49,6 +52,9 @@ const SummaryData = () => {
         setApiData(jsonData);
       } catch (err) {
         console.log(err);
+        setError("An error occurred please try again some time later");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -147,37 +153,44 @@ const SummaryData = () => {
 
   const cardsData = generateCardsData();
 
-  return (
-    <div className={styles.summaryDataContainer}>
-      <div className={styles.cardContainer}>
-        <div className={styles.cardGroup}>
-          <div className={styles.tabContainer}>
-            {cardsData.map((card, index) => (
-              <CardWithTable
-                key={index}
-                heading={card.heading}
-                showTable={card.tableData.length > 0}
-                tableData={card.tableData}
-                onCardClick={() => handleCardClick(card.tableData, index)}
-                isActive={displayedCardIndex === index}
-              />
-            ))}
+  const content =
+    error !== null ? (
+      <p>{error}</p>
+    ) : (
+      <div className={styles.summaryDataContainer}>
+        <div className={styles.cardContainer}>
+          <div className={styles.cardGroup}>
+            <div className={styles.tabContainer}>
+              {cardsData.map((card, index) => (
+                <CardWithTable
+                  key={index}
+                  heading={card.heading}
+                  showTable={card.tableData.length > 0}
+                  tableData={card.tableData}
+                  onCardClick={() => handleCardClick(card.tableData, index)}
+                  isActive={displayedCardIndex === index}
+                />
+              ))}
+            </div>
           </div>
         </div>
+        <div className={styles.tableContainer}>
+          {displayedTableData.length > 0 && (
+            <div className={styles.tableSection}>
+              <h3>Recon Results</h3>
+              <table className={styles.mainTable}>
+                {generateTableHeaders()}
+                <tbody>{generateTableRows()}</tbody>
+              </table>
+            </div>
+          )}
+        </div>
       </div>
-      <div className={styles.tableContainer}>
-        {displayedTableData.length > 0 && (
-          <div className={styles.tableSection}>
-            <h3>Recon Results</h3>
-            <table className={styles.mainTable}>
-              {generateTableHeaders()}
-              <tbody>{generateTableRows()}</tbody>
-            </table>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+    );
+
+  const spinner = <Spinner />;
+
+  return loading ? spinner : content;
 };
 
 export default SummaryData;
