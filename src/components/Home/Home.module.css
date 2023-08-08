@@ -1,0 +1,78 @@
+@import url(../../variables.css);
+
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--text-dark);
+}
+
+.divImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--text-dark);
+    width: 95%;
+}
+
+.homeImage {
+  width: 30%;
+}
+
+.greenLine{
+    width: 95%;
+    height: 4px;
+    border-top: solid 7px var(--accent-color);
+}
+
+.toolDescription {
+    width: 95%;
+    text-align: center;
+    background-color: var(--background-color);
+  }
+  
+  .heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    font-size: 18px;
+    color: var(--text-dark);
+    text-align: justify;
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .clientdesc{
+    display: flex;
+  }
+
+  .wrapimg{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 0.8fr));
+    grid-gap: 25px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.box{
+    background: var(--header-color);
+}
+.imgtest{
+    width:100%;
+    height: 200px;
+}
+
+.texttestimonial{
+    text-align: center;
+    color: var(--text-dark);
+    font-size: 12px;
+}
+
+p{
+    font-size:12px;
+}
+

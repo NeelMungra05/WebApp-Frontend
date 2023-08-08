@@ -24,7 +24,7 @@ const AllFieldSelector = ({ title, fieldKey, onSelection }) => {
 
   return (
     <>
-      <h3 className="styles.title">{title}</h3>
+      <h3>{title}</h3>
       <div className={styles.container}>
         <div className={styles.dropdownContainer}>
           <div className={styles.dropdownHeading}>
