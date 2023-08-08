@@ -7,7 +7,7 @@ const useTableData = ({ type }) => {
   const [selectedJoins, setSelectedJoins] = useState([]);
   const fields = useSelector((state) => state.fields[type]);
   const dispatch = useDispatch();
-  const joinTypeDropdownRef = useRef(null); 
+  const joinTypeDropdownRef = useRef(null);
 
   const tables = Object.keys(fields);
   const joinTypes = ["Inner Join", "Left Join"];
@@ -27,22 +27,40 @@ const useTableData = ({ type }) => {
         type === "sourceFields"
           ? joinsActions.addSourceJoins({
               type: selectedJoin,
-              tables: selectedTables.map((val) => val.split("|")).flat(),
+              tables: selectedTables
+                .map((val) =>
+                  val
+                    .split("|")
+                    .map((oldVal) =>
+                      oldVal.slice(-5) === ".xlsx" ? oldVal : oldVal + ".xlsx"
+                    )
+                )
+                .flat(),
             })
           : joinsActions.addTargetJoins({
               type: selectedJoin,
-              tables: selectedTables.map((val) => val.split("|")).flat(),
+              tables: selectedTables
+                .map((val) =>
+                  val
+                    .split("|")
+                    .map((oldVal) =>
+                      oldVal.slice(-5) === ".xlsx" ? oldVal : oldVal + ".xlsx"
+                    )
+                )
+                .flat(),
             })
       );
       setSelectedJoins([...selectedJoins, newJoin]);
 
       const joinedTables = selectedTables
-        .map((table) => (table.slice(-5) === ".xlsx" ? table.slice(0, -5) : table))
+        .map((table) =>
+          table.slice(-5) === ".xlsx" ? table.slice(0, -5) : table
+        )
         .join("|");
 
       const joinedTable = `${joinedTables}`;
       setSelectedTables([joinedTable]);
-      event.target.value = ""; 
+      event.target.value = "";
     }
   };
 

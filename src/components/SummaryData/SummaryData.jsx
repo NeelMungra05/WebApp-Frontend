@@ -89,7 +89,6 @@ const SummaryData = () => {
     }
   }, [apiData]);
 
-
   const generateCardsData = () => {
     if (!apiData) return [];
 
@@ -102,10 +101,10 @@ const SummaryData = () => {
         heading: "SRS VS TGT KPIs",
         tableData: [
           {
-          'Recon %': roundToTwoDecimal(apiData.kpis?.src_trgt?.[0]),
-          'KDS Recon %': roundToTwoDecimal(apiData.kpis?.src_trgt?.[1]),
-          'Text Recon %': roundToTwoDecimal(apiData.kpis?.src_trgt?.[2]),
-          'Number Recon %': roundToTwoDecimal(apiData.kpis?.src_trgt?.[3]),
+            "Recon %": roundToTwoDecimal(apiData.kpis?.src_trgt?.[0]),
+            "KDS Recon %": roundToTwoDecimal(apiData.kpis?.src_trgt?.[1]),
+            "Text Recon %": roundToTwoDecimal(apiData.kpis?.src_trgt?.[2]),
+            "Number Recon %": roundToTwoDecimal(apiData.kpis?.src_trgt?.[3]),
           },
         ],
       },
@@ -113,20 +112,20 @@ const SummaryData = () => {
         heading: "TGT VS SRC KPIs",
         tableData: [
           {
-          'Recon %': roundToTwoDecimal(apiData.kpis?.trgt_src?.[0]),
-          'KDS Recon %': roundToTwoDecimal(apiData.kpis?.trgt_src?.[1]),
-          'Text Recon %': roundToTwoDecimal(apiData.kpis?.trgt_src?.[2]),
-          'Number Recon %': roundToTwoDecimal(apiData.kpis?.trgt_src?.[3]),
+            "Recon %": roundToTwoDecimal(apiData.kpis?.trgt_src?.[0]),
+            "KDS Recon %": roundToTwoDecimal(apiData.kpis?.trgt_src?.[1]),
+            "Text Recon %": roundToTwoDecimal(apiData.kpis?.trgt_src?.[2]),
+            "Number Recon %": roundToTwoDecimal(apiData.kpis?.trgt_src?.[3]),
           },
         ],
       },
       {
         heading: "SRS VS TGT SUMMARY",
-        tableData: generateSummaryTableData(apiData['source vs target']),
+        tableData: generateSummaryTableData(apiData["source vs target"]),
       },
       {
         heading: "TGT VS SRC SUMMARY",
-        tableData: generateSummaryTableData(apiData['target vs source']),
+        tableData: generateSummaryTableData(apiData["target vs source"]),
       },
     ];
 
