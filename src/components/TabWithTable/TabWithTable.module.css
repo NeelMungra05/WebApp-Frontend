@@ -2,7 +2,7 @@
 
 .cardWithTable {
   cursor: pointer;
-  width: 150px;
+  width: 140px;
   transition: background-color 0.2s;
   text-align: center;
   font-size: 12px;
