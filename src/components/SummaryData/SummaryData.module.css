@@ -53,11 +53,13 @@
 .mainTable td {
   padding: 8px;
   text-align: center;
-  border: 1px solid var(--background-color);
+  border: 2px solid var(--light-gray-1);
+  background-color: var(--highlighted-font-color);
 }
 
 .mainTable th {
-  background-color: var(--header-color);
+  background-color: var(--accent-color);
   font-size: 15px;
   align-items: center;
+  color: var(--background-color);
 }
