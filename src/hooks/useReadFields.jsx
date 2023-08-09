@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as xlsx from "xlsx";
 import { fieldsAction } from "../store/fields-slice";
 
-const useReadFields = ({ type = "source" }) => {
+const useReadFields = ({ type = "source", setLoading }) => {
   let files;
 
   if (type === "source") {
@@ -72,6 +72,8 @@ const useReadFields = ({ type = "source" }) => {
           ? fieldsAction.addSourceFields(reduceResult)
           : fieldsAction.addTargetFields(reduceResult)
       );
+
+      type === "target" ? setLoading(false) : "";
     });
   }, [files]);
 };

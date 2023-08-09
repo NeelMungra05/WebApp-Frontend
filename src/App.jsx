@@ -3,6 +3,8 @@ import LoginForm from "./components/Form/LoginForm";
 import SignupForm from "./components/Form/SignupForm";
 import Header from "./components/Header/Header";
 import Services from "./components/Services/Services";
+import Footer from './components/Footer/Footer';
+import Home from './components/Home/Home'
 
 function App() {
   const [isHome, setIsHome] = useState(true);
@@ -55,7 +57,7 @@ function App() {
   const loginHandler = (credentials) => {
     //Add login auhtnetication here
     if (
-      credentials.username === "admin@123" &&
+      credentials.username === "admin@deloitte.com" &&
       credentials.password === "admin123"
     ) {
       setIsLoggedIn((prevState) => {
@@ -75,7 +77,8 @@ function App() {
     navbarStateChanger("home");
   };
 
-  let content = <p>Welcome home</p>;
+  let content = <Home />;
+  
 
   if (isLoggedIn) {
     content = <Services />;
@@ -98,7 +101,10 @@ function App() {
         isLoggedIn={isLoggedIn}
         navbarStateChanger={navbarStateChanger}
       />
-      <main>{content}</main>
+      <main>
+        {content}
+      </main>
+      <Footer />
     </>
   );
 }

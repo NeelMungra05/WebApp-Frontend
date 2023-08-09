@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Header.module.css";
 import logo from "../../assets/sapCompanyLogo.png";
+import { MdLogout } from 'react-icons/md';
 
 const Header = (props) => {
   const navClickHandler = (e) => {
@@ -42,7 +43,7 @@ const Header = (props) => {
   if (props.isLoggedIn) {
     navbar = (
       <nav className={styles.nav}>
-        <a onClick={navClickHandler} href="/logout" className={navStyle}>
+        <a onClick={navClickHandler} href="/logout" className={navStyle}><MdLogout/>
           <span className={styles.nav__item}>Logout</span>
         </a>
       </nav>
@@ -56,7 +57,7 @@ const Header = (props) => {
           <span className={styles.header__name}>
             <img src={logo} width="100px" height="auto" alt="" />
           </span>
-          <p className={styles["header__tool--name"]}>IntelliGen360</p>
+          <p className={styles["header__tool--name"]}>ERP Data4Ward Plus</p>
         </div>
         {navbar}
       </div>

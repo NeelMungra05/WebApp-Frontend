@@ -1,0 +1,23 @@
+@import url("../../variables.css");
+
+.container {
+    display: flex;
+    height: 300px;
+    width: 100%;
+    justify-content: flex-start;
+    flex-direction: row;
+    max-height: 500px;
+    overflow: auto;
+  }
+  
+  .dropdownContainer {
+    margin: 0 auto;
+    margin-bottom: 80px;
+    padding: 8px
+  }
+  .dropdownHeading{
+    color: var(--accent-color);
+    text-align: center;
+    font-size: 12px;
+  }
+    

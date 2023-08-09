@@ -5,11 +5,13 @@
     width: 100%;
     padding: 1rem 10%;
     border-radius: 5px;
+    min-height: 50vh;
 }
 
 .form__section{
     width: 100%;
     display: none;
+    min-height: 60vh;
 }
 
 .form__section--active{

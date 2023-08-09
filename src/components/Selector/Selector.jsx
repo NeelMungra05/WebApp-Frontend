@@ -7,10 +7,13 @@ import useFormButton from "../../hooks/useFormButton";
 import useReadFields from "../../hooks/useReadFields";
 import { formButtonAction } from "../../store/formButton";
 import FieldSelector from "../FieldSelector/FieldSelector";
+import Spinner from "../Spinner/Spinner";
 
 const Selector = () => {
-  useReadFields({ type: "source" });
-  useReadFields({ type: "target" });
+  const [loading, setLoading] = useState(true);
+
+  useReadFields({ type: "source", setLoading });
+  useReadFields({ type: "target", setLoading });
   const dispatch = useDispatch();
   const validations = useFieldSelectValidation();
 
@@ -22,13 +25,17 @@ const Selector = () => {
 
   useFormButton({ isValid, buttonType: "next" });
 
-  return (
+  const fieldSelectors = (
     <main>
       <FieldSelector heading="Source Fields Selection" type="source" />
       <hr />
       <FieldSelector heading="Target Fields Selection" type="target" />
     </main>
   );
+
+  const spinner = <Spinner />;
+
+  return loading ? spinner : fieldSelectors;
 };
 
 export default Selector;

@@ -25,18 +25,18 @@
     position: absolute;
     transform: translateY(-50%);
     top:40%;
-    right:1%;
+    left:2%;
     color: var(--accent-head-color);
+    height: 12px;
 }
 
 .container__search input{
     width: 100%;
-    padding: 4px 8px;
+    padding: 4px 32px;
     margin-bottom: 8px;
     font-family: inherit;
     border: none;
     background-color:  var(--highlighted-font-color);;
-    /* box-shadow: 0 0px 5px black; */
     transform: translateY(0);
     transition: transform 0.3s ease;
 }

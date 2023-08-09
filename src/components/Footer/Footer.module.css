@@ -1,0 +1,10 @@
+@import url("../../variables.css");
+
+.footer{
+    background-color: var(--text-dark);
+    color: var(--background-color);
+    font-size: 8px;
+    text-align: left;
+    padding: 8px;
+    position: relative;
+}

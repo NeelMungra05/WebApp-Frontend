@@ -9,6 +9,10 @@ import { formButtonAction } from "../../../store/formButton";
 import Upload from "../../Upload/Upload";
 import FieldSelector from "../../FieldSelector/FieldSelector";
 import Selector from "../../Selector/Selector";
+import SourceAndTargetTables from "../../SourceAndTargetTables/SourceAndTargetTables";
+import PrimaryKeySelection from "../../PrimaryKeySelection/PrimaryKeySelection";
+import SummaryData from "../../SummaryData/SummaryData";
+import RequiredKeySelection from "../../RequiredKeySelection/RequiredKeySelection"
 
 const Reconciliation = () => {
   const steps = useSelector((state) => state.steps.steps);
@@ -31,7 +35,7 @@ const Reconciliation = () => {
   };
 
   const nextButtonHandler = (e) => {
-    if (steps + 1 === 3) {
+    if (steps + 1 === 6) {
       dispatch(formButtonAction.nextButton(false));
     } else {
       dispatch(formButtonAction.nextButton(true));
@@ -45,39 +49,29 @@ const Reconciliation = () => {
 
   switch (steps) {
     case 1:
-      content = (
-        <FormSection
-          className={styles.form__section}
-          activeClassName={styles["form__section--active"]}
-        >
-          <Upload />
-        </FormSection>
-      );
+      content = <Upload />;
       break;
 
     case 2:
-      content = (
-        <FormSection
-          className={styles.form__section}
-          activeClassName={styles["form__section--active"]}
-        >
-          <Selector />
-        </FormSection>
-      );
+      content = <Selector />;
       break;
 
     case 3:
-      content = (
-        <FormSection
-          currentStep={steps}
-          defaultStep={3}
-          className={styles.form__section}
-          activeClassName={styles["form__section--active"]}
-        >
-          <div className={styles.section__header}>Step 3</div>
-        </FormSection>
-      );
+      content = <SourceAndTargetTables />;
       break;
+
+    case 4:
+      content = <PrimaryKeySelection />;
+      break;
+
+    case 5:
+      content = <RequiredKeySelection />;
+      break;
+    
+    case 6:
+      content = <SummaryData />
+      break;
+
     default:
       break;
   }
@@ -86,7 +80,12 @@ const Reconciliation = () => {
     <>
       <ProgressBar />
       <form action="" className={styles.form}>
-        {content}
+        <FormSection
+          className={styles.form__section}
+          activeClassName={styles["form__section--active"]}
+        >
+          {content}
+        </FormSection>
         <div className={styles.form__navigation}>
           <button
             type="button"
