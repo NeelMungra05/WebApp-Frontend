@@ -104,7 +104,7 @@ const SummaryData = () => {
 
     const cardsData = [
       {
-        heading: "SRS VS TGT KPIs",
+        heading: "Source Vs Target KPIs",
         tableData: [
           {
             "Recon %": roundToTwoDecimal(apiData.kpis?.src_trgt?.[0]),
@@ -115,7 +115,7 @@ const SummaryData = () => {
         ],
       },
       {
-        heading: "TGT VS SRC KPIs",
+        heading: "Target Vs Source KPIs",
         tableData: [
           {
             "Recon %": roundToTwoDecimal(apiData.kpis?.trgt_src?.[0]),
@@ -126,11 +126,11 @@ const SummaryData = () => {
         ],
       },
       {
-        heading: "SRS VS TGT SUMMARY",
+        heading: "Source Vs Target Summary",
         tableData: generateSummaryTableData(apiData["source vs target"]),
       },
       {
-        heading: "TGT VS SRC SUMMARY",
+        heading: "Target Vs Source Summary",
         tableData: generateSummaryTableData(apiData["target vs source"]),
       },
     ];
