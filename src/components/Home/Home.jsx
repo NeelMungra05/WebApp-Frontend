@@ -4,7 +4,7 @@ import AmnsImg from '../../assets/amns.png';
 import Team1 from '../../assets/team1.png';
 import Team2 from '../../assets/team2.jpg';
 import Team3 from '../../assets/team3.jpg';
-import Team4 from '../../assets/team4.jpeg';
+import Team4 from '../../assets/team4.jpg';
 import styles from './Home.module.css';
 
 const TeamMembers = [
