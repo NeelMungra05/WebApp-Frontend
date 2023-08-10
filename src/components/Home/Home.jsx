@@ -5,10 +5,12 @@ import Team1 from '../../assets/team1.png';
 import Team2 from '../../assets/team2.jpg';
 import Team3 from '../../assets/team3.jpg';
 import Team4 from '../../assets/team4.jpg';
+import Team5 from '../../assets/team5.jpg';
 import styles from './Home.module.css';
 
 const TeamMembers = [
     { name: 'Darshan Singh', role: 'Lead', imgSrc: Team1 },
+    { name: 'Hitesh Sukhwani', role: 'Lead', imgSrc: Team5 },
     { name: 'Neel Mungra', role: 'Backend Developer', imgSrc: Team2 },
     { name: 'Faizal Kureshi', role: 'Frontend Developer', imgSrc: Team3 },
     { name: 'Mihika Bodke', role: 'Frontend Developer', imgSrc: Team4 },

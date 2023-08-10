@@ -52,23 +52,23 @@
 .wrapimg{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 0.8fr));
-    grid-gap: 25px;
+    /* grid-gap: 10px; */
     max-width: 1000px;
     margin: auto;
 }
 
 .box{
-    background: var(--header-color);
+    background: var(--background-color);
 }
 
 .imgtest{
-    width:100%;
-    height: 200px;
+    width:150px;
+    height: 150px;
 }
 
 .texttestimonial{
     text-align: center;
     color: var(--text-dark);
-    font-size: 12px;
+    font-size: 10px;
 }
 
