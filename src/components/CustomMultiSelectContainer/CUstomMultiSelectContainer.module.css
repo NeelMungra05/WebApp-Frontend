@@ -1,0 +1,13 @@
+@import url("../../variables.css");
+  
+  .dropdownContainer {
+    margin: 0 auto;
+    margin-bottom: 80px;
+    padding: 8px
+  }
+  .dropdownHeading{
+    color: var(--accent-color);
+    text-align: center;
+    font-size: 12px;
+  }
+    
