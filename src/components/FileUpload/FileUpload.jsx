@@ -1,26 +1,63 @@
-import React from "react";
-import { AiOutlineFileText } from "react-icons/ai";
-import { BsChevronDown, BsCloudArrowUp } from "react-icons/bs";
+import React, { useState, useEffect } from "react";
 import FileList from "../FileList/FileList";
-import Input from "../UI/Input";
 import styles from "./FileUpload.module.css";
 import { fileAction } from "../../store/files";
 import { useSelector, useDispatch } from "react-redux";
-import { useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp } from "@fortawesome/fontawesome-free-solid";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 const FileUpload = (props) => {
   const { heading, isSource = true } = props;
+  const [fetchedFiles, setFetchedFiles] = useState([]);
+  const [selectedFiles, setSelectedFiles] = useState([]);
   const files = useSelector((state) =>
     isSource ? state.files.sourceFile : state.files.targetFile
   );
-  const fileInputRef = useRef(null);
+
   const dispatch = useDispatch();
 
+  const fetchFiles = async (url) => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setFetchedFiles(data.files);
+    } catch (error) {
+      console.error("Error fetching files:", error);
+    }
+  };
+
+  useEffect(() => {
+    const url = isSource
+      ? "http://127.0.0.1:8000/files/list/source/"
+      : "http://127.0.0.1:8000/files/list/target/";
+    fetchFiles(url);
+  }, [isSource]);
+
+  const toggleFileSelection = (fileName) => {
+    setSelectedFiles((prevSelectedFiles) =>
+      prevSelectedFiles.includes(fileName)
+        ? prevSelectedFiles.filter((file) => file !== fileName)
+        : [...prevSelectedFiles, fileName]
+    );
+  };
+
+  const addFetchedFiles = () => {
+    const filesToAdd = selectedFiles.map((file) => ({
+      name: file,
+      lastModified: Date.now(),
+      size: 0,
+    }));
+
+    if (isSource) {
+      dispatch(fileAction.addSourceFile(filesToAdd));
+    } else {
+      dispatch(fileAction.addTargetFile(filesToAdd));
+    }
+  };
+
   const removeFileHandler = (fileName) => {
+    setSelectedFiles((prevSelectedFiles) =>
+      prevSelectedFiles.filter((file) => file !== fileName)
+    );
+
     if (isSource) {
       dispatch(fileAction.removeSourceFile(fileName));
     } else {
@@ -28,51 +65,29 @@ const FileUpload = (props) => {
     }
   };
 
-  const fileChangeHandler = (e) => {
-    e.preventDefault();
-
-    if (isSource) {
-      dispatch(fileAction.addSourceFile(e.target.files));
-    } else {
-      dispatch(fileAction.addTargetFile(e.target.files));
-    }
-    fileInputRef.current.value = null;
-  };
-
-  const fileChangeHandlerTwo = () => {
-    fileInputRef.current.click();
-  };
-
   return (
     <>
       <div className={styles.section__header}>{heading}</div>
       <div className={styles.uploadBox}>
         <div className={`${styles.uploadBox__input} `}>
-          <FontAwesomeIcon icon={faArrowUp} className={styles.uploadIcon} />
-          {/* <FontAwesomeIcon icon={faArrowUpFromBracket} className={styles.uploadIcon} /> */}
-          <span>Drag and Drop here or </span>
-
-          <Input
-            label={props.label}
-            ref={fileInputRef}
-            input={{
-              type: "file",
-              multiple: true,
-              onChange: fileChangeHandler,
-              accept: props.accept,
-              className: styles["uploadBox__input-box"],
-            }}
-          />
+          {fetchedFiles.map((fileName) => (
+            <div className={styles.uploadBox__file} key={fileName}>
+              <input
+                className={styles.uploadBox__checkbox}
+                type="checkbox"
+                checked={selectedFiles.includes(fileName)}
+                onChange={() => toggleFileSelection(fileName)}
+              />
+              <span className={styles.uploadBox__filename}>{fileName}</span>
+            </div>
+          ))}
         </div>
       </div>
       <button
         type="button"
         className={styles.uploadBox__button}
-        onClick={fileChangeHandlerTwo}
-      >
-        {/* <AiOutlineFileText fontSize={20} /> */}
+        onClick={addFetchedFiles}>
         <span>Choose files</span>
-        {/* <BsChevronDown fontSize={20} /> */}
       </button>
 
       {files && <FileList files={files} onRemove={removeFileHandler} />}
