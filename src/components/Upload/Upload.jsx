@@ -32,7 +32,7 @@ const Upload = () => {
         {!sourceValidation.isLessThan5 && (
           <p className={styles.error}>Maximum of only 5 files can be upload.</p>
         )}
-        <FileUpload label=" " accept=".xlsx" heading="Source File Upload" />
+        <FileUpload label=" " accept=".xlsx" heading="Source File Selection" />
       </div>
 
       <div className={styles.uploader__target}>
@@ -50,7 +50,7 @@ const Upload = () => {
         <FileUpload
           label=" "
           accept=".xlsx"
-          heading="Target File Upload"
+          heading="Target File Selection"
           isSource={false}
         />
       </div>

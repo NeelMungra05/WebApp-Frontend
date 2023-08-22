@@ -1,24 +1,42 @@
-import React from "react";
-import { AiOutlineFileText } from "react-icons/ai";
-import { BsChevronDown, BsCloudArrowUp } from "react-icons/bs";
+import React, { useState } from "react";
 import FileList from "../FileList/FileList";
-import Input from "../UI/Input";
 import styles from "./FileUpload.module.css";
 import { fileAction } from "../../store/files";
 import { useSelector, useDispatch } from "react-redux";
-import { useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp } from "@fortawesome/fontawesome-free-solid";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 const FileUpload = (props) => {
   const { heading, isSource = true } = props;
+  const dummyFileNames = ["file1.xlsx", "file2.xlsx", "file3.xlsx"];
+  const [dummyFiles, setDummyFiles] = useState(
+    dummyFileNames.map((name) => ({ name, checked: false }))
+  );
   const files = useSelector((state) =>
     isSource ? state.files.sourceFile : state.files.targetFile
   );
-  const fileInputRef = useRef(null);
+
   const dispatch = useDispatch();
+
+  const toggleDummyFile = (fileName) => {
+    const updatedFiles = dummyFiles.map((file) =>
+      file.name === fileName ? { ...file, checked: !file.checked } : file
+    );
+    setDummyFiles(updatedFiles);
+  };
+
+  const addDummyFiles = () => {
+    const selectedFiles = dummyFiles.filter((file) => file.checked);
+    const filesToAdd = selectedFiles.map((file) => ({
+      name: file.name,
+      lastModified: Date.now(),
+      size: 0,
+    }));
+
+    if (isSource) {
+      dispatch(fileAction.addSourceFile(filesToAdd));
+    } else {
+      dispatch(fileAction.addTargetFile(filesToAdd));
+    }
+  };
 
   const removeFileHandler = (fileName) => {
     if (isSource) {
@@ -26,21 +44,10 @@ const FileUpload = (props) => {
     } else {
       dispatch(fileAction.removeTargetFile(fileName));
     }
-  };
-
-  const fileChangeHandler = (e) => {
-    e.preventDefault();
-
-    if (isSource) {
-      dispatch(fileAction.addSourceFile(e.target.files));
-    } else {
-      dispatch(fileAction.addTargetFile(e.target.files));
-    }
-    fileInputRef.current.value = null;
-  };
-
-  const fileChangeHandlerTwo = () => {
-    fileInputRef.current.click();
+    const updatedFiles = dummyFiles.map((file) =>
+      file.name === fileName ? { ...file, checked: false } : file
+    );
+    setDummyFiles(updatedFiles);
   };
 
   return (
@@ -48,31 +55,23 @@ const FileUpload = (props) => {
       <div className={styles.section__header}>{heading}</div>
       <div className={styles.uploadBox}>
         <div className={`${styles.uploadBox__input} `}>
-          <FontAwesomeIcon icon={faArrowUp} className={styles.uploadIcon} />
-          {/* <FontAwesomeIcon icon={faArrowUpFromBracket} className={styles.uploadIcon} /> */}
-          <span>Drag and Drop here or </span>
-
-          <Input
-            label={props.label}
-            ref={fileInputRef}
-            input={{
-              type: "file",
-              multiple: true,
-              onChange: fileChangeHandler,
-              accept: props.accept,
-              className: styles["uploadBox__input-box"],
-            }}
-          />
+          {dummyFiles.map((file) => (
+            <div key={file.name}>
+              <input
+                type="checkbox"
+                checked={file.checked}
+                onChange={() => toggleDummyFile(file.name)}
+              />
+              <span>{file.name}</span>
+            </div>
+          ))}
         </div>
       </div>
       <button
         type="button"
         className={styles.uploadBox__button}
-        onClick={fileChangeHandlerTwo}
-      >
-        {/* <AiOutlineFileText fontSize={20} /> */}
+        onClick={addDummyFiles}>
         <span>Choose files</span>
-        {/* <BsChevronDown fontSize={20} /> */}
       </button>
 
       {files && <FileList files={files} onRemove={removeFileHandler} />}
