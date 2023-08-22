@@ -20,7 +20,7 @@ const TableData = ({ type }) => {
     joinTypeDropdownRef,
   } = useTableData({ type });
 
-  const heading = type === 'sourceFields' ? 'Source Tables' : 'Target Tables';
+  const heading = type === "sourceFields" ? "Source Tables" : "Target Tables";
 
   return (
     <div>
@@ -35,8 +35,8 @@ const TableData = ({ type }) => {
               disabled={
                 (selectedTables.length === 2 &&
                   !selectedTables.includes(table)) ||
-                  isTableUsed(table) ||
-                  tables.length === 1
+                isTableUsed(table) ||
+                tables.length === 1
               }
             />
           ))}
