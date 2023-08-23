@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FileList from "../FileList/FileList";
+import Spinner from "../Spinner/Spinner";
 import styles from "./FileUpload.module.css";
 import { fileAction } from "../../store/files";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,6 +9,7 @@ const FileUpload = (props) => {
   const { heading, isSource = true } = props;
   const [fetchedFiles, setFetchedFiles] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const files = useSelector((state) =>
     isSource ? state.files.sourceFile : state.files.targetFile
   );
@@ -19,8 +21,10 @@ const FileUpload = (props) => {
       const response = await fetch(url);
       const data = await response.json();
       setFetchedFiles(data.files);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching files:", error);
+      setIsLoading(false);
     }
   };
 
@@ -69,19 +73,23 @@ const FileUpload = (props) => {
     <>
       <div className={styles.section__header}>{heading}</div>
       <div className={styles.uploadBox}>
-        <div className={`${styles.uploadBox__input} `}>
-          {fetchedFiles.map((fileName) => (
-            <div className={styles.uploadBox__file} key={fileName}>
-              <input
-                className={styles.uploadBox__checkbox}
-                type="checkbox"
-                checked={selectedFiles.includes(fileName)}
-                onChange={() => toggleFileSelection(fileName)}
-              />
-              <span className={styles.uploadBox__filename}>{fileName}</span>
-            </div>
-          ))}
-        </div>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <div className={`${styles.uploadBox__input} `}>
+            {fetchedFiles.map((fileName) => (
+              <div className={styles.uploadBox__file} key={fileName}>
+                <input
+                  className={styles.uploadBox__checkbox}
+                  type="checkbox"
+                  checked={selectedFiles.includes(fileName)}
+                  onChange={() => toggleFileSelection(fileName)}
+                />
+                <span className={styles.uploadBox__filename}>{fileName}</span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       <button
         type="button"
