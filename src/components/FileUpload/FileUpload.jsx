@@ -4,6 +4,7 @@ import Spinner from "../Spinner/Spinner";
 import styles from "./FileUpload.module.css";
 import { fileAction } from "../../store/files";
 import { useSelector, useDispatch } from "react-redux";
+import { extractFilenameFromPath } from "../../Utility/getFileName";
 
 const FileUpload = (props) => {
   const { heading, isSource = true } = props;
@@ -87,7 +88,9 @@ const FileUpload = (props) => {
                   checked={selectedFiles.includes(fileName)}
                   onChange={() => toggleFileSelection(fileName)}
                 />
-                <span className={styles.uploadBox__filename}>{fileName}</span>
+                <span className={styles.uploadBox__filename}>
+                  {extractFilenameFromPath(fileName)}
+                </span>
               </div>
             ))}
           </div>

@@ -10,7 +10,7 @@
 }
 
 .uploadBox__input {
-  border: 3px dashed #fff;
+  border: 3px dashed var(--highlighted-font-color);
   position: relative;
   height: 100%;
   background: rgba(255, 255, 255, 0.5);
@@ -82,6 +82,9 @@
 
 .uploadBox__checkbox {
   margin-right: 8px;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
 }
 
 .uploadBox__filename {
