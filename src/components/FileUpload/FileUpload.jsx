@@ -36,24 +36,26 @@ const FileUpload = (props) => {
   }, [isSource]);
 
   const toggleFileSelection = (fileName) => {
-    setSelectedFiles((prevSelectedFiles) =>
-      prevSelectedFiles.includes(fileName)
-        ? prevSelectedFiles.filter((file) => file !== fileName)
-        : [...prevSelectedFiles, fileName]
-    );
+    if (selectedFiles.includes(fileName)) {
+      removeFileHandler(fileName);
+    } else {
+      addFetchedFiles(fileName);
+    }
   };
 
-  const addFetchedFiles = () => {
-    const filesToAdd = selectedFiles.map((file) => ({
-      name: file,
+  const addFetchedFiles = (fileName) => {
+    setSelectedFiles((prevSelectedFiles) => [...prevSelectedFiles, fileName]);
+
+    const fileToAdd = {
+      name: fileName,
       lastModified: Date.now(),
       size: 0,
-    }));
+    };
 
     if (isSource) {
-      dispatch(fileAction.addSourceFile(filesToAdd));
+      dispatch(fileAction.addSourceFile([fileToAdd]));
     } else {
-      dispatch(fileAction.addTargetFile(filesToAdd));
+      dispatch(fileAction.addTargetFile([fileToAdd]));
     }
   };
 
@@ -91,12 +93,6 @@ const FileUpload = (props) => {
           </div>
         )}
       </div>
-      <button
-        type="button"
-        className={styles.uploadBox__button}
-        onClick={addFetchedFiles}>
-        <span>Choose files</span>
-      </button>
 
       {files && <FileList files={files} onRemove={removeFileHandler} />}
     </>
