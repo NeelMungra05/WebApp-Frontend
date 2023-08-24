@@ -42,8 +42,7 @@ const CustomMultiselect = ({ options, placeholder, onAddFields, isLeft }) => {
                     setSelectedOptions(
                       selectedOptions.filter((item) => item !== option)
                     )
-                  }
-                >
+                  }>
                   &times;
                 </span>
               </div>
@@ -62,8 +61,7 @@ const CustomMultiselect = ({ options, placeholder, onAddFields, isLeft }) => {
                   ? styles.dropdown__optionSelected
                   : styles.dropdown__option
               }
-              onClick={() => handleOptionClick(option)}
-            >
+              onClick={() => handleOptionClick(option)}>
               <input
                 type="checkbox"
                 checked={selectedOptions.includes(option)}

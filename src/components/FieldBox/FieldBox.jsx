@@ -144,8 +144,7 @@ const FieldBox = (props) => {
       {Object.keys(searchList).map((field) => (
         <div
           key={`${id}${fileName}${searchList[field].name}`}
-          className={styles.checkboxContainer}
-        >
+          className={styles.checkboxContainer}>
           <Input
             label=""
             reverse={true}
@@ -181,7 +180,6 @@ const FieldBox = (props) => {
     <div className={styles.container}>
       <h6 className={styles.heading}>{fileName}</h6>
       <div className={styles.container__search}>
-     
         <Input
           label=""
           input={{
@@ -190,11 +188,10 @@ const FieldBox = (props) => {
             onChange: searchInputHandler,
           }}
         />
-         <FontAwesomeIcon
+        <FontAwesomeIcon
           icon={faMagnifyingGlass}
           className={styles["container__search--logo"]}
         />
-  
       </div>
       <div ref={scrollBoxDivRef} className={styles.container__fields}>
         {fieldsChoice}

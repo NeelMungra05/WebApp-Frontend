@@ -23,8 +23,8 @@
   background-color: var(--background-color);
   border: 1px solid var(--dark-gray-1);
   border-top: none;
-  max-height: 85px;   
-  overflow-y: auto; 
+  max-height: 85px;
+  overflow-y: auto;
   z-index: 1;
 }
 
@@ -40,7 +40,7 @@
   background-color: var(--light-gray-3);
 }
 
-.dropdown__option input[type='checkbox'] {
+.dropdown__option input[type="checkbox"] {
   margin-right: 8px;
   border-radius: 0px;
 }
