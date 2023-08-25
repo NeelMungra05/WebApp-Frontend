@@ -4,6 +4,7 @@ import { faFileAlt, faXmark } from "@fortawesome/free-solid-svg-icons";
 import styles from "./FileItem.module.css";
 import { fileAction } from "../../store/files";
 import { useSelector, useDispatch } from "react-redux";
+import { formatFileSize } from "../../Utility/getFileSize";
 
 const FileItem = (props) => {
   const deleteClickHandler = () => {
@@ -17,7 +18,7 @@ const FileItem = (props) => {
           <FontAwesomeIcon className={styles.fileicon} icon={faFileAlt} />
           <div className={styles.details}>
             <span className={styles.img_name}>{props.name}</span>
-            <span className={styles.size}>{props.size} KB</span>
+            <span className={styles.size}>{formatFileSize(props.size)}</span>
           </div>
         </div>
         <FontAwesomeIcon

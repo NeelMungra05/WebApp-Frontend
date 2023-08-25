@@ -7,8 +7,9 @@ const FileList = (props) => {
 
   const content = files.map((file) => (
     <FileItem
+      key={file.name}
       name={file.name}
-      size={(file.size / 1024).toFixed(0)}
+      size={file.size}
       onRemove={props.onRemove}
     />
   ));
