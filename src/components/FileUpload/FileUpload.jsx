@@ -47,16 +47,19 @@ const FileUpload = (props) => {
   const addFetchedFiles = (fileName) => {
     setSelectedFiles((prevSelectedFiles) => [...prevSelectedFiles, fileName]);
 
-    const fileToAdd = {
-      name: fileName,
-      lastModified: Date.now(),
-      size: 0,
-    };
+    const selectedFile = fetchedFiles.find((file) => file.name === fileName);
 
-    if (isSource) {
-      dispatch(fileAction.addSourceFile([fileToAdd]));
-    } else {
-      dispatch(fileAction.addTargetFile([fileToAdd]));
+    if (selectedFile) {
+      const fileToAdd = {
+        name: selectedFile.name,
+        size: selectedFile.size,
+      };
+
+      if (isSource) {
+        dispatch(fileAction.addSourceFile([fileToAdd]));
+      } else {
+        dispatch(fileAction.addTargetFile([fileToAdd]));
+      }
     }
   };
 
@@ -80,16 +83,16 @@ const FileUpload = (props) => {
           <Spinner />
         ) : (
           <div className={`${styles.uploadBox__input} `}>
-            {fetchedFiles.map((fileName) => (
-              <div className={styles.uploadBox__file} key={fileName}>
+            {fetchedFiles.map((file) => (
+              <div className={styles.uploadBox__file} key={file.name}>
                 <input
                   className={styles.uploadBox__checkbox}
                   type="checkbox"
-                  checked={selectedFiles.includes(fileName)}
-                  onChange={() => toggleFileSelection(fileName)}
+                  checked={selectedFiles.includes(file.name)}
+                  onChange={() => toggleFileSelection(file.name)}
                 />
                 <span className={styles.uploadBox__filename}>
-                  {extractFilenameFromPath(fileName)}
+                  {extractFilenameFromPath(file.name)}
                 </span>
               </div>
             ))}
