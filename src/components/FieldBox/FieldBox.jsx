@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fieldsAction } from "../../store/fields-slice";
 import Input from "../UI/Input";
 import styles from "./FieldBox.module.css";
+import { extractFilenameFromPath } from "../../Utility/getFileName";
 
 const FieldBox = (props) => {
   const { fileName, id, type } = props;
@@ -178,7 +179,7 @@ const FieldBox = (props) => {
 
   return (
     <div className={styles.container}>
-      <h6 className={styles.heading}>{fileName}</h6>
+      <h6 className={styles.heading}>{extractFilenameFromPath(fileName)}</h6>
       <div className={styles.container__search}>
         <Input
           label=""
