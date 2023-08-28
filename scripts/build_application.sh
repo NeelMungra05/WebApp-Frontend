@@ -1,4 +1,4 @@
 #! /bin/bash
 
-cd /var/www/demo_react
+cd /var/www/non_prod_react
 sudo npm run build
