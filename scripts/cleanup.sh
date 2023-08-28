@@ -1,6 +1,6 @@
 #! /bin/bash
 
-if [-d "/var/www/non_prod_react"]; then
+if [ -d "/var/www/non_prod_react" ]; then
     echo "Removing old application from /var/www/non_prod_react folder..."
     sudo rm -rf /var/www/non_prod_react
 else
