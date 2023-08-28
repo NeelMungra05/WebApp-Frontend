@@ -2,4 +2,24 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/html/
+    destination: /var/www/non_prod_react/
+hooks:
+  ApplicationStop:
+    - location: scripts/cleanup.sh
+      timeout: 180
+      runsas: root
+  
+  BeforeInstall:
+    - location: scripts/install.sh
+      timeout: 180
+      runsas: root
+
+  AfterInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 180
+      runsas: root
+
+  ApplicationStart:
+    - location: scripts/build_application.sh
+      timeout: 180
+      runsas: root
