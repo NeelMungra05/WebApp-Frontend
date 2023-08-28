@@ -5,4 +5,4 @@ if [-d "/var/www/non_prod_react"]; then
     sudo rm -rf /var/www/non_prod_react
 else
     echo "/var/www/non_prod_react folder not found"
-if
+fi
