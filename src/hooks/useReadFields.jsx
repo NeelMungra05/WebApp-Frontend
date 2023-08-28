@@ -4,13 +4,33 @@ import * as xlsx from "xlsx";
 import { fieldsAction } from "../store/fields-slice";
 
 const useReadFields = ({ type = "source", setLoading }) => {
-  let files;
+  const sourceFiles = useSelector((state) => state.files.sourceFile);
+  const targetFiles = useSelector((state) => state.files.targetFile);
+  const listOfSource = sourceFiles.map((item) => item.name);
+  const listOfTarget = targetFiles.map((item) => item.name);
 
-  if (type === "source") {
-    files = useSelector((state) => state.files.sourceFile);
-  } else {
-    files = useSelector((state) => state.files.targetFile);
+  // const files = type === "source" ? sourceFiles : targetFiles;
+
+  const formData = new FormData();
+  formData.append("sourceFiles", JSON.stringify(listOfSource));
+  formData.append("targetFiles", JSON.stringify(listOfTarget));
+
+  async function sendDataToServer() {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/files/headers/", {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error("Some error occurred");
+      }
+      const responseData = await response.json();
+      console.log("Response from server:", responseData);
+    } catch (error) {
+      console.error("An error occurred:", error.message);
+    }
   }
+  sendDataToServer();
 
   const dispatch = useDispatch();
 
