@@ -42,8 +42,8 @@ jobs:
       - name: Create CodeDeploy Deployment
         id: React_non_prod_deployment
         run: |
-          aws deploy create-deployment\
-          --application-name non_prod_deploy\
-          --application-group-name non_prod_server_1\
-          --deployment-config-name CodeDeployDefault.OneAtATime\
+          aws deploy create-deployment \
+          --application-name non_prod_deploy \
+          --application-group-name non_prod_server_1 \
+          --deployment-config-name CodeDeployDefault.OneAtATime \
           --github-location repository=${{ github.repository }},commitId=${{ github.sha}}
