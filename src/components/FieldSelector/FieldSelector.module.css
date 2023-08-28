@@ -1,24 +1,21 @@
 @import url("../../variables.css");
 
-h3{
-    display: flex;
-    justify-content: center;
-    color: black;
+h3 {
+  text-align: center;
+  color: var(--text-dark);
 }
 
-.container{
-    display: flex;
-    gap : 20px;
-    flex-wrap: wrap;
-    justify-content: center;
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
-.container > *{
-    flex: 0 0 15rem;
-    height: 300px;
-    /* border: 1px solid var(--text-dark); */
-    background-color: var(--light-gray-1);
-    padding: 0.5rem;
-    border: groove black;
-    border-width: 1px 1px 1px 1px;
+.container > * {
+  flex: 0 0 calc(33.33% - 40px);
+  max-width: calc(23.33%);
+  border: 1px groove var(--text-dark);
+  padding: 0.5rem;
+  background-color: var(--light-gray-1);
 }
