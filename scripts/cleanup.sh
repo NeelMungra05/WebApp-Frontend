@@ -1,4 +1,4 @@
-#! bin/bash
+#! /bin/bash
 
 if [-d "/var/www/non_prod_react"]; then
     echo "Removing old application from /var/www/non_prod_react folder..."

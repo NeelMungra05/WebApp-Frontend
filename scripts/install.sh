@@ -1,4 +1,4 @@
-#! bin/bash
+#! /bin/bash
 
 if ! command -v node &> /dev/null; then
     echo "Node is not installed. Installing the latest version of the node."
