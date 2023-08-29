@@ -41,6 +41,7 @@ const SummaryData = () => {
       try {
         const response = await fetch("http://127.0.0.1:8000/postload/recon/", {
           method: "POST",
+          mode: "cors",
           body: data,
         });
 
