@@ -21,10 +21,21 @@ const SummaryData = () => {
     }
   };
 
-  const sourceFiles = useSelector((state) => state.files.sourceFile);
-  const targetFiles = useSelector((state) => state.files.targetFile);
+  const getFileNamesArray = (Files) => {
+    return Object.values(Files).map((file) => file.name);
+  };
+
+  const sourceFiles = getFileNamesArray(
+    useSelector((state) => state.files.sourceFile)
+  );
+  const targetFiles = getFileNamesArray(
+    useSelector((state) => state.files.targetFile)
+  );
+
   const sourceFields = useSelector((state) => state.fields.sourceFields);
+  // console.log(sourceFields);
   const targetFields = useSelector((state) => state.fields.targetFields);
+  // console.log(targetFields);
   const joins = useSelector((state) => state.joins);
   const reconJoins = useSelector((state) => state.reconJoins);
 
