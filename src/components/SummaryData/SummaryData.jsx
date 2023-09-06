@@ -37,7 +37,9 @@ const SummaryData = () => {
   const targetFields = useSelector((state) => state.fields.targetFields);
   // console.log(targetFields);
   const joins = useSelector((state) => state.joins);
+  console.log("JOINS", joins);
   const reconJoins = useSelector((state) => state.reconJoins);
+  // console.log("RECON JOINS", reconJoins);
 
   useEffect(() => {
     const reconResult = async () => {
@@ -48,6 +50,7 @@ const SummaryData = () => {
       data.append("targetFields", JSON.stringify(targetFields));
       data.append("joins", JSON.stringify(joins));
       data.append("reconJoin", JSON.stringify(reconJoins));
+      // console.log("Data before sending to API:", data);
 
       try {
         const response = await fetch("http://127.0.0.1:8000/postload/recon/", {
