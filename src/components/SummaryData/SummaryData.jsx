@@ -33,26 +33,40 @@ const SummaryData = () => {
   );
 
   const sourceFields = useSelector((state) => state.fields.sourceFields);
-  // console.log(sourceFields);
+  console.log(sourceFields);
   const targetFields = useSelector((state) => state.fields.targetFields);
-  // console.log(targetFields);
+  console.log(targetFields);
   const joins = useSelector((state) => state.joins);
+  console.log("JOINS", joins);
   const reconJoins = useSelector((state) => state.reconJoins);
+  console.log("RECON JOINS", reconJoins);
 
   useEffect(() => {
     const reconResult = async () => {
-      const data = new FormData();
-      sourceFiles.forEach((file) => data.append("source", file));
-      targetFiles.forEach((file) => data.append("target", file));
-      data.append("sourceFields", JSON.stringify(sourceFields));
-      data.append("targetFields", JSON.stringify(targetFields));
-      data.append("joins", JSON.stringify(joins));
-      data.append("reconJoin", JSON.stringify(reconJoins));
+      // const data = new FormData();
+      // sourceFiles.forEach((file) => data.append("source", file));
+      // targetFiles.forEach((file) => data.append("target", file));
+      // data.append("sourceFields", JSON.stringify(sourceFields));
+      // data.append("targetFields", JSON.stringify(targetFields));
+      // data.append("joins", JSON.stringify(joins));
+      // data.append("reconJoin", JSON.stringify(reconJoins));
+      // console.log("Data before sending to API:", data);
+      const requestData = {
+        source: sourceFiles,
+        target: targetFiles,
+        sourceFields,
+        targetFields,
+        joins,
+        reconJoin: reconJoins,
+      };
 
       try {
         const response = await fetch("http://127.0.0.1:8000/postload/recon/", {
           method: "POST",
-          body: data,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
         });
 
         if (!response.ok) {

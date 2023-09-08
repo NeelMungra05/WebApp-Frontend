@@ -27,19 +27,31 @@ const AllFieldSelector = ({ title, fieldKey, onSelection }) => {
     <>
       <h3>{title}</h3>
       <div className={styles.container}>
-        <CustomMultiSelectContainer
-          title={title}
-          options={sourceFieldsWithKey}
-          onAddFields={onSelection}
-          isLeft={true}
-        />
+        <div className={styles.dropdownContainer}>
+          <div className={styles.dropdownHeading}>
+            <h2>Source {title}</h2>
+          </div>
+          <CustomMultiselect
+            className={styles.joinselect}
+            options={sourceFieldsWithKey}
+            placeholder={`Source ${title}`}
+            onAddFields={onSelection}
+            isLeft={true}
+          />
+        </div>
         <hr />
-        <CustomMultiSelectContainer
-          title={title}
-          options={targetFieldsWithKey}
-          onAddFields={onSelection}
-          isLeft={false}
-        />
+        <div className={styles.dropdownContainer}>
+          <div className={styles.dropdownHeading}>
+            <h2>Target {title}</h2>
+          </div>
+          <CustomMultiselect
+            className={styles.joinselect}
+            options={targetFieldsWithKey}
+            placeholder={`Target ${title}`}
+            onAddFields={onSelection}
+            isLeft={false}
+          />
+        </div>
       </div>
     </>
   );

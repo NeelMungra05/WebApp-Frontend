@@ -4,7 +4,9 @@ import { fieldsAction } from "../store/fields-slice";
 
 const useReadFields = ({ type = "source", setLoading }) => {
   const sourceFiles = useSelector((state) => state.files.sourceFile);
+  console.log("sourcefiles", sourceFiles);
   const targetFiles = useSelector((state) => state.files.targetFile);
+  console.log("targetfiles", targetFiles);
   const dispatch = useDispatch();
 
   const resultReducer = useCallback((result) => {
@@ -39,15 +41,19 @@ const useReadFields = ({ type = "source", setLoading }) => {
         const apiUrl = "http://127.0.0.1:8000/files/headers/";
         const listOfSource = sourceFiles.map((item) => item.name);
         const listOfTarget = targetFiles.map((item) => item.name);
+        const requestData = {
+          sourceFiles: listOfSource,
+          targetFiles: listOfTarget,
+        };
+        console.log("requestData", requestData);
 
         const files = type === "source" ? listOfSource : listOfTarget;
-        const formData = new FormData();
-        formData.append("sourceFiles", JSON.stringify(listOfSource));
-        formData.append("targetFiles", JSON.stringify(listOfTarget));
-
         const response = await fetch(apiUrl, {
           method: "POST",
-          body: formData,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
         });
 
         if (!response.ok) {

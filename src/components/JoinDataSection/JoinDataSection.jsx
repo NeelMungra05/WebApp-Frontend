@@ -41,12 +41,28 @@ const JoinDataSection = ({ join, index, onDiscard, filesField }) => {
 
   const addJoinsFields = (isLeft, selectedOptions) => {
     const type = isLeft ? "leftOn" : "rightOn";
-    dispatch(
-      joinsActions.addSourceJoinsFields({ type, selectedOptions, index })
-    );
-    dispatch(
-      joinsActions.addTargetJoinsFields({ type, selectedOptions, index })
-    );
+    // dispatch(
+    //   joinsActions.addSourceJoinsFields({ type, selectedOptions, index })
+    // );
+    // dispatch(
+    //   joinsActions.addTargetJoinsFields({ type, selectedOptions, index })
+    // );
+    const addSourceAction = joinsActions.addSourceJoinsFields({
+      type,
+      selectedOptions,
+      index,
+    });
+    dispatch(addSourceAction);
+    console.log("addSourceJoinsFields action:", addSourceAction);
+
+    // Dispatch addTargetJoinsFields and log the action
+    const addTargetAction = joinsActions.addTargetJoinsFields({
+      type,
+      selectedOptions,
+      index,
+    });
+    dispatch(addTargetAction);
+    console.log("addTargetJoinsFields action:", addTargetAction);
   };
 
   // const joinDataObject = join.tables.reduce((acc, table) => {
