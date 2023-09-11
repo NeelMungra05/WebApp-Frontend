@@ -84,7 +84,7 @@ const SummaryData = () => {
     };
 
     reconResult();
-  }, [sourceFiles, targetFiles, sourceFields, targetFields, joins, reconJoins]);
+  }, []);
 
   const generateTableHeaders = () => {
     if (displayedTableData.length === 0) return null;
