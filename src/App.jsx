@@ -3,8 +3,8 @@ import LoginForm from "./components/Form/LoginForm";
 import SignupForm from "./components/Form/SignupForm";
 import Header from "./components/Header/Header";
 import Services from "./components/Services/Services";
-import Footer from './components/Footer/Footer';
-import Home from './components/Home/Home'
+import Footer from "./components/Footer/Footer";
+import Home from "./components/Home/Home";
 
 function App() {
   const [isHome, setIsHome] = useState(true);
@@ -78,18 +78,27 @@ function App() {
   };
 
   let content = <Home />;
-  
 
   if (isLoggedIn) {
     content = <Services />;
   }
 
   if (isLogin) {
-    content = <LoginForm loginHandler={loginHandler} navbarStateChanger={navbarStateChanger} />;
+    content = (
+      <LoginForm
+        loginHandler={loginHandler}
+        navbarStateChanger={navbarStateChanger}
+      />
+    );
   }
 
   if (isRegister) {
-    content = <SignupForm registerHandler={registerHandler} navbarStateChanger={navbarStateChanger} />;
+    content = (
+      <SignupForm
+        registerHandler={registerHandler}
+        navbarStateChanger={navbarStateChanger}
+      />
+    );
   }
 
   return (
@@ -101,9 +110,7 @@ function App() {
         isLoggedIn={isLoggedIn}
         navbarStateChanger={navbarStateChanger}
       />
-      <main>
-        {content}
-      </main>
+      <main>{content}</main>
       <Footer />
     </>
   );
