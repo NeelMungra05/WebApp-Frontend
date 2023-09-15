@@ -137,15 +137,26 @@ const FieldBox = (props) => {
   const fieldsChoice = (
     <>
       <div className={styles.checkboxContainer}>
-        <div className={styles.fieldHeading}>PK</div>
         <div className={styles.fieldHeading}>RF</div>
+        <div className={styles.fieldHeading}>PK</div>
         <div className={styles.fieldHeading}>Description</div>
       </div>
       {Object.keys(searchList).map((field) => (
         <div
           key={`${id}${fileName}${searchList[field].name}`}
-          className={styles.checkboxContainer}
-        >
+          className={styles.checkboxContainer}>
+          <Input
+            label=""
+            reverse={true}
+            input={{
+              key: `${id}${fileName}${searchList[field].name}`,
+              id: `${id}${fileName}${searchList[field].name}`,
+              name: `${fileName}|${searchList[field].name}`,
+              type: "checkbox",
+              onChange: checkBoxChangeHandler,
+              checked: originalList[searchList[field].name].RF,
+            }}
+          />
           <Input
             label=""
             reverse={true}
@@ -159,18 +170,7 @@ const FieldBox = (props) => {
               checked: originalList[searchList[field].name].PK,
             }}
           />
-          <Input
-            label=""
-            reverse={true}
-            input={{
-              key: `${id}${fileName}${searchList[field].name}`,
-              id: `${id}${fileName}${searchList[field].name}`,
-              name: `${fileName}|${searchList[field].name}`,
-              type: "checkbox",
-              onChange: checkBoxChangeHandler,
-              checked: originalList[searchList[field].name].RF,
-            }}
-          />
+
           <div className={styles.fieldName}>{searchList[field].name}</div>
         </div>
       ))}
@@ -181,7 +181,6 @@ const FieldBox = (props) => {
     <div className={styles.container}>
       <h6 className={styles.heading}>{fileName}</h6>
       <div className={styles.container__search}>
-     
         <Input
           label=""
           input={{
@@ -190,11 +189,10 @@ const FieldBox = (props) => {
             onChange: searchInputHandler,
           }}
         />
-         <FontAwesomeIcon
+        <FontAwesomeIcon
           icon={faMagnifyingGlass}
           className={styles["container__search--logo"]}
         />
-  
       </div>
       <div ref={scrollBoxDivRef} className={styles.container__fields}>
         {fieldsChoice}

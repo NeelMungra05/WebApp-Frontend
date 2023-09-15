@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins, faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { joinsActions } from "../../store/joins-slice";
-import { extractFilenameFromPath } from "../../Utility/getFileName";
+// import { extractFilenameFromPath } from "../../Utility/getFileName";
 
 const JOIN_TYPES = {
   INNER_JOIN: "Inner Join",
@@ -73,7 +73,7 @@ const JoinDataSection = ({ join, index, onDiscard, filesField }) => {
                 <CustomMultiSelect
                   className={styles.joinselect}
                   options={options}
-                  placeholder={extractFilenameFromPath(table)}
+                  placeholder={table}
                   isLeft={tableIndex < Object.keys(joinDataObject).length - 1}
                   onAddFields={addJoinsFields}
                 />
