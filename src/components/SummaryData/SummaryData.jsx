@@ -13,12 +13,16 @@ const SummaryData = () => {
 
   const handleCardClick = (tableData, index) => {
     if (displayedCardIndex === index) {
-      setDisplayedTableData([]);
-      setDisplayedCardIndex(null);
+      clearDisplayedData();
     } else {
       setDisplayedTableData(tableData);
       setDisplayedCardIndex(index);
     }
+  };
+
+  const clearDisplayedData = () => {
+    setDisplayedTableData([]);
+    setDisplayedCardIndex(null);
   };
 
   const sourceFiles = useSelector((state) => state.files.sourceFile);
@@ -29,7 +33,7 @@ const SummaryData = () => {
   const reconJoins = useSelector((state) => state.reconJoins);
 
   useEffect(() => {
-    const reconResult = async () => {
+    const fetchData = async () => {
       const data = new FormData();
       sourceFiles.forEach((file) => data.append("source", file));
       targetFiles.forEach((file) => data.append("target", file));
@@ -51,14 +55,14 @@ const SummaryData = () => {
         const jsonData = await response.json();
         setApiData(jsonData);
       } catch (err) {
-        console.log(err);
-        setError("An error occurred please try again some time later");
+        console.error(err);
+        setError("An error occurred. Please try again later.");
       } finally {
         setLoading(false);
       }
     };
 
-    reconResult();
+    fetchData();
   }, [sourceFiles, targetFiles, sourceFields, targetFields, joins, reconJoins]);
 
   const generateTableHeaders = () => {
@@ -95,16 +99,31 @@ const SummaryData = () => {
     }
   }, [apiData]);
 
+  const roundToTwoDecimal = (num) => {
+    return parseFloat(num).toFixed(2);
+  };
+
+  const generateSummaryTableData = (data, kpisList) => {
+    if (!data) return [];
+    return Object.entries(data).reduce((acc, [key, value]) => {
+      value.forEach((val, index) => {
+        if (!acc[index]) {
+          acc[index] = { Fields: `Value${index + 1}` };
+        }
+        acc[index][key] = val;
+        acc[index]["KPI Type"] = kpisList[index];
+      });
+      return acc;
+    }, []);
+  };
+
   const generateCardsData = () => {
     if (!apiData) return [];
-
-    const roundToTwoDecimal = (num) => {
-      return parseFloat(num).toFixed(2);
-    };
 
     const cardsData = [
       {
         heading: "Source Vs Target KPIs",
+        title: "Recon Results",
         tableData: [
           {
             "Recon %": roundToTwoDecimal(apiData.kpis?.src_trgt?.[0]),
@@ -116,6 +135,7 @@ const SummaryData = () => {
       },
       {
         heading: "Target Vs Source KPIs",
+        title: "Recon Results",
         tableData: [
           {
             "Recon %": roundToTwoDecimal(apiData.kpis?.trgt_src?.[0]),
@@ -127,28 +147,25 @@ const SummaryData = () => {
       },
       {
         heading: "Source Vs Target Summary",
-        tableData: generateSummaryTableData(apiData["source vs target"]),
+        title:
+          "Total Recon % - " + roundToTwoDecimal(apiData.kpis?.src_trgt?.[0]),
+        tableData: generateSummaryTableData(
+          apiData["source vs target"],
+          apiData["src_kpis_list"]
+        ),
       },
       {
         heading: "Target Vs Source Summary",
-        tableData: generateSummaryTableData(apiData["target vs source"]),
+        title:
+          "Total Recon % - " + roundToTwoDecimal(apiData.kpis?.trgt_src?.[0]),
+        tableData: generateSummaryTableData(
+          apiData["target vs source"],
+          apiData["trgt_kpis_list"]
+        ),
       },
     ];
 
     return cardsData;
-  };
-
-  const generateSummaryTableData = (data) => {
-    if (!data) return [];
-    return Object.entries(data).reduce((acc, [key, value]) => {
-      value.forEach((val, index) => {
-        if (!acc[index]) {
-          acc[index] = { Fields: `Value${index + 1}` };
-        }
-        acc[index][key] = val;
-      });
-      return acc;
-    }, []);
   };
 
   const cardsData = generateCardsData();
@@ -177,7 +194,7 @@ const SummaryData = () => {
         <div className={styles.tableContainer}>
           {displayedTableData.length > 0 && (
             <div className={styles.tableSection}>
-              <h3>Recon Results</h3>
+              <h3>{cardsData[displayedCardIndex].title}</h3>
               <table className={styles.mainTable}>
                 {generateTableHeaders()}
                 <tbody>{generateTableRows()}</tbody>
