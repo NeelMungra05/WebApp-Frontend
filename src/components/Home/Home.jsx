@@ -27,18 +27,18 @@ const Home = () => {
         <h2 className={styles.heading}>Enterprise Data Silhouette</h2>
         <p className={styles.description}>
           Introducing our Innovative Reconciliation, Transformation, and
-          Profiling Tool – ERP Data4Ward Plus, Your All-in-One Solution for Data
-          Excellence. Harness the power of cutting-edge technology with our tool
-          designed to streamline and elevate your data management processes.
-          Seamlessly reconcile discrepancies, ensuring data integrity and
-          accuracy. Effortlessly transform data to meet your specific needs,
+          Profiling Tool – Enterprise Data Silhouette, Your All-in-One Solution
+          for Data Excellence. Harness the power of cutting-edge technology with
+          our tool designed to streamline and elevate your data management
+          processes. Seamlessly reconcile discrepancies, ensuring data integrity
+          and accuracy. Effortlessly transform data to meet your specific needs,
           enabling informed decision-making. Experience comprehensive profiling
           that offers deep insights into your data, unveiling patterns and
           anomalies. Our tool empowers you to unlock the full potential of your
           data, simplifying complex tasks and enhancing efficiency. Join
           countless professionals who trust our solution to optimize their data
-          workflows. Elevate your data management to new heights with our ERP
-          Data4Ward Plus Tool today.
+          workflows. Elevate your data management to new heights with our
+          Enterprise Data Silhouette Tool today.
         </p>
       </div>
       <div className={styles.greenLine}></div>
