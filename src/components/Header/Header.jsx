@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Header.module.css";
 import logo from "../../assets/sapCompanyLogo.png";
-import { MdLogout } from 'react-icons/md';
+import { MdLogout } from "react-icons/md";
 
 const Header = (props) => {
   const navClickHandler = (e) => {
@@ -17,24 +17,21 @@ const Header = (props) => {
       <a
         onClick={navClickHandler}
         href="/home"
-        className={props.home ? navActiveStyle : navStyle}
-      >
+        className={props.home ? navActiveStyle : navStyle}>
         <span className={styles.nav__item}>Home</span>
       </a>
 
       <a
         onClick={navClickHandler}
         href="/login"
-        className={props.login ? navActiveStyle : navStyle}
-      >
+        className={props.login ? navActiveStyle : navStyle}>
         <span className={styles.nav__item}>Login</span>
       </a>
 
       <a
         onClick={navClickHandler}
         href="/register"
-        className={props.register ? navActiveStyle : navStyle}
-      >
+        className={props.register ? navActiveStyle : navStyle}>
         <span className={styles.nav__item}>Register</span>
       </a>
     </nav>
@@ -43,7 +40,8 @@ const Header = (props) => {
   if (props.isLoggedIn) {
     navbar = (
       <nav className={styles.nav}>
-        <a onClick={navClickHandler} href="/logout" className={navStyle}><MdLogout/>
+        <a onClick={navClickHandler} href="/logout" className={navStyle}>
+          <MdLogout />
           <span className={styles.nav__item}>Logout</span>
         </a>
       </nav>
@@ -57,7 +55,9 @@ const Header = (props) => {
           <span className={styles.header__name}>
             <img src={logo} width="100px" height="auto" alt="" />
           </span>
-          <p className={styles["header__tool--name"]}>ERP Data4Ward Plus</p>
+          <p className={styles["header__tool--name"]}>
+            Enterprise Data Silhouette
+          </p>
         </div>
         {navbar}
       </div>

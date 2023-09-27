@@ -63,3 +63,14 @@
   align-items: center;
   color: var(--background-color);
 }
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+p {
+  margin-right: 10px;
+}
