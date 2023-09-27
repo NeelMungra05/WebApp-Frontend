@@ -6,12 +6,10 @@ const TableButton = ({ table, onClick, disabled }) => {
     <button
       className={styles.tableButton}
       onClick={onClick}
-      disabled={disabled}
-    >
+      disabled={disabled}>
       {table}
     </button>
   );
 };
 
 export default TableButton;
-

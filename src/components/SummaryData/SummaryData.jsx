@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardWithTable from "../TabWithTable/TabWithTable";
+import TableButton from "../TableButton/TableButton";
 import styles from "./SummaryData.module.css";
 import { useSelector } from "react-redux/es/exports";
 import Spinner from "../Spinner/Spinner";
@@ -7,16 +8,21 @@ import Spinner from "../Spinner/Spinner";
 const SummaryData = () => {
   const [displayedTableData, setDisplayedTableData] = useState([]);
   const [displayedCardIndex, setDisplayedCardIndex] = useState(0);
+  const [isDownloadEnabled, setIsDownloadEnabled] = useState(false);
   const [apiData, setApiData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const handleCardClick = (tableData, index) => {
+  const handleCardClick = (tableData, index, heading) => {
     if (displayedCardIndex === index) {
       clearDisplayedData();
     } else {
       setDisplayedTableData(tableData);
       setDisplayedCardIndex(index);
+      setIsDownloadEnabled(
+        heading === "Source Vs Target Summary" ||
+          heading === "Target Vs Source Summary"
+      );
     }
   };
 
@@ -117,6 +123,33 @@ const SummaryData = () => {
     }, []);
   };
 
+  const handleDownloadClick = (e) => {
+    e.preventDefault();
+    let dataToDownload = "";
+    let fileName = "";
+    const currentSummary = cardsData[displayedCardIndex].heading;
+    if (currentSummary === "Source Vs Target Summary") {
+      dataToDownload = apiData["src_file"];
+      fileName = "source_vs_target.csv";
+    } else if (currentSummary === "Target Vs Source Summary") {
+      dataToDownload = apiData["trgt_file"];
+      fileName = "target_vs_source.csv";
+    }
+
+    if (dataToDownload) {
+      const blob = new Blob([dataToDownload], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.style.display = "none";
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  };
+
   const generateCardsData = () => {
     if (!apiData) return [];
 
@@ -170,6 +203,8 @@ const SummaryData = () => {
 
   const cardsData = generateCardsData();
 
+  console.log("API", apiData);
+
   const content =
     error !== null ? (
       <p>{error}</p>
@@ -184,7 +219,9 @@ const SummaryData = () => {
                   heading={card.heading}
                   showTable={card.tableData.length > 0}
                   tableData={card.tableData}
-                  onCardClick={() => handleCardClick(card.tableData, index)}
+                  onCardClick={() =>
+                    handleCardClick(card.tableData, index, card.heading)
+                  }
                   isActive={displayedCardIndex === index}
                 />
               ))}
@@ -199,6 +236,16 @@ const SummaryData = () => {
                 {generateTableHeaders()}
                 <tbody>{generateTableRows()}</tbody>
               </table>
+            </div>
+          )}
+          {isDownloadEnabled && (
+            <div className={styles.buttonContainer}>
+              <p>For Detailed Summary Click On Download!</p>
+              <TableButton
+                table="Download"
+                onClick={handleDownloadClick}
+                disabled={false}
+              />
             </div>
           )}
         </div>
