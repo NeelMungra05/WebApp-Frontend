@@ -50,7 +50,7 @@ const Services = () => {
         header: "Data Reconciliation",
         content:
           // "Comparing and aligning data from various sources to ensure accuracy, consistency, and reliable insights for effective decision-making.",
-          "Analyzing data to understand its characteristics, patterns, and quality for better decision-making and data management.",
+          "Unlocking Data Precision: Introducing Our State-of-the-Art Reconciliation Tool for Streamlined Accuracy and Unparalleled Insights.",
         onClick: reconciliationHandler,
       },
       {
@@ -59,7 +59,7 @@ const Services = () => {
         alt: "Profiling",
         header: "Data Profiling",
         content:
-          "Analyzing data to understand its characteristics, patterns, and quality for better decision-making and data management.",
+          "Mastering Data Excellence: Unveiling Our Dynamic Data Profiling & Quality Analysis Tool for Informed Decision-Making & Precision!",
         onClick: profilingHandler,
       },
       {
@@ -68,7 +68,7 @@ const Services = () => {
         alt: "Transformation",
         header: "Data Transformation",
         content:
-        "Analyzing data to understand its characteristics, patterns, and quality for better decision-making and data management.",
+          "Align today's data with tomorrow's Process : Unleashing the Future of Data with Our Transformative Tool for Seamless Data Integration and Analysis.",
         onClick: transformationHandler,
       },
     ];
