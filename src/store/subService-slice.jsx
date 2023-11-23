@@ -18,8 +18,8 @@ const subServiceSlice = createSlice({
   },
 });
 
-const stepsReducer = stepsSlice.reducer;
+const subServiceReducer = subServiceSlice.reducer;
 
-export const stepsAction = stepsSlice.actions;
+export const subServiceAction = subServiceReducer.actions;
 
-export default stepsReducer;
+export default subServiceReducer;
