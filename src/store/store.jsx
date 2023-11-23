@@ -5,6 +5,7 @@ import fileReducer from "./files";
 import fieldsReducer from "./fields-slice";
 import joinsReducer from "./joins-slice";
 import reconJoinReducer from "./recon-join-slice";
+import subServiceReducer from "./subService-slice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     fields: fieldsReducer,
     joins: joinsReducer,
     reconJoins: reconJoinReducer,
+    subService: subServiceReducer,
   },
 });
 
