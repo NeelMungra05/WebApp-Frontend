@@ -4,9 +4,10 @@ import ServiceList from "./ServiceList";
 import { useState } from "react";
 import { useMemo } from "react";
 import Reconciliation from "./Reconciliation/Reconciliation";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { store } from "../../store/store";
 import useServiceHandler from "../../hooks/useServiceHandler";
+import { subServiceAction } from "../../store/subService-slice";
 
 const Services = () => {
   const { MAIN_SERVICE, SUB_SERVICE, serviceSelected } = useServiceHandler();
@@ -27,12 +28,24 @@ const Services = () => {
   let service = serviceListGenerator(MAIN_SERVICE);
 
   if (serviceSelected.reconciliation.selected) {
+    const isFinancialSelected = serviceSelected.reconciliation.type.financial;
+    const isPostloadSelected = serviceSelected.reconciliation.type.postLoad;
+
+    if (isFinancialSelected || isPostloadSelected) {
+      const subServiceSelected = {
+        preload: false,
+        financial: isFinancialSelected,
+        postload: isPostloadSelected,
+      };
+
+      return (
+        <Provider store={store}>
+          <Reconciliation subServiceSelected={subServiceSelected} />
+        </Provider>
+      );
+    }
+
     service = serviceListGenerator(SUB_SERVICE);
-    // return (
-    //   <Provider store={store}>
-    //     <Reconciliation />
-    //   </Provider>
-    // );
   }
 
   return <section className={styles.section}>{service}</section>;

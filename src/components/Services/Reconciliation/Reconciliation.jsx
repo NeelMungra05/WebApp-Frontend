@@ -12,9 +12,10 @@ import Selector from "../../Selector/Selector";
 import SourceAndTargetTables from "../../SourceAndTargetTables/SourceAndTargetTables";
 import PrimaryKeySelection from "../../PrimaryKeySelection/PrimaryKeySelection";
 import SummaryData from "../../SummaryData/SummaryData";
-import RequiredKeySelection from "../../RequiredKeySelection/RequiredKeySelection"
+import RequiredKeySelection from "../../RequiredKeySelection/RequiredKeySelection";
+import { subServiceAction } from "../../../store/subService-slice";
 
-const Reconciliation = () => {
+const Reconciliation = ({ subServiceSelected }) => {
   const steps = useSelector((state) => state.steps.steps);
   const {
     showPrevButton: prevButton,
@@ -22,7 +23,7 @@ const Reconciliation = () => {
     showSubmitButton: submitButton,
   } = useSelector((state) => state.formButton);
   const dispatch = useDispatch();
-
+  dispatch(subServiceAction.change(subServiceSelected));
   const prevButtonHandler = (e) => {
     if (steps - 1 === 1) {
       dispatch(formButtonAction.prevButton(false));
@@ -67,9 +68,9 @@ const Reconciliation = () => {
     case 5:
       content = <RequiredKeySelection />;
       break;
-    
+
     case 6:
-      content = <SummaryData />
+      content = <SummaryData />;
       break;
 
     default:
