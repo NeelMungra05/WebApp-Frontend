@@ -20,6 +20,6 @@ const subServiceSlice = createSlice({
 
 const subServiceReducer = subServiceSlice.reducer;
 
-export const subServiceAction = subServiceReducer.actions;
+export const subServiceAction = subServiceSlice.actions;
 
 export default subServiceReducer;
