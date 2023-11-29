@@ -23,27 +23,17 @@ const Reconciliation = ({ subServiceSelected }) => {
     showSubmitButton: submitButton,
   } = useSelector((state) => state.formButton);
   const dispatch = useDispatch();
+
   dispatch(subServiceAction.change(subServiceSelected));
-  const prevButtonHandler = (e) => {
-    if (steps - 1 === 1) {
-      dispatch(formButtonAction.prevButton(false));
-    } else {
-      dispatch(formButtonAction.prevButton(true));
-    }
 
-    dispatch(formButtonAction.nextButton(true));
-    dispatch(stepsAction.previous());
-  };
+  const handleButton = (direction) => {
+    const isPrev = direction === "prev";
+    const newSteps = isPrev ? steps - 1 : steps + 1;
 
-  const nextButtonHandler = (e) => {
-    if (steps + 1 === 6) {
-      dispatch(formButtonAction.nextButton(false));
-    } else {
-      dispatch(formButtonAction.nextButton(true));
-    }
+    dispatch(formButtonAction.nextButton(newSteps !== 6));
+    dispatch(formButtonAction.prevButton(newSteps !== 1));
 
-    dispatch(formButtonAction.prevButton(true));
-    dispatch(stepsAction.next());
+    dispatch(isPrev ? stepsAction.previous() : stepsAction.next());
   };
 
   let content;
@@ -92,7 +82,7 @@ const Reconciliation = ({ subServiceSelected }) => {
             type="button"
             className={`${styles.form__button} ${styles.form__button__previous}`}
             disabled={!prevButton}
-            onClick={prevButtonHandler}
+            onClick={() => handleButton("prev")}
           >
             <span className={styles["form__navigation--back"]}>Previous</span>
           </button>
@@ -100,7 +90,7 @@ const Reconciliation = ({ subServiceSelected }) => {
             type="button"
             className={`${styles.form__button} ${styles.form__button__next}`}
             disabled={!nextButton}
-            onClick={nextButtonHandler}
+            onClick={() => handleButton("next")}
           >
             <span className={styles["form__navigation--forward"]}>Next</span>
           </button>
