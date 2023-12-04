@@ -30,8 +30,9 @@ const Upload = () => {
   );
 
   const isSourceAndTargetFileCountSame =
-    reconSelected === "financial" &&
-    sourceValidation.fileCount === targetValidation.fileCount;
+    reconSelected === "financial"
+      ? sourceValidation.fileCount === targetValidation.fileCount
+      : true;
 
   console.table(isValid, sourceValidation, targetValidation);
 
