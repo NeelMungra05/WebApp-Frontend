@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useFileUploadValidation from "../../hooks/useFileUploadValidation";
 import FileUpload from "../FileUpload/FileUpload";
 import styles from "./Upload.module.css";
@@ -7,16 +7,38 @@ import { formButtonAction } from "../../store/formButton";
 import useFormButton from "../../hooks/useFormButton";
 
 const Upload = () => {
-  const sourceValidation = useFileUploadValidation({ type: "source" });
-  const targetValidation = useFileUploadValidation({ type: "target" });
+  const reconType = useSelector((state) => state.subService.reconType);
+
+  const reconSelected = Object.keys(reconType).find((key) => reconType[key]);
+
+  const sourceValidation = useFileUploadValidation({
+    type: "source",
+    reconSelected,
+  });
+  const targetValidation = useFileUploadValidation({
+    type: "target",
+    reconSelected,
+  });
   const dispatch = useDispatch();
 
-  const isValid = Object.values(sourceValidation).every(
-    (condition, idx) =>
-      condition === true && Object.values(targetValidation)[idx] === condition
+  const isValid = Object.entries(sourceValidation).every(
+    ([key, condition], idx) =>
+      key !== "defaultReconFileCount" && key !== "fileCount"
+        ? condition === true &&
+          Object.values(targetValidation)[idx] === condition
+        : true
   );
 
-  useFormButton({ isValid, buttonType: "next" });
+  const isSourceAndTargetFileCountSame =
+    reconSelected === "financial" &&
+    sourceValidation.fileCount === targetValidation.fileCount;
+
+  console.table(isValid, sourceValidation, targetValidation);
+
+  useFormButton({
+    isValid: isValid && isSourceAndTargetFileCountSame,
+    buttonType: "next",
+  });
 
   return (
     <div className={styles.uploader}>
