@@ -1,13 +1,7 @@
 @import url("../../variables.css");
 
-.uploader{
-    display: flex;
-    justify-content: space-between;
-    color: var(--accent-head-color);
+.uploader {
+  display: flex;
+  justify-content: space-between;
+  color: var(--accent-head-color);
 }
-
-.error{
-    text-align: center;
-    color: var(--error-text);
-}
-
