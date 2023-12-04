@@ -1,13 +1,12 @@
 import { useSelector } from "react-redux";
 
-const DEFAULT_STATE = {
-  isLessThan5: true,
-  isNotZero: false,
-  areLessThan50MB: true,
-  isValidFileFormat: false,
+const DEFAULT_FILE_COUNT = {
+  postload: 5,
+  preload: 5,
+  financial: 8,
 };
 
-const useFileUploadValidation = ({ type }) => {
+const useFileUploadValidation = ({ type, reconSelected }) => {
   const files = useSelector((state) => {
     return type === "source" ? state.files.sourceFile : state.files.targetFile;
   });
@@ -20,7 +19,7 @@ const useFileUploadValidation = ({ type }) => {
       "xlsx"
   );
 
-  const isLessThan5 = files.length <= 5;
+  const isLess = files.length <= DEFAULT_FILE_COUNT[reconSelected];
 
   const areLessThan50MB = files.every((file) => {
     const fileSize = file.size / (1024 * 1024);
@@ -28,10 +27,12 @@ const useFileUploadValidation = ({ type }) => {
   });
 
   return {
-    isLessThan5,
+    isLess,
     isNotZero,
     areLessThan50MB,
     isValidFileFormat,
+    defaultReconFileCount: DEFAULT_FILE_COUNT[reconSelected],
+    fileCount: files.length,
   };
 };
 
