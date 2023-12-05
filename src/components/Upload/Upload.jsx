@@ -40,15 +40,18 @@ const Upload = () => {
 
   const renderUploader = (validation, label, heading, isSource = true) => (
     <div
-      className={isSource ? styles.uploader__source : styles.uploader__target}>
+      className={isSource ? styles.uploader__source : styles.uploader__target}
+    >
       {!validation.isValidFileFormat && (
         <CustomError message="File should be in xlsx format only." />
       )}
       {!validation.areLessThan50MB && (
         <CustomError message="All file size should be less than 50 MB." />
       )}
-      {!validation.isLessThan5 && (
-        <CustomError message="Maximum of only 5 files can be uploaded." />
+      {!validation.isLess && (
+        <CustomError
+          message={`"Maximum of only files ${validation.defaultReconFileCount} can be uploaded."  `}
+        />
       )}
       <FileUpload
         label={label}
