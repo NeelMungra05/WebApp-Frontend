@@ -15,6 +15,7 @@ import RequiredKeySelection from "../../RequiredKeySelection/RequiredKeySelectio
 import { subServiceAction } from "../../../store/subService-slice";
 import TableButton from "../../TableButton/TableButton";
 import styles from "./Reconciliation.module.css";
+import NavigationButton from "../../NavigationButton/NavigationButton";
 
 const Reconciliation = ({ subServiceSelected }) => {
   const steps = useSelector((state) => state.steps.steps);
@@ -65,25 +66,15 @@ const Reconciliation = ({ subServiceSelected }) => {
       <form action="" className={styles.form}>
         <FormSection
           className={styles.form__section}
-          activeClassName={styles["form__section--active"]}>
+          activeClassName={styles["form__section--active"]}
+        >
           {content}
         </FormSection>
-        <div className={styles.form__navigation}>
-          <button
-            type="button"
-            className={`${styles.form__button} ${styles.form__button__previous}`}
-            disabled={!prevButton}
-            onClick={() => handleButton("prev")}>
-            <span className={styles["form__navigation--back"]}>Previous</span>
-          </button>
-          <button
-            type="button"
-            className={`${styles.form__button} ${styles.form__button__next}`}
-            disabled={!nextButton}
-            onClick={() => handleButton("next")}>
-            <span className={styles["form__navigation--forward"]}>Next</span>
-          </button>
-        </div>
+        <NavigationButton
+          handleButton={handleButton}
+          prevButton={prevButton}
+          nextButton={nextButton}
+        />
       </form>
     </>
   );
