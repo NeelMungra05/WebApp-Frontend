@@ -9,11 +9,15 @@ import { formButtonAction } from "../../store/formButton";
 import FieldSelector from "../FieldSelector/FieldSelector";
 import Spinner from "../Spinner/Spinner";
 
+/**
+ * @component
+ * Renders field selectors for source and target fields, handling loading and validation states.
+ *
+ * @returns {ReactNode} The rendered content, either a spinner or field selectors.
+ *
+ */
 const Selector = () => {
-  const [loading, setLoading] = useState(true);
-
-  useReadFields({ type: "source", setLoading });
-  useReadFields({ type: "target", setLoading });
+  const loading = useReadFields();
   const dispatch = useDispatch();
   const validations = useFieldSelectValidation();
 

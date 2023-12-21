@@ -1,81 +1,61 @@
-import React, { useEffect, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import * as xlsx from "xlsx";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { fieldsAction } from "../store/fields-slice";
+import { readSingleFile } from "../utils/fileReader/fileReader";
+import { resultReducer } from "../utils/resultReducer/resultReducer";
 
-const useReadFields = ({ type = "source", setLoading }) => {
-  let files;
+/**
+ * @customHook
+ * Custom hook for reading the files uploaded and dispatching it to the store.
+ *
+ * @returns {Boolean} loading - Will indicate whether to use spinner or not.
+ *
+ * @example
+ * useReadFields();
+ */
+const useReadFields = () => {
+  const files = useSelector((state) => state.files);
 
-  if (type === "source") {
-    files = useSelector((state) => state.files.sourceFile);
-  } else {
-    files = useSelector((state) => state.files.targetFile);
-  }
+  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
 
-  const xlsxReader = useCallback((result) => {
-    const workBook = xlsx.read(result, { type: "binary" });
-    console.log("Called xlsxReader");
-    const rowObjArr = xlsx.utils.sheet_to_json(
-      workBook.Sheets[workBook.SheetNames[0]]
-    );
+  /**
+   * @function
+   * Reads the files and then pass the data to state via action which is an instance of fieldsAction
+   *
+   * @param {Function} action action - It will be instance of which state action to be used for fieldsAction
+   * @param {File[]} fileList fileList - It will be any array of file object
+   * @returns {void}  Void
+   */
+  const readFiles = async (action, fileList) => {
+    const result = await Promise.all(fileList.map(readSingleFile));
+    const finalResult = resultReducer(result);
+    dispatch(action(finalResult));
+  };
 
-    return Object.keys(rowObjArr[0]);
-  }, []);
-
-  const resultReducer = useCallback((result) => {
-    const newResult = result.reduce((acc, curr) => {
-      const fieldObj = curr.result.reduce((resAcc, resCurr) => {
-        resAcc[resCurr] = {
-          name: resCurr,
-          RF: false,
-          PK: false,
-          PKDisabled: true,
-        };
-        return resAcc;
-      }, {});
-
-      acc[curr.name] = {
-        ...fieldObj,
-      };
-
-      return acc;
-    }, {});
-
-    return newResult;
-  }, []);
-
+  /**
+   * Perrform side effect in function component
+   *
+   * @function
+   * @name useEffect
+   * @param {Function} effect - The function containing the side effect code
+   * @param {Array} dependencies - An optional array of dependencies for the effect
+   * @returns {void}
+   *
+   */
   useEffect(() => {
-    const promises = files.map((file) => {
-      return new Promise((resolve, reject) => {
-        const fileReader = new FileReader();
+    const sourceFilesList = files.sourceFile;
+    const targetFilesList = files.targetFile;
 
-        fileReader.onload = (e) => {
-          const { result } = e.target;
+    readFiles(fieldsAction.addSourceFields, sourceFilesList);
+    readFiles(fieldsAction.addTargetFields, targetFilesList);
 
-          resolve({
-            name: file.name,
-            result: xlsxReader(result),
-          });
-        };
-
-        fileReader.readAsBinaryString(file);
-      });
-    });
-
-    Promise.all(promises).then((result) => {
-      const reduceResult = resultReducer(result);
-
-      dispatch(
-        type === "source"
-          ? fieldsAction.addSourceFields(reduceResult)
-          : fieldsAction.addTargetFields(reduceResult)
-      );
-
-      type === "target" ? setLoading(false) : "";
-    });
+    setLoading(false);
   }, [files]);
+
+  return loading;
 };
 
 export default useReadFields;
