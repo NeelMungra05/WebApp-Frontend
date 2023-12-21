@@ -16,6 +16,7 @@ import { resultReducer } from "../utils/resultReducer/resultReducer";
  */
 const useReadFields = () => {
   const files = useSelector((state) => state.files);
+  const reconType = useSelector((state) => state.subService.reconType);
 
   const [loading, setLoading] = useState(true);
 
@@ -30,8 +31,10 @@ const useReadFields = () => {
    * @returns {void}  Void
    */
   const readFiles = async (action, fileList) => {
+    const reconSelected = reconType.financial ? "financial" : "nonFinancial";
+
     const result = await Promise.all(fileList.map(readSingleFile));
-    const finalResult = resultReducer(result);
+    const finalResult = resultReducer(result, reconSelected);
     dispatch(action(finalResult));
   };
 
