@@ -18,14 +18,11 @@ import Spinner from "../Spinner/Spinner";
  */
 const Selector = () => {
   const loading = useReadFields();
-  const dispatch = useDispatch();
   const validations = useFieldSelectValidation();
 
   const isValid = Object.values(validations).reduce(
     (prev, curr) => prev && curr
   );
-
-  console.table(validations);
 
   useFormButton({ isValid, buttonType: "next" });
 
