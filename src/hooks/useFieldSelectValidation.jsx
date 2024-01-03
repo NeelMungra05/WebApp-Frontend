@@ -8,18 +8,16 @@ import { useSelector } from "react-redux";
  * @property {boolean} hasSelectedSourcePK - Indicates if at least one source field has PK property selected.
  * @property {boolean} hasSelectedTargetRF - Indicates if at least one target field has RF property selected.
  * @property {boolean} hasSelectedTargetPK - Indicates if at least one target field has PK property selected.
+ * @property {boolean} hasSelectedSourceGB - Indicates if at least one source field has GB property selected (for financial recon).
+ * @property {boolean} hasSelectedSourceAB - Indicates if at least one source field has AB property selected (for financial recon).
+ * @property {boolean} hasSelectedTargetGB - Indicates if at least one target field has GB property selected (for financial recon).
+ * @property {boolean} hasSelectedTargetAB - Indicates if at least one target field has AB property selected (for financial recon).
  */
 const useFieldSelectValidation = () => {
-  /**
-   * Retrieve source fields from Redux state.
-   */
+  const reconType = useSelector((state) => state.subService.reconType);
+  const reconSelected = reconType.financial ? "financial" : "nonFinancial";
   const sourceFields = useSelector((state) => state.fields.sourceFields);
-
-  /**
-   * Retrieve target fields from Redux state.
-   */
   const targetFields = useSelector((state) => state.fields.targetFields);
-
   /**
    * Helper function to create validation based on the specified property.
    *
@@ -32,8 +30,9 @@ const useFieldSelectValidation = () => {
       Object.values(fields[key]).some((val) => val[property] === true)
     );
 
-  // List of properties to validate
-  const properties = ["RF", "PK"];
+  // List of properties based on reconSelected
+  const properties =
+    reconSelected === "financial" ? ["GB", "AB"] : ["RF", "PK"];
 
   /**
    * Generate validations object by reducing the properties.
