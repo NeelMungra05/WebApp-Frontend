@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
-import logo from "../../assets/sapCompanyLogo.png";
+import logo from "../../assets/deloitte 1.svg";
 import { MdLogout } from "react-icons/md";
 
 const Header = (props) => {
@@ -56,7 +56,8 @@ const Header = (props) => {
             <img src={logo} width="100px" height="auto" alt="" />
           </span>
           <p className={styles["header__tool--name"]}>
-            Enterprise Data Silhouette
+            Enterprise DataSilhouette
+            <span className={styles["header__tool__name--smallerR"]}>®</span>
           </p>
         </div>
         {navbar}

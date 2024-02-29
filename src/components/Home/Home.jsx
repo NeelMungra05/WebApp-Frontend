@@ -43,22 +43,6 @@ const Home = () => {
       </div>
       <div className={styles.greenLine}></div>
       <div className={styles.toolDescription}>
-        <h2 className={styles.heading}>Our Clients</h2>
-        <div className={styles.clientdesc}>
-          <img src={AmnsImg} alt="" className={styles.clientImg} />
-          <p className={styles.description}>
-            The AMNS India Reconciliation Tool has not only streamlined AMNS
-            India's reconciliation workflows but has also delivered quantifiable
-            results. With fewer discrepancies, reduced manual efforts, and
-            enhanced decision-making capabilities, AMNS India has experienced
-            improved operational efficiency and cost savings. The AMNS India
-            Reconciliation Tool wasn't just a solution—it was a tailored answer
-            to their unique reconciliation challenges.
-          </p>
-        </div>
-      </div>
-      <div className={styles.greenLine}></div>
-      <div className={styles.toolDescription}>
         <h2 className={styles.heading}>Our Team</h2>
         <div className={styles.wrapimg}>
           {TeamMembers.map((member, index) => (

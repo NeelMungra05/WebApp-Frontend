@@ -46,22 +46,35 @@
 .mainTable {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid var(--background-color);
+  border: 0px solid var(--background-color);
 }
 
 .mainTable th,
 .mainTable td {
   padding: 8px;
   text-align: center;
-  border: 2px solid var(--light-gray-1);
+  border-top: 2px solid var(--light-gray-1);
+  border-bottom: 2px solid var(--light-gray-1);
   background-color: var(--highlighted-font-color);
 }
 
-.mainTable th {
-  background-color: var(--accent-color);
-  font-size: 15px;
-  align-items: center;
-  color: var(--background-color);
+.mainTable th:first-child,
+.mainTable td:first-child {
+  border-left: none;
+}
+
+.mainTable th:last-child,
+.mainTable td:last-child {
+  border-right: none;
+}
+
+.mainTable tr:first-child th,
+.mainTable tr:last-child td {
+  border-top: none;
+}
+
+.mainTable tr:last-child td {
+  border-bottom: none;
 }
 
 .buttonContainer {

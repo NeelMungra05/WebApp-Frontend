@@ -1,57 +1,59 @@
 @import url("../../variables.css");
 
-.header{
-    padding: 0 10%;
-    background-color: var(--text-dark);
-    color: var(--text-light);
-    font-family: inherit;
+.header {
+  padding: 0 8%;
+  background-color: var(--text-dark);
+  color: var(--text-light);
+  font-family: inherit;
 }
 
-.nav-container{
+.nav-container {
   display: flex;
   justify-content: space-between;
   max-width: 75rem;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
-.header__logo{
+.header__logo {
   display: flex;
   align-items: center;
   height: 4rem;
-
-
+  margin-left: -1.3rem;
 }
 
-.header__name{
+.header__name {
   margin-left: -4rem;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 20px;
-  margin-top: 5px;
+  margin-top: 4px;
 }
 
-.header__tool--name{
+.header__tool--name {
   margin-left: 0.5rem;
   font-size: 1rem;
   display: flex;
   align-items: center;
- 
-
 }
 
-.header__tool--name::before{
-    content: "";
-    width: 1px;
-    height: 1.5rem;
-    margin: 0 1rem;
+.header__tool__name--smallerR {
+  font-size: 80%;
+  margin-top: -5px;
+}
+
+.header__tool--name::before {
+  content: "";
+  width: 1px;
+  height: 1.5rem;
+  margin: 0 1.6rem 0 1rem;
   background: var(--dark-gray-1);
 }
 
-.nav{
+.nav {
   display: flex;
 }
 
-.nav__link{
+.nav__link {
   display: flex;
   align-items: center;
   padding: 0rem 0.5rem;
@@ -59,26 +61,25 @@
   color: inherit;
 }
 
-.nav__link:hover{
-  background-color:var(--hover-color)
+.nav__link:hover {
+  background-color: var(--hover-color);
 }
 
-.nav__link:not(:last-child){
+.nav__link:not(:last-child) {
   margin-right: 1rem;
 }
 
-.nav__item{
+.nav__item {
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: capitalize;
-
 }
 
-.nav__link--active{
+.nav__link--active {
   background-color: var(--accent-dark-color);
   color: var(--text-light);
 }
 
-.nav__link--active:hover{
+.nav__link--active:hover {
   background-color: var(--active-hover-color);
 }

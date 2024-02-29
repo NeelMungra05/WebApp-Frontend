@@ -1,31 +1,30 @@
-:root{
-    --background-color: #fff;
-    --header-color: #efefef;
-    --accent-color:#86BC25;
-    --accent-dark-color: #43B02A;
-    --accessible-green: #26890D;
-    --deloitte-green: #86BC25;
-    --accent-head-color: #617b60;
-    --main-font-color: #000;
-    --highlighted-font-color: #fff;
-    --border: 6px solid var(--accent-color);
-    --border-thin : 3px solid var(--accent-color);
-    --text-dark: #000;
-    --text-light: #fbf2f2;
-    --text-muted: #595959;
-    --accessible-green: #26890D;
-    --primary-font-size:3rem;
-    --secondary-font-size:1.75rem;
-    --normal-font-size:1.125rem;
-    --light-gray-1:#D0D0CE;
-    --light-gray-2:#BBBCBC;
-    --light-gray-3:#A7A8AA;
-    --dark-gray-1:#53565A;
-    --dark-gray-2:#63666A;
-    --dark-gray-3:#75787B;
-    --error-text: hsl(4, 77%, 48%);
-    --hover-color: rgba(255,255,255,0.15);
-    --active-hover-color: hsl(109,61%,35%)
-    --deloitte-blue: #007CB0;
+:root {
+  --background-color: #fff;
+  --header-color: #efefef;
+  --accent-color: #86bc25;
+  --accent-dark-color: #43b02a;
+  --accessible-green: #26890d;
+  --deloitte-green: #86bc25;
+  --accent-head-color: #617b60;
+  --main-font-color: #000;
+  --highlighted-font-color: #fff;
+  --border: 6px solid var(--accent-color);
+  --border-thin: 3px solid var(--accent-color);
+  --text-dark: #000;
+  --text-light: #fbf2f2;
+  --text-muted: #595959;
+  --accessible-green: #26890d;
+  --primary-font-size: 3rem;
+  --secondary-font-size: 1.75rem;
+  --normal-font-size: 1.125rem;
+  --light-gray-1: #d0d0ce;
+  --light-gray-2: #bbbcbc;
+  --light-gray-3: #a7a8aa;
+  --dark-gray-1: #53565a;
+  --dark-gray-2: #63666a;
+  --dark-gray-3: #75787b;
+  --error-text: hsl(4, 77%, 48%);
+  --hover-color: rgba(255, 255, 255, 0.15);
+  --active-hover-color: hsl(109, 61%, 35%);
+  --deloitte-blue: #007cb0;
 }
-
